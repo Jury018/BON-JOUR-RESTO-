@@ -80,7 +80,7 @@ function signIn() {
   });
 
   if (authenticatedUser) {
-    window.location.href = "index.html"; // Redirect on successful sign in
+    window.location.href = "homepage.html"; // Redirect on successful sign in
   } else {
     showAlert("Invalid email or password. Please try again.");
   }
