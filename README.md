@@ -1,0 +1,1 @@
+all the files and codes containes in this repository are owned made by Bon Jury Pecaoco if any changes you want to made or suggest please contact the owner first.If you want to use the code for any purpose please contact the owner.If the code violates a crime or a copyright issue please contact the owner to adress the issue.Thank you
