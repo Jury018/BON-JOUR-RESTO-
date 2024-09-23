@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>HOMEPAGE</title>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="homepagestyle.css">
+  <script src="homepagescript.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1><b style="animation: glowing 1s infinite;">BON JOUR KOREAN RESTAURANT™</b></h1>
+  </header>
+  
+  <main>
+    <!-- Introduction Menu -->
+    <div id="introMenu">
+      <h2>Introduction:</h2>
+      <p><i>Welcome to Bon Jour Korean Restaurant, founded by the esteemed future criminal programmer Bon Jury. His passion for coding and dedication to learning led to creating this website for testing purposes only. He takes this project seriously, working tirelessly days and months to provide a seamless and smoother experience. Feel free to explore and let me know if you seen a problem just dont say it, it's is a bug it makes me sick.</i></p>
+    </div>
+
+    <!-- Menu with Prices -->
+    <div>
+      <h2>Menu with Prices:</h2>
+      <table>
+        <tr><th>Product</th><th>Price</th></tr>
+        <tr><td>Chicken Meals with Drinks</td><td>₱200</td></tr>
+        <tr><td>Chicken Nuggets Meal with Drinks</td><td>₱170</td></tr>
+        <tr><td>Chicken Adobo Meals with Drinks</td><td>₱220</td></tr>
+        <tr><td>Chicken with Extra Rice and Drinks</td><td>₱220</td></tr>
+        <tr><td>Burger with Drinks</td><td>₱120</td></tr>
+      </table>
+    </div>
+
+    <!-- Order Form -->
+    <div id="orderMenu">
+      <h2>Order Form:</h2>
+      <form id="orderForm">
+        <label for="email">Email:</label>
+        <input type="email" id="email" required><br><br>
+
+        <label for="phone">Phone Number:</label>
+        <input type="text" id="phone" pattern="[0-9]{11}" required><br><br>
+
+        <label for="order">Product:</label>
+        <select id="order" required>
+          <option value="">Select a product</option>
+          <option value="Chicken Meals with Drinks">Chicken Meals with Drinks</option>
+          <option value="Chicken Nuggets Meal with Drinks">Chicken Nuggets Meal with Drinks</option>
+          <option value="Chicken Adobo Meals with Drinks">Chicken Adobo Meals with Drinks</option>
+          <option value="Chicken with Extra Rice and Drinks">Chicken with Extra Rice and Drinks</option>
+          <option value="Burger with Drinks">Burger with Drinks</option>
+        </select><br><br>
+
+        <label for="drinkType">Drink Type:</label>
+        <select id="drinkType">
+          <option value="Coke">Coke</option>
+          <option value="Sprite">Sprite</option>
+          <option value="Royal">Royal</option>
+          <option value="Nestea">Nestea</option>
+        </select><br><br>
+
+        <label for="drinkSize">Drink Size:</label>
+        <select id="drinkSize">
+          <option value="Regular">Regular</option>
+          <option value="Medium">Medium (+₱30)</option>
+          <option value="Large">Large (+₱45)</option>
+        </select><br><br>
+
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" min="1" required><br><br>
+
+        <label for="payment">Mode of Payment:</label>
+        <select id="payment" onchange="updatePaymentMethod()">
+          <option value="">Select a payment method</option>
+          <option value="GCash">GCash</option>
+          <option value="PayMaya">PayMaya</option>
+          <option value="PayPal">PayPal</option>
+          <option value="Cash on Delivery">Cash on Delivery</option>
+        </select><br><br>
+
+        <input type="button" value="Add to Cart" onclick="addToCart()">
+        <input type="button" value="Submit" onclick="submitForm()">
+      </form>
+    </div>
+
+    <!-- Cart -->
+    <div id="cart" style="display: none;">
+      <h2>Cart:</h2>
+      <ul id="cartItems"></ul>
+    </div>
+    
+    <!-- Custom Modal Alert -->
+    <div id="customAlert" class="modal">
+      <div class="modal-content">
+        <span class="close-btn" onclick="closeAlert()">&times;</span>
+        <p id="alertMessage"></p>
+        <button onclick="closeAlert()">OK</button>
+      </div>
+    </div>
+
+    <!-- Confirmation message -->
+    <div id="confirmationMessage" style="display: none;">
+      <h2>Order Receipt:</h2>
+      <p id="confirmationText"></p>
+      <p>Do you want to proceed to the selected payment method?</p>
+      <button onclick="confirmPayment()">Yes</button>
+      <button onclick="cancelPayment()">No</button>
+    </div>
+  </main>
+   
+   <!-- Order Summary -->
+   <div id="orderSummary" style="display: none;">
+     <h2>Order Summary:</h2>
+     <ul id="orderDetails"></ul>
+     <p><strong>Total Amount: ₱<span id="totalAmount"></span></strong></p>
+   </div>
+
+  <!-- Feedback Section -->
+  <div id="feedbackSection" style="display: none;">
+    <h2>Feedback:</h2>
+    <form id="feedbackForm">
+      <label for="feedback">Your Feedback:</label>
+      <textarea id="feedback" rows="4" required></textarea><br><br>
+      <input type="button" value="Submit Feedback" onclick="submitFeedback()">
+    </form>
+  </div>
+
+  <!-- Reorder Section -->
+  <div id="reorderSection" style="display: none;">
+    <h2>Your Previous Orders:</h2>
+    <ul id="previousOrders"></ul>
+  </div>
+
+  <footer>
+    <p>&copy; 2024 Bon Jour Korean Restaurant. All rights reserved.</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,454 @@
+/* General Styles */
+body {
+  font-family: 'Montserrat','Arial',sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f3f3f3;
+}
+
+header {
+  background-color: #f8f8f8;
+  padding: 20px;
+  text-align: center;
+  border-bottom: 2px solid #e0e0e0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+  font-family: 'Montserrat', sans-serif;
+  color: #ff0000;
+  font-size: 32px;
+  padding: 10px;
+  border: 2px solid #ff0000;
+  display: inline-block;
+  margin-top: 0;
+  animation: glowing 1s infinite;
+  border-radius: 8px;
+}
+
+@keyframes glowing {
+  0% { color: #ff0000; }
+  50% { color: #ff4d4d; }
+  100% { color: #ff0000; }
+}
+
+main {
+  margin: 40px 10%;
+}
+
+main p {
+  font-style: italic;
+  line-height: 1.6;
+}
+
+main h2 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th, td {
+  border: none;
+  padding: 12px;
+  text-align: left;
+  font-size: 16px;
+}
+
+th {
+  background-color: #f2f2f2;
+  font-weight: 700;
+}
+
+td {
+  border-bottom: 1px solid #ddd;
+}
+
+form {
+  margin-bottom: 20px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+input[type="email"],
+input[type="text"],
+input[type="number"],
+select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+input[type="email"]:focus,
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus {
+  border-color: #4caf50;
+  box-shadow: 0 0 8px rgba(76, 175, 80, 0.2);
+}
+
+input[type="button"] {
+  background: linear-gradient(45deg, #4caf50, #81c784);
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+input[type="button"]:hover {
+  background: linear-gradient(45deg, #388e3c, #66bb6a);
+  transform: translateY(-3px);
+}
+
+/* Cart Styles */
+#cart ul {
+  list-style-type: none;
+  padding: 0;
+  font-size: 16px;
+}
+
+#confirmationMessage {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #f8f8f8;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+footer {
+  background-color: #f8f8f8;
+  padding: 10px;
+  text-align: center;
+  border-top: 2px solid #e0e0e0;
+  font-size: 14px;
+  color: #888;
+}
+
+/* Add subtle hover effect on table rows */
+table tr:hover {
+  background-color: #f9f9f9;
+}
+
+/* Add floating labels */
+input[type="email"]:focus::placeholder,
+input[type="text"]:focus::placeholder,
+input[type="number"]:focus::placeholder,
+select:focus::placeholder {
+  color: transparent;
+}
+
+/* Custom Modal Styling */
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 1000; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  background-color: rgba(0, 0, 0, 0.5); 
+}
+
+.modal-content {
+  background-color: white;
+  margin: 15% auto;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+  text-align: center;
+}
+
+.modal-content p {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.close-btn {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+  color: black;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1000; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+  max-width: 500px; /* Maximum width */
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Order Summary Styles */
+#orderSummary {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Feedback Section Styles */
+#feedbackSection {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+#feedback {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+/* Reorder Section Styles */
+#reorderSection {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Reorder Item Styles */
+#previousOrders li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Button Styles for Feedback Submission */
+input[type="button"] {
+  background: linear-gradient(45deg, #4caf50, #81c784);
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+input[type="button"]:hover {
+  background: linear-gradient(45deg, #388e3c, #66bb6a);
+  transform: translateY(-3px);
+}
+
+/* Reorder Button Styles */
+input[type="button"] {
+  background: linear-gradient(45deg, #4caf50, #81c784);
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-left: 10px; /* Spacing between text and button */
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+input[type="button"]:hover {
+  background: linear-gradient(45deg, #388e3c, #66bb6a);
+  transform: translateY(-2px);
+}
+
+/* General Styles */
+:root {
+  --primary-color: #4caf50;
+  --secondary-color: #ff0000;
+  --bg-color: #f3f3f3;
+  --text-color: #333;
+}
+
+body {
+  font-family: 'Montserrat', 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+header {
+  background-color: #f8f8f8;
+  padding: 20px;
+  text-align: center;
+  border-bottom: 2px solid #e0e0e0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+  font-size: 32px;
+  padding: 10px;
+  margin-top: 0;
+  animation: glowing 1s infinite;
+  border-radius: 8px;
+  color: var(--secondary-color);
+}
+
+@keyframes glowing {
+  0% { color: var(--secondary-color); }
+  50% { color: #ff4d4d; }
+  100% { color: var(--secondary-color); }
+}
+
+main {
+  margin: 40px 10%;
+}
+
+main h2, main p {
+  margin: 20px 0;
+}
+
+table {
+  width: 100%;
+  margin-bottom: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+form {
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+input, select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+input[type="button"] {
+  background: linear-gradient(45deg, var(--primary-color), #81c784);
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+input[type="button"]:hover {
+  background: linear-gradient(45deg, #388e3c, #66bb6a);
+}
+
+/* Modal Styling */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: white;
+  margin: 15% auto;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 500px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Footer */
+footer {
+  background-color: #f8f8f8;
+  padding: 10px;
+  text-align: center;
+}
+

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bon Jour</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <script src="script.js" defer></script>
+  <script>
+    window.onload = function() {
+      showSignIn(); // Ensure the sign-in form is shown first
+    };
+  </script>
+</head>
+<body>
+  <header>
+    <h1><b>BON JOUR KOREAN RESTAURANT</b></h1>
+  </header>
+  <main>
+    <div class="container" id="signInForm">
+      <h2>Sign In</h2>
+      <form onsubmit="signIn(); return false;">
+        <label for="signInEmail">Email:</label>
+        <input type="email" id="signInEmail" required>
+        <label for="signInPassword">Password:</label>
+        <input type="password" id="signInPassword" required>
+        <input type="checkbox" onclick="togglePasswordVisibility('signInPassword')"> Show Password
+        <input type="submit" value="Sign In">
+      </form>
+      <button onclick="showSignUp()">Don't have an account? Sign up</button>
+    </div>
+    <div class="container" id="signUpForm" style="display: none;">
+      <h2>Sign Up</h2>
+      <form onsubmit="signUp(); return false;">
+        <label for="signUpEmail">Email:</label>
+        <input type="email" id="signUpEmail" required>
+        <label for="signUpPassword">Password:</label>
+        <input type="password" id="signUpPassword" required>
+        <label for="confirmPassword">Confirm Password:</label>
+        <input type="password" id="confirmPassword" required>
+        <input type="checkbox" onclick="togglePasswordVisibility('signUpPassword'); togglePasswordVisibility('confirmPassword')"> Show Passwords
+        <input type="submit" value="Sign Up">
+      </form>
+      <button onclick="showSignIn()">Already have an account? Sign in</button>
+    </div>
+    <div id="customAlert" class="custom-alert" style="display: none;">
+      <span id="alertMessage"></span>
+      <button onclick="closeAlert()">Close</button>
+    </div>
+  </main>
+  <footer></footer>
+</body>
+</html>
