@@ -65,7 +65,7 @@ input[type="submit"]:hover {
 footer {
   background-color: #ffcccc;
   padding: 20px;
-  text-align: center;
+  text-align: center;  
 }
 input[type="email"],
 input[type="password"],
@@ -130,4 +130,102 @@ button:hover {
 }
 .custom-alert button:hover {
   background-color: #218838;
+}
+
+.container {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="submit"],
+button {
+  transition: all 0.3s ease;
+}
+
+input[type="submit"],
+.custom-alert button {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+input[type="submit"]:hover,
+.custom-alert button:hover {
+  transform: scale(1.05);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+label i {
+  margin-right: 10px; /* Space between icon and label text */
+  color: #007bff; /* Icon color */
+}
+
+input[type="email"],
+input[type="password"],
+input[type="submit"],
+button {
+  transition: all 0.3s ease;
+}
+
+input[type="submit"],
+.custom-alert button {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+input[type="submit"]:hover,
+.custom-alert button:hover {
+  transform: scale(1.05);
+}
+
+button:hover {
+  background-color: rgba(0, 123, 255, 0.1); /* Light background on hover */
+  border-radius: 5px;
+}
+
+header h1 {
+  font-family: 'Montserrat','Arial' sans-serif;
+  color: #ff0000;
+  font-size: 32px;
+  padding: 10px;
+  border: 2px solid #ff0000;
+  display: inline-block;
+  margin-top: 0;
+  animation: glowing 1s infinite;
+  border-radius: 8px;
+}
+
+@keyframes glowing {
+  0% { color: #ff0000; }
+  50% { color: #ff4d4d; }
+  100% { color: #ff0000; }
+}
+
+.custom-alert {
+    border: 2px solid #28a745;
 }
