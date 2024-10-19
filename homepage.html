@@ -9,10 +9,14 @@
 </head>
 <body>
   <header>
-    <h1><b style="animation: glowing 1s infinite;">BON JOUR KOREAN RESTAURANT™</b></h1>
-  </header>
-  
+    
+  <header>
+  <h1><b style="animation: glowing 1s infinite;">BON JOUR KOREAN RESTAURANT™</b></h1>
+  <button onclick="signOut()" style="float: right;">Sign Out</button> 
+</header>
+
   <main>
+    
     <!-- Introduction Menu -->
     <div id="introMenu">
       <h2>Introduction:</h2>
@@ -135,5 +139,9 @@
   <footer>
     <p>&copy; 2024 Bon Jour Korean Restaurant. All rights reserved.</p>
   </footer>
+  
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth-compat.js"></script>
+
 </body>
 </html>
