@@ -249,3 +249,30 @@ function updatePaymentMethod() {
 
 // Ensure this function is triggered when the payment method changes
 document.getElementById("payment").addEventListener("change", updatePaymentMethod);
+
+// homepagescript.js
+
+// Firebase configuration (make sure this is YOUR config from the Firebase console)
+const firebaseConfig = {
+  apiKey: "AIzaSyCmQ3twke1IpprDDAE2OgNOWRUR7-VoCAI",
+  authDomain: "bon-jour-base.firebaseapp.com",
+  // ... the rest of your config ...
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+// Initialize Firebase Authentication
+const auth = firebase.auth();
+
+function signOut() {
+  auth.signOut().then(() => {
+    window.location.href = "index.html"; // Redirect to your sign-in/sign-up page
+  }).catch((error) => {
+    console.error("Sign out error:", error); // Log any errors to the console
+    // Optionally, display an error message to the user with showAlert()
+  });
+}
+
+// ... your other homepage JavaScript code (addToCart, submitForm, etc.) ... 
+
