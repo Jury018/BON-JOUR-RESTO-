@@ -1,4 +1,26 @@
-const users = []; // Initialize an empty array for users
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-analytics.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
+
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyCmQ3twke1IpprDDAE2OgNOWRUR7-VoCAI",
+  authDomain: "bon-jour-base.firebaseapp.com",
+  databaseURL: "https://bon-jour-base-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "bon-jour-base",
+  storageBucket: "bon-jour-base.appspot.com",
+  messagingSenderId: "357223269073",
+  appId: "1:357223269073:web:f6cc1488822894c4917bf0",
+  measurementId: "G-0049SLDRM2"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const auth = getAuth(app);
+const database = getDatabase(app);
 
 document.querySelector('#signInFormElement').addEventListener('submit', function(event) {
   event.preventDefault();
@@ -14,16 +36,16 @@ function signIn() {
   const email = document.getElementById("signInEmail").value;
   const password = document.getElementById("signInPassword").value;
 
-  // **IMPORTANT:** In a real application, you would authenticate against a server here
-  // For this example, we'll simulate authentication with the stored users array
-  const authenticatedUser = users.find(user => user.email === email && user.password === password);
-
-  if (authenticatedUser) {
-    // Redirect on successful sign in
-    window.location.href = "homepage.html"; 
-  } else {
-    displayAlert("Invalid email or password. Please try again.");
-  }
+  signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed in 
+      const user = userCredential.user;
+      // Redirect on successful sign in
+      window.location.href = "homepage.html"; 
+    })
+    .catch((error) => {
+      displayAlert(`Error signing in: ${error.message}`);
+    });
 }
 
 function signUp() {
@@ -41,16 +63,24 @@ function signUp() {
     return;
   }
 
-  const existingUser = users.find(user => user.email === email);
+  createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed up 
+      const user = userCredential.user;
 
-  if (existingUser) {
-    displayAlert("Email is already registered. Please sign in or use a different email.");
-  } else {
-    // **IMPORTANT:** In a real application, you would send this data to a server to be stored securely
-    users.push({ email: email, password: password }); 
-    displayAlert("Sign up successful! Please sign in with your new account.");
-    showSignIn(); 
-  }
+      // Store additional user information in the Realtime Database
+      const usersRef = ref(database, 'users/' + user.uid);
+      set(usersRef, {
+        email: email,
+        // ... other user data ...
+      });
+
+      displayAlert("Sign up successful! Please sign in with your new account.");
+      showSignIn();
+    })
+    .catch((error) => {
+      displayAlert(`Error creating user: ${error.message}`);
+    });
 }
 
 function isStrongPassword(password) {
@@ -90,4 +120,6 @@ function closeAlert() {
 }
 
 // Call showSignIn on page load to ensure the sign-in form is shown first
-window.
+window.onload = function() {
+  showSignIn(); 
+};
