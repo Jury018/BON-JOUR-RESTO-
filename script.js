@@ -123,3 +123,16 @@ function closeAlert() {
 window.onload = function() {
   showSignIn(); 
 };
+
+function signOut() {
+  auth.signOut()
+    .then(() => {
+      // Sign-out successful.
+      // Show the sign-in form again or redirect to a sign-in page
+      showSignIn(); // Or: window.location.href = "signin.html";
+    })
+    .catch((error) => {
+      // An error happened.
+      displayAlert(`Error signing out: ${error.message}`);
+    });
+}
