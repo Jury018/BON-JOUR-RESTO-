@@ -1,10 +1,4 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-analytics.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
-import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
-
-
-// Your web app's Firebase configuration
+// Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyCmQ3twke1IpprDDAE2OgNOWRUR7-VoCAI",
   authDomain: "bon-jour-base.firebaseapp.com",
@@ -17,11 +11,11 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-const auth = getAuth(app);
-const database = getDatabase(app);
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const database = firebase.database();
 
+// Event Listeners
 document.querySelector('#signInFormElement').addEventListener('submit', function(event) {
   event.preventDefault();
   signIn();
@@ -36,12 +30,9 @@ function signIn() {
   const email = document.getElementById("signInEmail").value;
   const password = document.getElementById("signInPassword").value;
 
-  signInWithEmailAndPassword(auth, email, password)
+  auth.signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
-      // Signed in 
-      const user = userCredential.user;
-      // Redirect on successful sign in
-      window.location.href = "homepage.html"; 
+      window.location.href = "homepage.html"; // Redirect after successful sign-in
     })
     .catch((error) => {
       displayAlert(`Error signing in: ${error.message}`);
@@ -63,18 +54,12 @@ function signUp() {
     return;
   }
 
-  createUserWithEmailAndPassword(auth, email, password)
+  auth.createUserWithEmailAndPassword(email, password)
     .then((userCredential) => {
-      // Signed up 
       const user = userCredential.user;
-
-      // Store additional user information in the Realtime Database
-      const usersRef = ref(database, 'users/' + user.uid);
-      set(usersRef, {
-        email: email,
-        // ... other user data ...
+      database.ref('users/' + user.uid).set({
+        email: email
       });
-
       displayAlert("Sign up successful! Please sign in with your new account.");
       showSignIn();
     })
@@ -88,12 +73,30 @@ function isStrongPassword(password) {
   return regex.test(password);
 }
 
+function checkPasswordStrength(password) {
+  const strengthMessage = document.getElementById('passwordStrengthMessage');
+  let strengthText = '';
+  let strengthColor = '';
+
+  if (password.length < 8) {
+    strengthText = 'Weak';
+    strengthColor = 'red';
+  } else if (password.match(/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/)) {
+    strengthText = 'Strong';
+    strengthColor = 'green';
+  } else {
+    strengthText = 'Moderate';
+    strengthColor = 'yellow';
+  }
+
+  strengthMessage.textContent = `Password Strength: ${strengthText}`;
+  strengthMessage.style.color = strengthColor;
+}
+
 function togglePasswordVisibility(inputIds) {
   inputIds.forEach(id => {
-    const passwordInput = document.getElementById(id);
-    if (passwordInput) {
-      passwordInput.type = passwordInput.type === "password" ? "text" : "password";
-    }
+    const input = document.getElementById(id);
+    input.type = input.type === "password" ? "text" : "password";
   });
 }
 
@@ -110,29 +113,13 @@ function showSignIn() {
 function displayAlert(message) {
   const alertMessage = document.getElementById("alertMessage");
   alertMessage.textContent = message;
-  const alertBox = document.getElementById("customAlert");
-  alertBox.style.display = "block"; 
+  document.getElementById("customAlert").style.display = "block";
 }
 
 function closeAlert() {
-  const alertBox = document.getElementById("customAlert");
-  alertBox.style.display = "none"; 
+  document.getElementById("customAlert").style.display = "none";
 }
 
-// Call showSignIn on page load to ensure the sign-in form is shown first
 window.onload = function() {
-  showSignIn(); 
+  showSignIn(); // Show sign-in form by default
 };
-
-function signOut() {
-  auth.signOut()
-    .then(() => {
-      // Sign-out successful.
-      // Show the sign-in form again or redirect to a sign-in page
-      showSignIn(); // Or: window.location.href = "signin.html";
-    })
-    .catch((error) => {
-      // An error happened.
-      displayAlert(`Error signing out: ${error.message}`);
-    });
-}
