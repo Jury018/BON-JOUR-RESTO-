@@ -89,37 +89,67 @@ function checkPasswordStrength(password) {
     strengthColor = 'yellow';
   }
 
-  strengthMessage.textContent = `Password Strength: ${strengthText}`;
+  strengthMessage.textContent = strengthText;
   strengthMessage.style.color = strengthColor;
 }
 
-function togglePasswordVisibility(inputIds) {
-  inputIds.forEach(id => {
-    const input = document.getElementById(id);
-    input.type = input.type === "password" ? "text" : "password";
+function togglePasswordVisibility(passwordFields) {
+  passwordFields.forEach(fieldId => {
+    const passwordField = document.getElementById(fieldId);
+    if (passwordField.type === "password") {
+      passwordField.type = "text";
+    } else {
+      passwordField.type = "password";
+    }
   });
-}
-
-function showSignUp() {
-  document.getElementById("signInForm").style.display = "none";
-  document.getElementById("signUpForm").style.display = "block";
-}
-
-function showSignIn() {
-  document.getElementById("signUpForm").style.display = "none";
-  document.getElementById("signInForm").style.display = "block";
 }
 
 function displayAlert(message) {
   const alertMessage = document.getElementById("alertMessage");
+  const customAlert = document.getElementById("customAlert");
   alertMessage.textContent = message;
-  document.getElementById("customAlert").style.display = "block";
+  customAlert.style.display = "block";
 }
 
 function closeAlert() {
-  document.getElementById("customAlert").style.display = "none";
+  const customAlert = document.getElementById("customAlert");
+  customAlert.style.display = "none";
 }
 
-window.onload = function() {
-  showSignIn(); // Show sign-in form by default
-};
+function showSignUp() {
+  const signInForm = document.getElementById("signInForm");
+  const signUpForm = document.getElementById("signUpForm");
+
+  signInForm.style.opacity = 1; // Set initial opacity for fade-out
+  signInForm.style.transition = "opacity 0.5s"; // Transition effect for fade-out
+
+  signInForm.style.opacity = 0; // Start fade-out
+
+  // Wait for the fade-out to complete before showing the sign-up form
+  setTimeout(() => {
+    signInForm.style.display = "none"; // Hide sign-in form
+    signUpForm.style.display = "block"; // Show sign-up form
+    signUpForm.style.opacity = 0; // Set initial opacity for fade-in
+    signUpForm.style.transition = "opacity 0.5s"; // Transition effect for fade-in
+    signUpForm.style.opacity = 1; // Start fade-in
+  }, 500); // Delay matches the fade-out duration
+}
+
+function showSignIn() {
+  const signInForm = document.getElementById("signInForm");
+  const signUpForm = document.getElementById("signUpForm");
+
+  signUpForm.style.opacity = 1; // Set initial opacity for fade-out
+  signUpForm.style.transition = "opacity 0.5s"; // Transition effect for fade-out
+
+  signUpForm.style.opacity = 0; // Start fade-out
+
+  // Wait for the fade-out to complete before showing the sign-in form
+  setTimeout(() => {
+    signUpForm.style.display = "none"; // Hide sign-up form
+    signInForm.style.display = "block"; // Show sign-in form
+    signInForm.style.opacity = 0; // Set initial opacity for fade-in
+    signInForm.style.transition = "opacity 0.5s"; // Transition effect for fade-in
+    signInForm.style.opacity = 1; // Start fade-in
+  }, 500); // Delay matches the fade-out duration
+}
