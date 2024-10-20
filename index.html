@@ -13,44 +13,54 @@
   <script src="script.js" defer></script>
 </head>
 <body>
-    <header>
-        <h1><b style="animation: glowing 1s infinite;">BON JOUR KOREAN RESTAURANT™</b></h1>
-    </header>
-    <main>
-        <div class="container" id="signInForm" class="form-container">
-            <h2>SIGN IN</h2>
-            <form id="signInFormElement">
-                <label for="signInEmail"><i class="fas fa-envelope"></i> Email:</label>
-                <input type="email" id="signInEmail" required aria-label="Sign In Email">
-                <label for="signInPassword"><i class="fas fa-lock"></i> Password:</label>
-                <input type="password" id="signInPassword" required aria-label="Sign In Password">
-                <input type="checkbox" onclick="togglePasswordVisibility(['signInPassword'])"> Show Password
-                <input type="submit" value="Sign In">
-            </form>
-            <button onclick="showSignUp()"><i class="fas fa-user-plus"></i> Don't have an account? Sign up</button>
-        </div>
-        <div class="container" id="signUpForm" style="display: none;" class="form-container">
-            <h2>SIGN UP</h2>
-            <form id="signUpFormElement">
-                <label for="signUpEmail"><i class="fas fa-envelope"></i> Email:</label>
-                <input type="email" id="signUpEmail" required aria-label="Sign Up Email">
-                <label for="signUpPassword"><i class="fas fa-lock"></i> Password:</label>
-                <input type="password" id="signUpPassword" required aria-label="Sign Up Password" oninput="checkPasswordStrength(this.value)">
-                <span id="passwordStrengthMessage"></span>
-                <label for="confirmPassword"><i class="fas fa-lock"></i> Confirm Password:</label>
-                <input type="password" id="confirmPassword" required aria-label="Confirm Password">
-                <input type="checkbox" onclick="togglePasswordVisibility(['signUpPassword', 'confirmPassword'])"> Show Passwords
-                <input type="submit" value="Sign Up">
-            </form>
-            <button onclick="showSignIn()"><i class="fas fa-sign-in-alt"></i> Already have an account? Sign in</button>
-        </div>
-        <div id="customAlert" class="custom-alert" style="display: none;">
-            <span id="alertMessage"></span>
-            <button onclick="closeAlert()">Close</button>
-        </div>
-    </main>
-    <footer>
-        <p>&copy; 2024 Bon Jour Korean Restaurant. All rights reserved.</p>
-    </footer>
+  <header>
+    <h1><b style="animation: glowing 1s infinite;">BON JOUR KOREAN RESTAURANT™</b></h1>
+  </header>
+  <main>
+    <div class="container" id="signInForm"> 
+      <h2>SIGN IN</h2>
+      <form id="signInFormElement">
+        <label for="signInEmail"><i class="fas fa-envelope"></i> Email:</label>
+        <input type="email" id="signInEmail" required aria-label="Sign In Email">
+
+        <label for="signInPassword"><i class="fas fa-lock"></i> Password:</label>
+        <input type="password" id="signInPassword" required aria-label="Sign In Password">
+
+        <input type="checkbox" onclick="togglePasswordVisibility(['signInPassword'])"> Show Password
+
+        <input type="submit" value="Sign In">
+      </form>
+      <button type="button" onclick="showSignUp()"><i class="fas fa-user-plus"></i> Don't have an account? Sign up</button>
+      <button type="button" onclick="sendPasswordResetEmail()">Forgot Password?</button>
+    </div>
+
+    <div class="container" id="signUpForm" style="display: none;">
+      <h2>SIGN UP</h2>
+      <form id="signUpFormElement">
+        <label for="signUpEmail"><i class="fas fa-envelope"></i> Email:</label>
+        <input type="email" id="signUpEmail" required aria-label="Sign Up Email">
+
+        <label for="signUpPassword"><i class="fas fa-lock"></i> Password:</label>
+        <input type="password" id="signUpPassword" required aria-label="Sign Up Password" oninput="checkPasswordStrength(this.value)">
+        <span id="passwordStrengthMessage"></span>
+
+        <label for="confirmPassword"><i class="fas fa-lock"></i> Confirm Password:</label>
+        <input type="password" id="confirmPassword" required aria-label="Confirm Password">
+
+        <input type="checkbox" onclick="togglePasswordVisibility(['signUpPassword', 'confirmPassword'])"> Show Passwords
+
+        <input type="submit" value="Sign Up">
+      </form>
+      <button type="button" onclick="showSignIn()"><i class="fas fa-sign-in-alt"></i> Already have an account? Sign in</button>
+    </div>
+
+    <div id="customAlert" class="custom-alert" style="display: none;">
+      <span id="alertMessage"></span>
+      <button onclick="closeAlert()">Close</button>
+    </div>
+  </main>
+  <footer>
+    <p>&copy; 2024 Bon Jour Korean Restaurant. All rights reserved.</p>
+  </footer>
 </body>
 </html>
