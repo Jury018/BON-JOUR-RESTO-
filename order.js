@@ -14,7 +14,7 @@ function updateOrderList() {
     const itemName = input.id.replace("quantity-", "");
     const quantity = parseInt(input.value);
     if (quantity > 0) {
-      const price = getItemPrice(itemName);
+      const price = getItemPrice(itemName); // This should now work correctly
       totalPrice += price * quantity;
       orderItems.push({ name: itemName, quantity: quantity, price: price });
     }
@@ -58,13 +58,36 @@ function submitOrder() {
   }
 }
 
-
-let orders = []; // Array to store the current order
-
 function updateOrderList() {
-  // ... (code to update the order list and summary dynamically) ...
-}
+  const orderList = document.getElementById("orderList").querySelector("ul");
+  const orderSummary = document.getElementById("orderSummary");
+  orderList.innerHTML = "";
+  orderSummary.innerHTML = "";
+  let totalPrice = 0;
 
-function submitOrder() {
-  // ... (code to submit the order to Firestore) ...
+  // Iterate through the existing orders array
+  orders.forEach((order, index) => {
+    const quantityInput = document.getElementById(`quantity-${order.name}`);
+    const quantity = parseInt(quantityInput.value);
+
+    if (quantity === 0) {
+      // Remove the item from the orders array
+      orders.splice(index, 1);
+    } else {
+      // Update the quantity and price
+      order.quantity = quantity;
+      order.price = getItemPrice(order.name) * quantity; 
+    }
+  });
+
+  // Recalculate totalPrice after updating quantities
+  orders.forEach(item => {
+    totalPrice += item.price;
+    const listItem = document.createElement("li");
+    listItem.textContent = `${item.quantity}x ${item.name}`;
+    orderList.appendChild(listItem);
+  });
+
+  orderSummary.innerHTML = `<h3>Order Summary</h3><p>Total: ₱${totalPrice.toFixed(2)}</p>`;
+  document.getElementById("submitOrderBtn").disabled = orders.length === 0;
 }
