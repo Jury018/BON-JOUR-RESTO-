@@ -32,10 +32,20 @@ function signIn() {
 
   auth.signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
+      // Check if the user's email is verified
+      if (!userCredential.user.emailVerified) {
+        displayAlert("Please verify your email address before signing in.");
+        auth.signOut(); // Sign out if email is not verified
+        return;
+      }
       window.location.href = "homepage.html"; // Redirect after successful sign-in
     })
     .catch((error) => {
-      displayAlert(`Error signing in: ${error.message}`);
+      if (error.code === 'auth/wrong-password') {
+        displayAlert("Wrong password. Click 'Forgot Password?' to reset.");
+      } else {
+        displayAlert(`Error signing in: ${error.message}`);
+      }
     });
 }
 
@@ -60,12 +70,31 @@ function signUp() {
       database.ref('users/' + user.uid).set({
         email: email
       });
-      displayAlert("Sign up successful! Please sign in with your new account.");
+      // Send verification email
+      user.sendEmailVerification().then(() => {
+        displayAlert("Sign up successful! Please verify your email before signing in.");
+      });
       showSignIn();
     })
     .catch((error) => {
       displayAlert(`Error creating user: ${error.message}`);
     });
+}
+
+function sendPasswordResetEmail() {
+  const email = document.getElementById("signInEmail").value;
+
+  if (email) {
+    auth.sendPasswordResetEmail(email)
+      .then(() => {
+        displayAlert("Reset password email has been sent to your email address.");
+      })
+      .catch((error) => {
+        displayAlert(`Error sending reset email: ${error.message}`);
+      });
+  } else {
+    displayAlert("Please enter your email address to reset your password.");
+  }
 }
 
 function isStrongPassword(password) {
@@ -152,4 +181,15 @@ function showSignIn() {
     signInForm.style.transition = "opacity 0.5s"; // Transition effect for fade-in
     signInForm.style.opacity = 1; // Start fade-in
   }, 500); // Delay matches the fade-out duration
+}
+
+function signOut() {
+  auth.signOut()
+    .then(() => {
+      // Redirect to sign-in page or update the UI
+      window.location.href = "sign-in.html"; // Change to your sign-in page URL
+    })
+    .catch((error) => {
+      displayAlert(`Error signing out: ${error.message}`);
+    });
 }
