@@ -1,147 +1,116 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>HOMEPAGE</title>
+  <title>BON JOUR PINOY RESTO</title>
   <meta charset="UTF-8">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="homepagestyle.css">
-  <script src="homepagescript.js" defer></script>
+  <link rel="stylesheet" href="homepagestyle.css"> </head> <body>
 </head>
 <body>
-  <header>
-    
-  <header>
-  <h1><b style="animation: glowing 1s infinite;">BON JOUR KOREAN RESTAURANT™</b></h1>
-  <button onclick="signOut()" style="float: right;">Sign Out</button> 
-</header>
-
-  <main>
-    
-    <!-- Introduction Menu -->
-    <div id="introMenu">
-      <h2>Introduction:</h2>
-      <p><i>Welcome to Bon Jour Korean Restaurant, founded by the esteemed future criminal programmer Bon Jury. His passion for coding and dedication to learning led to creating this website for testing purposes only. He takes this project seriously, working tirelessly days and months to provide a seamless and smoother experience. Feel free to explore and let me know if you seen a problem just dont say it, it's is a bug it makes me sick.</i></p>
+  <nav>
+    <div class="container">
+      <h1><a href="#" style="animation: glowing 1s infinite;">BON JOUR PINOY RESTO™</a></h1>
+      <button id="hamburgerBtn" aria-label="Toggle Navigation">
+        <span class="hamburger-icon"></span>
+        <span class="hamburger-icon"></span>
+        <span class="hamburger-icon"></span>
+      </button>
+      <ul id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#menu">Food Menu</a></li>
+        <li><a href="#order">Order Form</a></li>
+        <li><button onclick="signOut()">Sign Out</button></li>
+      </ul>
     </div>
+  </nav>
 
-    <!-- Menu with Prices -->
-    <div>
-      <h2>Menu with Prices:</h2>
-      <table>
-        <tr><th>Product</th><th>Price</th></tr>
-        <tr><td>Chicken Meals with Drinks</td><td>₱200</td></tr>
-        <tr><td>Chicken Nuggets Meal with Drinks</td><td>₱170</td></tr>
-        <tr><td>Chicken Adobo Meals with Drinks</td><td>₱220</td></tr>
-        <tr><td>Chicken with Extra Rice and Drinks</td><td>₱220</td></tr>
-        <tr><td>Burger with Drinks</td><td>₱120</td></tr>
-      </table>
+  <section id="home">
+    <div class="container">
+      <h2>Welcome to Bon Jour Pinoy Resto!</h2>
+      <p>Mabuhay! Experience the authentic taste of Filipino cuisine.</p>
     </div>
+  </section>
 
-    <!-- Order Form -->
-    <div id="orderMenu">
-      <h2>Order Form:</h2>
+  <section id="about">
+    <div class="container">
+      <h2>About Us</h2>
+      <p>
+        Welcome to Bon Jour Pinoy Resto, a celebration of authentic Filipino cuisine. Our passion is to bring you the rich flavors and vibrant traditions of the Philippines through our carefully crafted dishes. We use fresh, high-quality ingredients and time-honored recipes to create an unforgettable dining experience.
+      </p>
+    </div>
+  </section>
+
+  <section id="menu">
+    <div class="container">
+      <h2>Food Menu</h2>
+      <div id="menu"></div> 
+    </div>
+  </section>
+
+  <section id="order">
+    <div class="container">
+      <h2>Order Form</h2>
       <form id="orderForm">
-        <label for="email">Email:</label>
-        <input type="email" id="email" required><br><br>
+        <div>
+          <label for="email">Email:</label>
+          <input type="email" id="email" required>
+        </div>
+        <div>
+          <label for="phone">Phone Number:</label>
+          <input type="tel" id="phone" pattern="[0-9]{11}" required>
+        </div>
 
-        <label for="phone">Phone Number:</label>
-        <input type="text" id="phone" pattern="[0-9]{11}" required><br><br>
+        <div id="orderList">
+          <h2>Your Orders</h2>
+          <ul></ul>
+          <div id="orderSummary"></div> 
+        </div>
 
-        <label for="order">Product:</label>
-        <select id="order" required>
-          <option value="">Select a product</option>
-          <option value="Chicken Meals with Drinks">Chicken Meals with Drinks</option>
-          <option value="Chicken Nuggets Meal with Drinks">Chicken Nuggets Meal with Drinks</option>
-          <option value="Chicken Adobo Meals with Drinks">Chicken Adobo Meals with Drinks</option>
-          <option value="Chicken with Extra Rice and Drinks">Chicken with Extra Rice and Drinks</option>
-          <option value="Burger with Drinks">Burger with Drinks</option>
-        </select><br><br>
-
-        <label for="drinkType">Drink Type:</label>
-        <select id="drinkType">
-          <option value="Coke">Coke</option>
-          <option value="Sprite">Sprite</option>
-          <option value="Royal">Royal</option>
-          <option value="Nestea">Nestea</option>
-        </select><br><br>
-
-        <label for="drinkSize">Drink Size:</label>
-        <select id="drinkSize">
-          <option value="Regular">Regular</option>
-          <option value="Medium">Medium (+₱30)</option>
-          <option value="Large">Large (+₱45)</option>
-        </select><br><br>
-
-        <label for="quantity">Quantity:</label>
-        <input type="number" id="quantity" min="1" required><br><br>
-
-        <label for="payment">Mode of Payment:</label>
-        <select id="payment" onchange="updatePaymentMethod()">
-          <option value="">Select a payment method</option>
-          <option value="GCash">GCash</option>
-          <option value="PayMaya">PayMaya</option>
-          <option value="PayPal">PayPal</option>
-          <option value="Cash on Delivery">Cash on Delivery</option>
-        </select><br><br>
-
-        <input type="button" value="Add to Cart" onclick="addToCart()">
-        <input type="button" value="Submit" onclick="submitForm()">
+        <button type="button" onclick="submitOrder()" id="submitOrderBtn" disabled>Place Your Order Now!</button>
       </form>
     </div>
-
-    <!-- Cart -->
-    <div id="cart" style="display: none;">
-      <h2>Cart:</h2>
-      <ul id="cartItems"></ul>
-    </div>
-    
-    <!-- Custom Modal Alert -->
-    <div id="customAlert" class="modal">
-      <div class="modal-content">
-        <span class="close-btn" onclick="closeAlert()">&times;</span>
-        <p id="alertMessage"></p>
-        <button onclick="closeAlert()">OK</button>
-      </div>
-    </div>
-
-    <!-- Confirmation message -->
-    <div id="confirmationMessage" style="display: none;">
-      <h2>Order Receipt:</h2>
-      <p id="confirmationText"></p>
-      <p>Do you want to proceed to the selected payment method?</p>
-      <button onclick="confirmPayment()">Yes</button>
-      <button onclick="cancelPayment()">No</button>
-    </div>
-  </main>
-   
-   <!-- Order Summary -->
-   <div id="orderSummary" style="display: none;">
-     <h2>Order Summary:</h2>
-     <ul id="orderDetails"></ul>
-     <p><strong>Total Amount: ₱<span id="totalAmount"></span></strong></p>
-   </div>
-
-  <!-- Feedback Section -->
-  <div id="feedbackSection" style="display: none;">
-    <h2>Feedback:</h2>
-    <form id="feedbackForm">
-      <label for="feedback">Your Feedback:</label>
-      <textarea id="feedback" rows="4" required></textarea><br><br>
-      <input type="button" value="Submit Feedback" onclick="submitFeedback()">
-    </form>
-  </div>
-
-  <!-- Reorder Section -->
-  <div id="reorderSection" style="display: none;">
-    <h2>Your Previous Orders:</h2>
-    <ul id="previousOrders"></ul>
-  </div>
+  </section>
 
   <footer>
-    <p>&copy; 2024 Bon Jour Korean Restaurant. All rights reserved.</p>
+    <div class="container">
+      <p>&copy; 2024 Bon Jour Pinoy Resto. All rights reserved.</p>
+    </div>
   </footer>
-  
-  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth-compat.js"></script>
 
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
+
+  <script>
+    // Your Firebase config (replace with your actual values)
+    const firebaseConfig = {
+      apiKey: "AIzaSyCmQ3twke1IpprDDAE2OgNOWRUR7-VoCAI",
+      authDomain: "bon-jour-base.firebaseapp.com",
+      // ... other config values ...
+    };
+    firebase.initializeApp(firebaseConfig); 
+    // Initialize Firebase Authentication
+    const auth = firebase.auth();
+
+    // Sign Out Function
+    function signOut() {
+      auth.signOut().then(() => {
+        window.location.href = "index.html";
+      }).catch((error) => {
+        console.error("Sign out error:", error);
+      });
+    }
+
+    // Hamburger menu toggle
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const navLinks = document.getElementById('navLinks');
+    hamburgerBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('show');
+    });
+  </script>
+
+  <script src="menu.js"></script>
+  <script src="orders.js"></script>
 </body>
 </html>
