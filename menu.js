@@ -1,24 +1,33 @@
-firebase.initializeApp(firebaseConfig); // Initialize Firebase with your config
-const db = firebase.firestore(); // Get a reference to Firestore
+// menu.js
+const firebaseConfig = {
+  apiKey: "AIzaSyCmQ3twke1IpprDDAE2OgNOWRUR7-VoCAI", // Replace with your actual API key
+  authDomain: "bon-jour-base.firebaseapp.com", // Replace with your actual auth domain
+  // ... other config values ...
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+let menuData = {};
 
 function fetchMenuData() {
-  db.collection("Menu").get() // Fetch data from the "Menu" collection
+  db.collection("Menu").get()
     .then(querySnapshot => {
-      const menuData = {};
       querySnapshot.forEach(doc => {
-        menuData[doc.id] = doc.data().items; // Store menu items in an object
+        menuData[doc.id] = doc.data().items;
       });
-      generateMenuHTML(menuData); // Generate the HTML for the menu
+      generateMenuHTML(menuData);
     })
     .catch(error => {
-      console.error("Error fetching menu data:", error); // Error handling
+      console.error("Error fetching menu data:", error);
+      // Consider adding a user-friendly error message here
     });
 }
 
 function generateMenuHTML(menuData) {
-  const menuSection = document.getElementById("menu"); // Get the menu container
+  const menuSection = document.getElementById("menu");
 
-  for (const category in menuData) { // Loop through categories
+  for (const category in menuData) {
     const menuList = document.createElement("div");
     menuList.classList.add("menu-section");
 
@@ -27,10 +36,10 @@ function generateMenuHTML(menuData) {
     menuList.appendChild(categoryTitle);
 
     const itemsList = document.createElement("ul");
-    menuData[category].forEach(item => { // Loop through items in each category
+    menuData[category].forEach(item => {
       const listItem = document.createElement("li");
       listItem.innerHTML = `${item.name} - ₱${item.price}
-                            <input type="number" id="quantity-${item.name}" min="0" value="0" onchange="updateOrderList()">`; // Create list item with quantity input
+                            <input type="number" id="quantity-${item.name}" min="0" value="0" onchange="updateOrderList()">`;
       itemsList.appendChild(listItem);
     });
     menuList.appendChild(itemsList);
@@ -38,7 +47,7 @@ function generateMenuHTML(menuData) {
   }
 }
 
-function getItemPrice(itemName) { // Helper function to get the price of an item
+function getItemPrice(itemName) {
   for (const category in menuData) {
     const item = menuData[category].find(item => item.name === itemName);
     if (item) {
@@ -48,4 +57,4 @@ function getItemPrice(itemName) { // Helper function to get the price of an item
   return 0;
 }
 
-fetchMenuData(); // Fetch the menu data when the script loads
+fetchMenuData();
