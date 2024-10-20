@@ -7,12 +7,10 @@
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database-compat.js"></script>
   <script src="script.js" defer></script>
-  <script>
-    window.onload = function() {
-      showSignIn(); // Ensure the sign-in form is shown first
-    };
-  </script>
 </head>
 <body>
     <header>
@@ -51,14 +49,8 @@
             <button onclick="closeAlert()">Close</button>
         </div>
     </main>
-    <footer></footer>
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database-compat.js"></script>
-<script type="module" src="script.js"></script>
-
-<footer>
-    <p>&copy; 2024 Bon Jour Korean Restaurant. All rights reserved.</p>
-  </footer>
+    <footer>
+        <p>&copy; 2024 Bon Jour Korean Restaurant. All rights reserved.</p>
+    </footer>
 </body>
 </html>
