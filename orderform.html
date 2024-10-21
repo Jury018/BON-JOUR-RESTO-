@@ -31,31 +31,31 @@
   <main>
     <section id="order-form"> 
       <h2>Order Form</h2>
-      <form action="#" method="post"> 
+      <form id="orderForm" action="#" method="post"> 
         <div class="form-group">
           <label for="name">Full Name:</label>
-          <input type="text" id="name" name="name" required>
+          <input type="text" id="name" name="name" required aria-required="true">
         </div>
 
         <div class="form-group">
           <label for="email">Email Address:</label>
-          <input type="email" id="email" name="email" required>
+          <input type="email" id="email" name="email" required aria-required="true">
         </div>
 
         <div class="form-group">
           <label for="phone">Phone Number:</label>
-          <input type="tel" id="phone" name="phone" required>
+          <input type="tel" id="phone" name="phone" required aria-required="true">
         </div>
 
         <div class="form-group">
           <label for="address">Delivery Address:</label>
-          <textarea id="address" name="address" rows="4" required></textarea>
+          <textarea id="address" name="address" rows="4" required aria-required="true"></textarea>
         </div>
 
         <div class="form-group">
-          <label for="order">Your Order:</label>
-          <textarea id="order" name="order" rows="6" placeholder="Please list the items you want to order." required></textarea>
-        </div>
+          <label for="order">Order Details:</label> 
+       
+          <textarea id="order" name="order" rows="6" placeholder="All your order goes here." required aria-required="true" readonly></textarea> </div>
 
         <div class="form-group">
           <label for="payment">Payment Method:</label>
@@ -64,6 +64,12 @@
             <option value="paymaya">PayMaya</option>
             <option value="cod">Cash on Delivery</option>
           </select>
+        </div>
+
+        <div id="order-summary">
+          <h3>Order Summary</h3>
+          <ul id="order-summary-items"></ul>
+          <p>Total: <span id="order-summary-total">₱0</span></p>
         </div>
 
         <button type="submit">Place Order</button>
@@ -75,5 +81,55 @@
     <p>&copy; 2024 Bon Jour Pinoy Restaurant. All rights reserved.</p>
   </footer>
 
-  <script src="orderformscript.js"></script> </body>
+  <script>
+    // JavaScript for hamburger menu
+    const hamburger = document.querySelector('.hamburger');
+    const navList = document.querySelector('.nav-list');
+
+    hamburger.addEventListener('click', () => {
+      navList.classList.toggle('active');
+      hamburger.classList.toggle('active'); 
+    });
+
+      // Get cart data from local storage and populate the order textarea
+    const orderTextarea = document.getElementById('order');
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    function updateOrderSummary() {
+      let orderText = "";
+      let total = 0;
+      const orderSummaryItems = document.getElementById('order-summary-items');
+      const orderSummaryTotal = document.getElementById('order-summary-total');
+      orderSummaryItems.innerHTML = ''; // Clear the order summary
+
+      cart.forEach((item, index) => {
+        orderText += `${item.name} - ${item.price}\n`; 
+        total += parseFloat(item.price.replace('₱', '')); 
+
+        // Add item to order summary with remove button
+        let li = document.createElement('li');
+        li.innerHTML = `${item.name} - ${item.price} <button class="remove-item" data-index="${index}">x</button>`;
+        orderSummaryItems.appendChild(li);
+      });
+
+      orderTextarea.value = orderText;
+      orderSummaryTotal.textContent = '₱' + total.toFixed(2); 
+
+      // Add event listeners to remove buttons
+      const removeButtons = document.querySelectorAll('.remove-item');
+      removeButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const indexToRemove = button.dataset.index;
+          cart.splice(indexToRemove, 1);
+          localStorage.setItem('cart', JSON.stringify(cart));
+          updateOrderSummary();
+        });
+      });
+    }
+
+    if (cart.length > 0) {
+      updateOrderSummary();
+    }
+  </script>
+</body>
 </html>
