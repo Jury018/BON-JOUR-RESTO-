@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Order Form - Bon Jour Pinoy Restaurant</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+  
   <link rel="stylesheet" href="orderformstyle.css"> 
 </head>
 <body>
@@ -16,7 +18,8 @@
           <li><a href="homepage.html">Home</a></li>
           <li><a href="aboutus.html">About Us</a></li>
           <li><a href="homepage.html#menu">Food Menu</a></li> 
-          <li><a href="#order-form">Order Form</a></li>
+          <li><a href="orderform.html" onclick="checkCartAndRedirect()">Order Form</a></li> 
+
           <li><a href="index.html">Sign Out</a></li>
         </ul>
         <div class="hamburger">
@@ -130,6 +133,84 @@
     if (cart.length > 0) {
       updateOrderSummary();
     }
+    
+    function checkCartAndRedirect() {
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  if (cart.length > 0) {
+    window.location.href = 'orderform.html'; 
+  } else {
+    showCustomAlert("Your cart is empty. Please add items to your order first.", 'warning');
+  }
+}
+
+function showCustomAlert(message, type) {
+  // ... (code for creating and displaying the custom alert) ...
+}
+
+    src="https://code.jquery.com/jquery-3.4.1.js"
+ // Function to save form data to localStorage
+function saveFormData() {
+  const formData = {
+    name: document.getElementById('name').value,
+    email: document.getElementById('email').value,
+    phone: document.getElementById('phone').value,
+    address: document.getElementById('address').value,
+    order: document.getElementById('order').value,
+    payment: document.getElementById('payment').value,
+  };
+  localStorage.setItem('orderFormData', JSON.stringify(formData));
+}
+
+// Function to load form data from localStorage
+function loadFormData() {
+  const savedData = JSON.parse(localStorage.getItem('orderFormData'));
+  if (savedData) {
+    document.getElementById('name').value = savedData.name || '';
+    document.getElementById('email').value = savedData.email || '';
+    document.getElementById('phone').value = savedData.phone || '';
+    document.getElementById('address').value = savedData.address || '';
+    document.getElementById('order').value = savedData.order || '';
+    document.getElementById('payment').value = savedData.payment || 'gcash'; // Default payment option
+  }
+}
+
+// Event listeners for form fields
+document.getElementById('orderForm').addEventListener('input', saveFormData);
+document.addEventListener('DOMContentLoaded', loadFormData);  
+
+// Function to validate the email before form submission
+function validateEmail(event) {
+  const orderEmail = document.getElementById('email').value;
+  const signedInEmail = localStorage.getItem('userEmail');
+
+  if (orderEmail !== signedInEmail) {
+    event.preventDefault(); // Prevent form submission
+    alert("Email addresses do not match. Please enter the email you used to sign in."); // Custom alert
+  }
+}
+
+// Attach the validateEmail function to the form submission
+document.getElementById('orderForm').addEventListener('submit', validateEmail); 
+
+  // Existing JavaScript code for the hamburger menu, cart, and form data...
+
+  // Function to validate the email before form submission
+  function validateEmail(event) {
+    const orderEmail = document.getElementById('email').value;
+    const signedInEmail = localStorage.getItem('userEmail');
+
+    if (orderEmail !== signedInEmail) {
+      event.preventDefault(); // Prevent form submission
+      alert("Email addresses do not match. Please enter the email you used to sign in."); // Custom alert
+    }
+  }
+
+  // Attach the validateEmail function to the form submission
+  document.getElementById('orderForm').addEventListener('submit', validateEmail);
+
+  // Load the form data from localStorage when the page is loaded
+  document.addEventListener('DOMContentLoaded', loadFormData);
+
   </script>
 </body>
 </html>
