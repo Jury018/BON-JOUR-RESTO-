@@ -9,6 +9,22 @@
 <body>
   <header>
     <h1><b style="animation: glowing 1s infinite;">BON JOUR PINOY RESTAURANT™</b></h1>
+  <nav>
+      <div class="nav-container"> 
+        <ul class="nav-list">
+          <li><a href="#introMenu">Home</a></li> 
+          <li><a href="aboutus.html">About Us</a></li>
+          <li><a href="#menu">Food Menu</a></li>
+          <li><a href="orderform.html">Order Form</a></li>
+          <li><a href="index.html">Sign Out</a></li> 
+        </ul>
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </nav>
   </header>
 
   <main>
@@ -352,5 +368,53 @@
   <footer>
     <p>&copy; 2024 Bon Jour Pinoy Restaurant. All rights reserved.</p>
   </footer>
+  
+    <script>
+    // JavaScript for "Add to Cart" functionality (You'll need to implement this)
+    const addToCartButtons = document.querySelectorAll('.add-to-cart');
+
+    addToCartButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // 1. Get the menu item information (name, price, etc.)
+        // 2. Add the item to the cart (you'll need to implement cart logic)
+        // 3. (Optional) Provide feedback to the user (e.g., a message or animation)
+      });
+    });
+
+    // JavaScript for hamburger menu
+    const hamburger = document.querySelector('.hamburger');
+    const navList = document.querySelector('.nav-list');
+
+    hamburger.addEventListener('click', () => {
+      navList.classList.toggle('active');
+    });
+    
+    hamburger.addEventListener('click', () => {
+      navList.classList.toggle('active');
+      hamburger.classList.toggle('active'); // Toggle the "X" animation
+    });
+       
+
+addToCartButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    // 1. Get the menu item information (name, price, etc.)
+    const menuItem = button.closest('.menu-item'); 
+    const productName = menuItem.querySelector('h3').textContent;
+    const productPrice = menuItem.querySelector('p:nth-of-type(2)').textContent; // Select the second tag for price
+    // ... get other information as needed
+
+    // 2. Add the item to the cart (you'll need to implement cart logic)
+    // ... (Your cart logic here)
+
+    // 3. Provide feedback to the user (transition effect)
+    menuItem.classList.add('added-to-cart'); 
+
+    // (Optional) Remove the class after a short delay to reset the transition
+    setTimeout(() => {
+      menuItem.classList.remove('added-to-cart');
+    }, 500); // Adjust the delay (in milliseconds) as needed
+  });
+});
+  </script>
 </body>
 </html>
