@@ -370,29 +370,38 @@
   </footer>
   
     <script>
-    // JavaScript for "Add to Cart" functionality (You'll need to implement this)
-    const addToCartButtons = document.querySelectorAll('.add-to-cart');
+    // JavaScript for "Add to Cart" functionality
+const addToCartButtons = document.querySelectorAll('.add-to-cart');
 
-    addToCartButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        // 1. Get the menu item information (name, price, etc.)
-        // 2. Add the item to the cart (you'll need to implement cart logic)
-        // 3. (Optional) Provide feedback to the user (e.g., a message or animation)
-      });
-    });
+addToCartButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    // 1. Get the menu item information (name, price, etc.)
+    const menuItem = button.closest('.menu-item'); 
+    const productName = menuItem.querySelector('h3').textContent;
+    const productPrice = menuItem.querySelector('p:nth-of-type(2)').textContent; // Select the second <p> tag for price
 
-    // JavaScript for hamburger menu
-    const hamburger = document.querySelector('.hamburger');
-    const navList = document.querySelector('.nav-list');
+    // 2. Add the item to the cart (you'll need to implement cart logic)
+    // ... (Your cart logic here - I can help with this if you need it!)
 
-    hamburger.addEventListener('click', () => {
-      navList.classList.toggle('active');
-    });
-    
-    hamburger.addEventListener('click', () => {
-      navList.classList.toggle('active');
-      hamburger.classList.toggle('active'); // Toggle the "X" animation
-    });
+    // 3. Provide feedback to the user (transition effect)
+    menuItem.classList.add('added-to-cart'); 
+
+    // (Optional) Remove the class after a short delay to reset the transition
+    setTimeout(() => {
+      menuItem.classList.remove('added-to-cart');
+    }, 500); // Adjust the delay (in milliseconds) as needed
+  });
+});
+
+// JavaScript for hamburger menu
+const hamburger = document.querySelector('.hamburger');
+const navList = document.querySelector('.nav-list');
+
+hamburger.addEventListener('click', () => {
+  navList.classList.toggle('active');
+  hamburger.classList.toggle('active'); // Toggle the "X" animation
+});
+
        
 
 addToCartButtons.forEach(button => {
@@ -415,6 +424,8 @@ addToCartButtons.forEach(button => {
     }, 500); // Adjust the delay (in milliseconds) as needed
   });
 });
+
+
   </script>
 </body>
 </html>
