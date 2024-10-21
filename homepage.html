@@ -1,116 +1,356 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>BON JOUR PINOY RESTO</title>
+  <title>HOMEPAGE</title>
   <meta charset="UTF-8">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="homepagestyle.css"> </head> <body>
+  <link rel="stylesheet" href="homepagestyle.css">
 </head>
 <body>
-  <nav>
-    <div class="container">
-      <h1><a href="#" style="animation: glowing 1s infinite;">BON JOUR PINOY RESTO™</a></h1>
-      <button id="hamburgerBtn" aria-label="Toggle Navigation">
-        <span class="hamburger-icon"></span>
-        <span class="hamburger-icon"></span>
-        <span class="hamburger-icon"></span>
-      </button>
-      <ul id="navLinks">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About Us</a></li>
-        <li><a href="#menu">Food Menu</a></li>
-        <li><a href="#order">Order Form</a></li>
-        <li><button onclick="signOut()">Sign Out</button></li>
-      </ul>
-    </div>
-  </nav>
+  <header>
+    <h1><b style="animation: glowing 1s infinite;">BON JOUR PINOY RESTAURANT™</b></h1>
+  </header>
 
-  <section id="home">
-    <div class="container">
-      <h2>Welcome to Bon Jour Pinoy Resto!</h2>
-      <p>Mabuhay! Experience the authentic taste of Filipino cuisine.</p>
+  <main>
+    <div id="introMenu"> 
+      <h2>Introduction:</h2>
+      <p><i>Welcome to Bon Jour Pinoy Restaurant, where French elegance meets Filipino flavors. Our passion for culinary excellence drives us to create a unique dining experience, blending classic techniques with local ingredients. Explore our diverse menu and embark on a delightful gastronomic journey.</i></p>
     </div>
-  </section>
 
-  <section id="about">
-    <div class="container">
-      <h2>About Us</h2>
-      <p>
-        Welcome to Bon Jour Pinoy Resto, a celebration of authentic Filipino cuisine. Our passion is to bring you the rich flavors and vibrant traditions of the Philippines through our carefully crafted dishes. We use fresh, high-quality ingredients and time-honored recipes to create an unforgettable dining experience.
-      </p>
-    </div>
-  </section>
-
-  <section id="menu">
-    <div class="container">
+    <section id="menu">
       <h2>Food Menu</h2>
-      <div id="menu"></div> 
-    </div>
-  </section>
 
-  <section id="order">
-    <div class="container">
-      <h2>Order Form</h2>
-      <form id="orderForm">
-        <div>
-          <label for="email">Email:</label>
-          <input type="email" id="email" required>
-        </div>
-        <div>
-          <label for="phone">Phone Number:</label>
-          <input type="tel" id="phone" pattern="[0-9]{11}" required>
-        </div>
+      <div class="menu-category">
+        <h3>HOMEMADE MEALS</h3>
+        <div class="menu-container">
+          <div class="menu-item">
+            <img src="porksteak.png" alt="Pork Steak">
+            <h3>Pork Steak</h3>
+            <p>Tender pork steak marinated in a savory blend of soy sauce, garlic, and spices, pan-fried to perfection.</p> 
+            <p>₱80</p>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
 
-        <div id="orderList">
-          <h2>Your Orders</h2>
-          <ul></ul>
-          <div id="orderSummary"></div> 
-        </div>
+          <div class="menu-item">
+            <img src="dinuguan.png" alt="Dinuguan">
+            <h3>Dinuguan</h3>
+            <p>A rich and savory pork blood stew simmered with vinegar, chili peppers, and aromatic spices.</p>
+            <p>₱50</p>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
 
-        <button type="button" onclick="submitOrder()" id="submitOrderBtn" disabled>Place Your Order Now!</button>
-      </form>
-    </div>
-  </section>
+          <div class="menu-item">
+            <img src="bicolexpress.png" alt="Bicol Express">
+            <h3>Bicol Express</h3>
+            <p>Spicy Bicol Express with tender pork and a rich coconut milk sauce.</p>
+            <p>₱50</p>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+
+          <div class="menu-item">
+            <img src="letchonkawali.png" alt="Letchon Kawali">
+            <h3>Lechon Kawali</h3>
+            <p>Crispy and flavorful deep-fried pork belly, a Filipino classic.</p>
+            <p>₱75</p>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+
+          <div class="menu-item">
+            <img src="porksinigang.png" alt="Pork Sinigang">
+            <h3>Pork Sinigang</h3>
+            <p>Savory and sour soup with pork, vegetables, and a tamarind broth.</p>
+            <p>₱100</p>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+
+          <div class="menu-item">
+            <img src="beefnilaga.png" alt="Beef Nilaga">
+            <h3>Beef Nilaga</h3>
+            <p>Hearty beef stew with vegetables and a flavorful broth.</p>
+            <p>₱150</p>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+
+          <div class="menu-item">
+            <img src="sisig.png" alt="Sisig">
+            <h3>Sisig</h3>
+            <p>Sizzling pork dish with onions, chili peppers, and a tangy twist.</p>
+            <p>₱145</p>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+
+          <div class="menu-item">
+            <img src="fritomanok(whole).png" alt="Frito Manok (whole)">
+            <h3>Frito Manok (whole)</h3>
+            <p>Whole fried chicken, crispy on the outside, juicy on the inside.</p>
+            <p>₱160</p>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+
+          <div class="menu-item">
+            <img src="fritochicken(wings).png" alt="Frito Manok (wings)">
+            <h3>Frito Manok (wings)</h3>
+            <p>Flavorful and crispy fried chicken wings.</p>
+            <p>₱150</p>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+
+          <div class="menu-item">
+            <img src="fritotilapia.png" alt="Frito Tilapia">
+            <h3>Frito Tilapia</h3>
+            <p>Crispy fried tilapia, a light and healthy option.</p>
+            <p>₱120</p>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+
+          <div class="menu-item">
+            <img src="fritogalunggong.png" alt="Frito Galunggong">
+            <h3>Frito Galunggong</h3>
+            <p>Simple and delicious fried galunggong (round scad).</p>
+            <p>₱100</p>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+
+          <div class="menu-item">
+            <img src="beefmenudo.png" alt="Beef Menudo">
+            <h3>Beef Menudo</h3>
+            <p>Savory beef stew with potatoes, carrots, and a tomato-based sauce.</p>
+            <p>₱150</p>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+
+          <div class="menu-item">
+            <img src="porkadobo.png" alt="Pork Adobo">
+            <h3>Pork Adobo</h3>
+            <p>Classic Filipino adobo with tender pork braised in soy sauce, vinegar, and spices.</p>
+            <p>₱120</p>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+
+          <div class="menu-item">
+            <img src="porksweetsour.png" alt="Pork Mechado">
+            <h3>Pork Sweet and Sour</h3>
+            <p>Pork sweet & sour with a rich tomato sauce and sweet savory flavors.</p>
+            <p>₱120</p>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+
+          <div class="menu-item">
+            <img src="chickenadobo.png" alt="Adobo Manok">
+            <h3>Adobo Manok</h3>
+            <p>Chicken adobo, a flavorful and versatile Filipino dish.</p>
+            <p>₱110</p>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+
+          <div class="menu-item">
+            <img src="tinola.png" alt="Tinola Manok">
+            <h3>Tinola Manok</h3>
+            <p>Ginger-based chicken soup with vegetables and a light broth.</p>
+            <p>₱110</p>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+
+          <div class="menu-item">
+            <img src="porkbbq.png" alt="Pork BBQ">
+            <h3>Pork BBQ</h3>
+            <p>Grilled pork skewers marinated in a sweet and savory sauce.</p>
+            <p>₱80</p>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+        </div> 
+      </div>
+
+      <div class="menu-category">
+        <h3>QUICK MEAL</h3>
+        <div class="menu-container">
+          <div class="menu-item">
+            <img src="gutoregular.png" alt="Goto Lugaw Regular">
+            <h3>Goto Lugaw Regular</h3>
+            <p>A comforting Filipino rice porridge with ox tripe, ginger, and garlic.</p>
+           <p>₱40</p>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+
+          <div class="menu-item">
+            <img src="gutospecial.png" alt="Goto Lugaw Special">
+            <h3>Goto Lugaw Special</h3>
+            <p>Rice porridge with ox tripe, egg, and more toppings for a hearty meal.</p>
+            <p>₱60</p>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+
+          <div class="menu-item">
+            <img src="pinoylugaw.png" alt="Pinoy Lugaw">
+            <h3>Pinoy Lugaw</h3>
+            <p>Pinoy-style rice porridge with unique flavors and ingredients.</p>
+            <p>₱60</p>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+
+          <div class="menu-item">
+            <img src="beefpares.png" alt="Beef Pares">
+            <h3>Beef Pares</h3>
+            <p>Tender beef stew with a savory sauce, served with rice.</p>
+            <p>₱60</p>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+
+          <div class="menu-item">
+            <img src="porkpares.png" alt="Pork Pares">
+            <h3>Pork Pares</h3>
+            <p>Braised pork with a sweet and savory sauce, perfect with rice.</p>
+            <p>₱60</p>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+
+          <div class="menu-item">
+            <img src="lomi.png" alt="Pork Lomi">
+            <h3>Lomi</h3>
+            <p>Noodles in a thick savory soup with vegetables.</p>
+            <p>₱60</p>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+
+          <div class="menu-item">
+            <img src="beeflomi.png" alt="Beef Lomi">
+            <h3>Beef Lomi</h3>
+            <p>Noodles in a flavorful soup with tender beef and vegetables.</p>
+            <p>₱60</p>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <h3>ADDS ON</h3>
+        <div class="menu-container">
+          <div class="menu-item">
+            <img src="whiterice.png" alt="White Rice">
+            <h3>White Rice</h3>
+            <p>Steamed white rice, a perfect accompaniment to any Filipino dish.</p>
+            <p>₱15</p>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+
+          <div class="menu-item">
+            <img src="friedrice.png" alt="Fried Rice">
+            <h3>Fried Rice</h3>
+            <p>Flavorful fried rice with vegetables and a savory seasoning.</p>
+            <p>₱20</p>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+
+          <div class="menu-item">
+            <img src="siomai.png" alt="Siomai 3pcs">
+            <h3>Siomai</h3>
+            <p>Steamed pork dumplings 4 pcs, a delicious appetizer or snack.</p>
+            <p>₱20</p>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+
+          <div class="menu-item">
+            <img src="siopao.png" alt="Siopao">
+            <h3>Siopao</h3>
+            <p>Soft and fluffy steamed buns filled with savory meat or sweet bean paste.</p>
+            <p>₱30</p>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+
+          <div class="menu-item">
+            <img src="garlicrice.png" alt="Garlic Rice">
+            <h3>Garlic Rice</h3>
+            <p>Fragrant garlic rice, perfect for pairing with savory dishes.</p>
+            <p>₱25</p>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <h3>DRINKS</h3>
+        <div class="menu-container">
+          <div class="menu-item">
+            <img src="cokeregular.png" alt="Coke Regular">
+            <h3>Coke Regular</h3>
+            <p>Refresh your palate with an ice-cold Coca-Cola.</p>
+            <p>₱25</p>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+
+          <div class="menu-item">
+            <img src="cokelarge.png" alt="Coke Large">
+            <h3>Coke Large</h3>
+            <p>A larger serving of refreshing Coca-Cola.</p>
+            <p>₱35</p>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+
+          <div class="menu-item">
+            <img src="nestea.png" alt="Nestea">
+            <h3>Nestea</h3>
+            <p>Cool down with a refreshing Nestea iced tea.</p>
+            <p>₱25</p>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+
+          <div class="menu-item">
+            <img src="sprite.png" alt="Sprite Regular">
+            <h3>Sprite Regular</h3>
+            <p>Quench your thirst with a crisp and clean Sprite.</p>
+            <p>₱25</p>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+
+          <div class="menu-item">
+            <img src="spritelarge.png" alt="Sprite Large">
+            <h3>Sprite Large</h3>
+            <p>Enjoy a larger serving of Sprite's lemon-lime flavor.</p>
+            <p>₱35</p>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+
+          <div class="menu-item">
+            <img src="lemonadeblue.png" alt="Lemonade Blue">
+            <h3>Lemonade Blue</h3>
+            <p>A vibrant blue lemonade with a refreshing citrus taste.</p>
+            <p>₱40</p>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+
+          <div class="menu-item">
+            <img src="lemonade.png" alt="Lemonade">
+            <h3>Lemonade</h3>
+            <p>Classic lemonade, a perfect thirst quencher.</p>
+            <p>₱30</p>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+
+          <div class="menu-item">
+            <img src="royalregular.png" alt="Royal Regular">
+            <h3>Royal Regular</h3>
+            <p>Enjoy the classic taste of Royal Tru-Orange.</p>
+            <p>₱25</p>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+
+          <div class="menu-item">
+            <img src="royallarge.png" alt="Royal Large">
+            <h3>Royal Large</h3>
+            <p>A larger serving of Royal Tru-Orange.</p>
+            <p>₱35</p>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </section> 
+
+    <button id="orderButton" onclick="window.location.href='ordering_system.html'">Let's Order</button> 
+
+  </main>
 
   <footer>
-    <div class="container">
-      <p>&copy; 2024 Bon Jour Pinoy Resto. All rights reserved.</p>
-    </div>
+    <p>&copy; 2024 Bon Jour Pinoy Restaurant. All rights reserved.</p>
   </footer>
-
-  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
-
-  <script>
-    // Your Firebase config (replace with your actual values)
-    const firebaseConfig = {
-      apiKey: "AIzaSyCmQ3twke1IpprDDAE2OgNOWRUR7-VoCAI",
-      authDomain: "bon-jour-base.firebaseapp.com",
-      // ... other config values ...
-    };
-    firebase.initializeApp(firebaseConfig); 
-    // Initialize Firebase Authentication
-    const auth = firebase.auth();
-
-    // Sign Out Function
-    function signOut() {
-      auth.signOut().then(() => {
-        window.location.href = "index.html";
-      }).catch((error) => {
-        console.error("Sign out error:", error);
-      });
-    }
-
-    // Hamburger menu toggle
-    const hamburgerBtn = document.getElementById('hamburgerBtn');
-    const navLinks = document.getElementById('navLinks');
-    hamburgerBtn.addEventListener('click', () => {
-      navLinks.classList.toggle('show');
-    });
-  </script>
-
-  <script src="menu.js"></script>
-  <script src="orders.js"></script>
 </body>
 </html>
