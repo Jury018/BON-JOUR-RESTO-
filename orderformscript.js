@@ -139,7 +139,7 @@ function handleFormSubmission(event, storedEmail) { // Added storedEmail as an a
     const paymentMethod = document.getElementById('payment').value;
 
     // Create a Firestore document with the order data
-    const ordersCollection = collection(db, "orders");
+    const ordersCollection = collection(db, "order");
     addDoc(ordersCollection, {
       name,
       email,
