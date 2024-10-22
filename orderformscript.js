@@ -175,16 +175,30 @@ function handleFormSubmission(event, storedEmail) { // Added storedEmail as an a
 
 // Attach event listeners to form fields and submit button
 document.getElementById('orderForm').addEventListener('input', saveFormData);
-// Modified event listener to include Firebase email retrieval
 document.getElementById('orderForm').addEventListener('submit', (event) => {
+  event.preventDefault(); // Prevent default form submission immediately
+
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
-      const usersRef = firebase.database().ref('users/' + user.uid);
+      // Using Firestore (replace with Realtime Database code if needed)
+      const usersRef = doc(db, 'users', user.uid);
+      getDoc(usersRef)
+        .then(docSnap => {
+          if (docSnap.exists()) {
+            const storedEmail = docSnap.data().email;
+            handleFormSubmission(event, storedEmail);
+          } else {
+            console.error("User data not found in Firestore.");
+            // Handle the case where user data is not found
+            showCustomAlert("An error occurred while retrieving your information. Please try again later.", 'error');
+          }
+        })
+        .catch(error => {
+          console.error("Error getting user data:", error);
+          // Handle the error appropriately, e.g., show an error message
+          showCustomAlert("An error occurred while retrieving your information. Please try again later.", 'error');
+        });
 
-      usersRef.once('value').then(snapshot => {
-        const storedEmail = snapshot.val().email;
-        handleFormSubmission(event, storedEmail); // Pass storedEmail to handleFormSubmission
-      });
     } else {
       console.error("User is not signed in.");
       // Consider redirecting to sign-in page
@@ -192,6 +206,7 @@ document.getElementById('orderForm').addEventListener('submit', (event) => {
     }
   });
 });
+
 
 document.addEventListener('DOMContentLoaded', loadFormData);
 
