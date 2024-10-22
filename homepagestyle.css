@@ -52,7 +52,7 @@ header h1:hover {
 
 /* Navigation Bar Styles */
 nav {
-  background-color: var(--primary-color);
+  background-color:  transparent;
   padding: 10px 20px;
   text-align: center;
 }
