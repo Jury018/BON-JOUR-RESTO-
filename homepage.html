@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="homepagestyle.css">
+  <link rel="stylesheet" href=".css">  
 </head>
 <body>
   <header>
@@ -362,7 +363,8 @@
       </div>
     </section> 
 
-    <button id="orderButton" onclick="window.location.href='orderform.html'">Let's Order</button> 
+    <button id="orderButton" onclick="checkCartAndRedirect()">Let's Order</button>
+
 
   </main>
 
@@ -371,7 +373,7 @@
   </footer>
   
     <script>
-    // JavaScript for "Add to Cart" functionality (You'll need to implement this)
+  // JavaScript for "Add to Cart" functionality (You'll need to implement this)
     const addToCartButtons = document.querySelectorAll('.add-to-cart');
 
     addToCartButtons.forEach(button => {
@@ -382,19 +384,16 @@
       });
     });
 
-    // JavaScript for hamburger menu
-    const hamburger = document.querySelector('.hamburger');
-    const navList = document.querySelector('.nav-list');
 
-    hamburger.addEventListener('click', () => {
-      navList.classList.toggle('active');
-    });
-    
-    hamburger.addEventListener('click', () => {
-      navList.classList.toggle('active');
-      hamburger.classList.toggle('active'); // Toggle the "X" animation
-    });
-       
+// JavaScript for hamburger menu
+const hamburger = document.querySelector('.hamburger');
+const navList = document.querySelector('.nav-list');
+
+hamburger.addEventListener('click', () => {
+  navList.classList.toggle('active');
+  hamburger.classList.toggle('active'); // This line is important
+});
+
 
 addToCartButtons.forEach(button => {
       button.addEventListener('click', () => {
@@ -426,6 +425,38 @@ addToCartButtons.forEach(button => {
       }
     }
     
+   function checkCartAndRedirect() {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    if (cart.length > 0) {
+      window.location.href = 'orderform.html'; 
+    } else {
+      alert("Your cart is empty. Please add items to your order first."); 
+    }
+  }; 
+  
+  
+  
+  
+  
+  
+  
+
+  // Function to hide the navigation menu
+  function hideNavigation() {
+    const hamburger = document.querySelector('.hamburger');
+    const navList = document.querySelector('.nav-list');
+
+    if (hamburger && navList) {
+      navList.classList.remove('active');
+      hamburger.classList.remove('active');
+    }
+  }
+
+  // Attach the event listener to all navigation links
+  const navLinks = document.querySelectorAll('.nav-list a');
+  navLinks.forEach(link => {
+    link.addEventListener('click', hideNavigation);
+  }); 
   </script>
 </body>
 </html>
