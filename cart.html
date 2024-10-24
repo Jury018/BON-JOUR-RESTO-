@@ -1,516 +1,388 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Cart - Bon Jour Pinoy Restaurant</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500&display=swap"
-      rel="stylesheet">
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-    <style>
-      :root {
-        --primary-color: #ffffff;
-        --secondary-color: #ff2a15;
-        --accent-color: #ff3400;
-        --bg-color: #f8f8f8;
-        --text-color: #333;
-        --shadow-color: rgba(0, 0, 0, 0.1);
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Cart - Bon Jour Pinoy Restaurant</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+  <style>
+    /* General Styles */
+    :root {
+      --primary-color: #ffffff;
+      --secondary-color: #ff2a15;
+      --accent-color: #ff3400;
+      --bg-color: #f8f8f8;
+      --text-color: #333;
+      --shadow-color: rgba(0, 0, 0, 0.1);
+    }
+
+    body {
+      font-family: 'Time New Roman', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.3s ease;
+    }
+
+    /* Header Styles */
+    header {
+      background-color: var(--primary-color);
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 6px var(--shadow-color);
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5em;
+      color: var(--secondary-color);
+      margin-top: 0;
+      transition: all 0.3s ease;
+      cursor: default; 
+    }
+
+    header h1:hover {
+      transform: scale(1.05) translateY(-2px);
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    @keyframes glowing {
+      0% { 
+        color: var(--secondary-color); 
+        text-shadow: 0 0 5px var(--secondary-color); 
       }
-
-      body {
-        font-family: 'Time New Roman', sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: var(--bg-color);
-        color: var(--text-color);
-        transition: background-color 0.3s ease;
+      100% { 
+        color: #ff4d4d; 
+        text-shadow: 0 0 10px #ff4d4d; 
       }
+    }
 
-      header {
-        background-color: var(--primary-color);
-        padding: 20px;
-        text-align: center;
-        box-shadow: 0 4px 6px var(--shadow-color);
-      }
+    /* Navigation Bar Styles */
+    nav {
+      background-color: var(--primary-color); 
+      padding: 10px 20px; 
+      text-align: center;
+    }
 
-      header h1 {
-        font-family: 'Playfair Display', serif;
-        font-size: 2.5em;
-        color: var(--secondary-color);
-        margin-top: 0;
-        transition: all 0.3s ease;
-        cursor: default;
-      }
+    .nav-container {
+      display: flex;
+      justify-content: space-between; 
+      align-items: center; 
+    }
 
-      header h1:hover {
-        transform: scale(1.05) translateY(-2px);
-        text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-      }
+    .nav-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
 
-      @keyframes glowing {
-        0% {
-          color: var(--secondary-color);
-          text-shadow: 0 0 5px var(--secondary-color);
-        }
+    .nav-list li {
+      display: inline-block; 
+      margin: 0 10px; 
+    }
 
-        100% {
-          color: #ff4d4d;
-          text-shadow: 0 0 10px #ff4d4d;
-        }
-      }
+    .nav-list a {
+      color: var(--text-color); 
+      text-decoration: none; 
+      font-weight: bold; 
+      transition: all 0.3s ease; 
+      padding: 8px 12px; 
+      border-radius: 5px; 
+    }
 
-      nav {
-        background-color: var(--primary-color);
-        padding: 10px 20px;
-        text-align: center;
-      }
+    .nav-list a:hover {
+      background-color: var(--secondary-color); 
+      color: var(--primary-color); 
+      box-shadow: 0 2px 4px var(--shadow-color); 
+    }
 
-      .nav-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+    /* Hamburger Menu Styles */
+    .hamburger {
+      display: none; 
+      cursor: pointer;
+      position: relative; 
+      width: 30px; 
+      height: 20px; 
+      z-index: 1001; 
+    }
+
+    .hamburger span {
+      display: block;
+      position: absolute; 
+      width: 100%; 
+      height: 3px;
+      background-color: var(--text-color); 
+      border-radius: 5px;
+      transition: all 0.3s ease; 
+    }
+
+    .hamburger span:nth-child(1) {
+      top: 0; 
+    }
+
+    .hamburger span:nth-child(2) {
+      top: 50%; 
+      transform: translateY(-50%); 
+    }
+
+    .hamburger span:nth-child(3) {
+      bottom: 0; 
+    }
+
+    /* Hover effect for hamburger */
+    .hamburger:hover span {
+      background-color: var(--secondary-color); 
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0; 
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    /* Media Queries for Responsiveness */
+    @media (max-width: 768px) {
+      .hamburger {
+        display: block; 
+        position: relative; 
+        margin-right: 20px; 
       }
 
       .nav-list {
-        list-style: none;
-        margin: 0;
-        padding: 0;
+        position: absolute;
+        top: 70px; 
+        left: 0;
+        width: 100%;
+        background-color: var(--primary-color);
+        flex-direction: column; 
+        align-items: center;
+        transform: translateY(-100%); 
+        transition: transform 0.5s ease; 
+        opacity: 0; 
+        z-index: 1000; 
+      }
+
+      .nav-list.active { 
+        transform: translateY(0);
+        opacity: 1; 
+        background-color: rgba(255, 255, 255, 0.8); 
+        backdrop-filter: blur(5px); 
       }
 
       .nav-list li {
-        display: inline-block;
-        margin: 0 10px;
+        display: block; 
+        margin: 10px 0; 
       }
 
-      .nav-list a {
-        color: var(--text-color);
-        text-decoration: none;
-        font-weight: bold;
-        transition: all 0.3s ease;
-        padding: 8px 12px;
-        border-radius: 5px;
+      .menu-item {
+        width: 100%; 
       }
 
-      .nav-list a:hover {
-        background-color: var(--secondary-color);
-        color: var(--primary-color);
-        box-shadow: 0 2px 4px var(--shadow-color);
+      header h1 {
+        font-size: 2em; 
       }
 
-      .hamburger {
-        display: none;
-        cursor: pointer;
-        position: relative;
-        width: 30px;
-        height: 20px;
-        z-index: 1001;
+      main h2 {
+        font-size: 24px; 
       }
 
-      .hamburger span {
-        display: block;
-        position: absolute;
-        width: 100%;
-        height: 3px;
-        background-color: var(--text-color);
-        border-radius: 5px;
-        transition: all 0.3s ease;
+      #orderButton {
+        width: 80%; 
       }
+    }
 
-      .hamburger span:nth-child(1) {
-        top: 0;
-      }
+    /* Cart Styles */
+    #cart-container {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px var(--shadow-color);
+    }
 
-      .hamburger span:nth-child(2) {
-        top: 50%;
-        transform: translateY(-50%);
-      }
+    #cart-items {
+      list-style: none;
+      padding: 0;
+    }
 
-      .hamburger span:nth-child(3) {
-        bottom: 0;
-      }
+    #cart-items li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+    }
 
-      .hamburger:hover span {
-        background-color: var(--secondary-color);
-      }
+    #cart-items .item-name {
+      font-weight: bold;
+    }
 
-      .hamburger.active span:nth-child(1) {
-        transform: rotate(45deg) translate(5px, 5px);
-      }
+    #cart-items .item-price {
+      margin-left: 10px;
+    }
 
-      .hamburger.active span:nth-child(2) {
-        opacity: 0;
-      }
+    #cart-summary {
+      margin-top: 20px;
+      text-align: right;
+    }
 
-      .hamburger.active span:nth-child(3) {
-        transform: rotate(-45deg) translate(5px, -5px);
-      }
+    #cart-summary p {
+      margin: 5px 0;
+    }
 
-      @media (max-width: 768px) {
-        .hamburger {
-          display: block;
-          position: relative;
-          margin-right: 20px;
-        }
+    #cart-summary .total-price {
+      font-size: 1.2em;
+      font-weight: bold;
+    }
 
-        .nav-list {
-          position: absolute;
-          top: 70px;
-          left: 0;
-          width: 100%;
-          background-color: var(--primary-color);
-          flex-direction: column;
-          align-items: center;
-          transform: translateY(-100%);
-          transition: transform 0.5s ease;
-          opacity: 0;
-          z-index: 1000;
-        }
-
-        .nav-list.active {
-          transform: translateY(0);
-          opacity: 1;
-          background-color: rgba(255, 255, 255, 0.8);
-          backdrop-filter: blur(5px);
-        }
-
-        .nav-list li {
-          display: block;
-          margin: 10px 0;
-        }
-
-        .menu-item {
-          width: 100%;
-        }
-
-        header h1 {
-          font-size: 2em;
-        }
-
-        main h2 {
-          font-size: 24px;
-        }
-
-        #orderButton {
-          width: 80%;
-        }
-      }
-
-      #cart-container {
-        max-width: 800px;
-        margin: 40px auto;
-        padding: 20px;
-        background-color: #fff;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px var(--shadow-color);
-      }
-
-      #cart-items {
-        list-style: none;
-        padding: 0;
-      }
-
-      #cart-items li {
-        display: flex;
-        align-items: center;
-        padding: 10px 0;
-        border-bottom: 1px solid #eee;
-      }
-
-      #cart-items .item-name {
-        font-weight: bold;
-      }
-
-      #cart-items .item-price {
-        margin-left: 10px;
-      }
-
-      #cart-summary {
-        margin-top: 20px;
-        text-align: right;
-      }
-
-      #cart-summary p {
-        margin: 5px 0;
-      }
-
-      #cart-summary .total-price {
-        font-size: 1.2em;
-        font-weight: bold;
-      }
-
-      button {
-        background-color: var(--accent-color);
-        color: white;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-      }
-
-      button:hover {
-        background-color: #d39e00;
-      }
-
-      #cart-items .remove-item {
-        background-color: #ff4d4d;
-        color: white;
-        border: none;
-        padding: 5px 10px;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-        margin-left: 10px;
-      }
-
-      #cart-items .remove-item:hover {
-        background-color: #cc0000;
-      }
-
-      #back-to-menu      
-        display: inline-block;
-        margin-top: 10px;
-      }
-
-      .quantity-controls {
-        display: flex;
-        align-items: center;
-        margin-left: 10px;
-      }
-
-      .quantity-controls button {
-        background-color: #eee;
-        color: #333;
-        border: none;
-        padding: 5px 10px;
-        border-radius: 5px;
-        cursor: pointer;
-        margin: 0 5px;
-        font-weight: bold;
-      }
-
-      .item-quantity {
-        margin: 0 10px;
-        font-weight: bold;
-      }
-
-      /* Add a class for a more visually appealing empty cart message */
-      #cart-items.empty-cart {
-        text-align: center;
-        font-style: italic;
-        color: #999;
-        padding: 20px;
-      }
-      
-      /* Media Queries for Responsiveness */
-@media (max-width: 768px) {
-  /* ... (your existing media query styles) ... */
-
-  #cart-container {
-    max-width: 90%; /* Adjust as needed */
-  }
-
-  #cart-items li {
-    flex-direction: column; /* Stack items vertically */
-    align-items: flex-start; /* Align items to the left */
-  }
-
-  .quantity-controls {
-    margin: 5px 0; /* Add vertical space */
-  }
-
-  #cart-summary {
-    text-align: left; /* Align summary to the left */
-  }
-
-  #cart-summary button {
-    display: block; /* Stack buttons vertically */
-    width: 100%; /* Make buttons full width */
-    margin-bottom: 10px; /* Add space between buttons */
-  }
-}
-
-@media (max-width: 480px) {
-  .quantity-controls button {
-    padding: 6px 10px; /* Slightly smaller padding */
-    font-size: 14px; /* Slightly smaller font size */
-  }
-}
-
-    </style>
-  </head>
-
-  <body>
-    <header>
-      <h1>
-        <a href="homepage.html" style="text-decoration: none; color: inherit;">
-          <b style="animation: glowing 1s infinite;">BON JOUR PINOY RESTAURANT™</b>
-        </a>
-      </h1>
-      <nav>
-        <div class="nav-container">
-          <ul class="nav-list">
-            <li><a href="homepage.html">Home</a></li>
-            <li><a href="aboutus.html">About Us</a></li>
-            <li><a href="homepage.html#menu">Food Menu</a></li>
-            <li><a href="cart.html" onclick="checkCartAndRedirect()">My Cart</a>
-            </li>
-            <li><a href="index.html">Sign Out</a></li>
-          </ul>
-          <div class="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
+  </style>
+</head>
+<body>
+  <header>
+    <h1><a href="homepage.html" style="text-decoration: none; color: inherit;"><b style="animation: glowing 1s infinite;">BON JOUR PINOY RESTAURANT™</b></a></h1>
+    <nav>
+      <div class="nav-container">
+        <ul class="nav-list">
+          <li><a href="homepage.html">Home</a></li>
+          <li><a href="aboutus.html">About Us</a></li>
+          <li><a href="homepage.html#menu">Food Menu</a></li> 
+          <li><a href="cart.html" onclick="checkCartAndRedirect()">My Cart</a></li> 
+          <li><a href="index.html">Sign Out</a></li>
+        </ul>
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
         </div>
-      </nav>
-    </header>
+      </div>
+    </nav>
+  </header>
 
-    <main>
-      <section id="cart-container">
-        <h2>My Cart</h2>
-        <ul id="cart-items"></ul>
+  <main>
+    <section id="cart-container">
+      <h2>My Cart</h2>
+      <ul id="cart-items"></ul>
 
-        <div id="cart-summary">
-          <p>Subtotal: <span id="cart-subtotal">₱0</span></p>
-          <p>Total: <span id="cart-total">₱0</span></p>
+      <div id="cart-summary">
+        <p>Subtotal: <span id="cart-subtotal">₱0</span></p>
+        <p>Total: <span id="cart-total">₱0</span></p>
+        <button onclick="proceedToCheckout()">Proceed to Checkout</button>
+      </div>
+    </section>
+  </main>
 
-          <button onclick="proceedToCheckout()">Proceed to Checkout</button>
+  <footer>
+    <p>&copy; 2024 Bon Jour Pinoy Restaurant. All rights reserved.</p>
+  </footer>
 
-          <button id="back-to-menu" onclick="window.location.href='homepage.html'">Back to
-            Menu</button>
-        </div>
-      </section>
-    </main>
+  <script>
+    // JavaScript for hamburger menu
+    const hamburger = document.querySelector('.hamburger');
+    const navList = document.querySelector('.nav-list');
 
-    <footer>
-      <p>&copy; 2024 Bon Jour Pinoy Restaurant. All rights reserved.</p>
-    </footer>
+    hamburger.addEventListener('click', () => {
+      navList.classList.toggle('active');
+      hamburger.classList.toggle('active');
+    });
 
-    <script>
-      const hamburger = document.querySelector('.hamburger');
-      const navList = document.querySelector('.nav-list');
 
-      hamburger.addEventListener('click', () => {
-        navList.classList.toggle('active');
-        hamburger.classList.toggle('active');
-      });
+    // Get cart data from local storage 
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    function updateCart() {
+      const cartItemsList = document.getElementById('cart-items');
+      const cartSubtotal = document.getElementById('cart-subtotal');
+      const cartTotal = document.getElementById('cart-total');
 
-      function updateCart() {
-        const cartItemsList = document.getElementById('cart-items');
-        const cartSubtotal = document.getElementById('cart-subtotal');
-        const cartTotal = document.getElementById('cart-total');
+      cartItemsList.innerHTML = ''; // Clear the cart items list
+      let subtotal = 0;
 
-        cartItemsList.innerHTML = '';
-        let subtotal = 0;
-
-        if (cart.length === 0) {
-          // Display empty cart message
-          cartItemsList.classList.add('empty-cart');
-          cartItemsList.innerHTML = "<li>Your cart is empty.</li>";
-        } else {
-          cartItemsList.classList.remove('empty-cart');
-          cart.forEach((item, index) => {
-            const listItem = document.createElement('li');
-            listItem.innerHTML = `
+      cart.forEach((item, index) => {
+        const listItem = document.createElement('li');
+        listItem.innerHTML = `
           <span class="item-name">${item.name}</span>
-          <div class="quantity-controls">
-            <button class="decrease-quantity" data-index="${index}">-</button>
-            <span class="item-quantity">${item.quantity || 1}</span>
-            <button class="increase-quantity" data-index="${index}">+</button>
-          </div>
           <span class="item-price">${item.price}</span>
           <button class="remove-item" data-index="${index}">Remove</button>
         `;
-            cartItemsList.appendChild(listItem);
+        cartItemsList.appendChild(listItem);
 
-            subtotal += parseFloat(item.price.replace('₱', '').replace(',', '')) * (item.quantity || 1);
-          });
-        }
+        subtotal += parseFloat(item.price.replace('₱', ''));
+      });
 
-        cartSubtotal.textContent = '₱' + subtotal.toFixed(2);
-        cartTotal.textContent = '₱' + subtotal.toFixed(2);
+      cartSubtotal.textContent = '₱' + subtotal.toFixed(2);
+      cartTotal.textContent = '₱' + subtotal.toFixed(2); // For now, total is the same as subtotal
 
-        const removeButtons = document.querySelectorAll('.remove-item');
-        removeButtons.forEach(button => {
-          button.addEventListener('click', () => {
-            const indexToRemove = button.dataset.index;
-            cart.splice(indexToRemove, 1);
-            localStorage.setItem('cart', JSON.stringify(cart));
-            updateCart();
-          });
+      // Add event listeners to remove buttons
+      const removeButtons = document.querySelectorAll('.remove-item');
+      removeButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const indexToRemove = button.dataset.index;
+          cart.splice(indexToRemove, 1);
+          localStorage.setItem('cart', JSON.stringify(cart));
+          updateCart(); // Update the cart after removing an item
         });
+      });
+    }
 
-        const decreaseButtons = document.querySelectorAll('.decrease-quantity');
-        decreaseButtons.forEach(button => {
-          button.addEventListener('click', () => {
-            const index = button.dataset.index;
-            if (cart[index].quantity > 1) {
-              cart[index].quantity--;
-            } else {
-              cart.splice(index, 1);
-            }
-            localStorage.setItem('cart', JSON.stringify(cart));
-            updateCart();
-          });
-        });
+    // Call updateCart() to initially populate the cart
+    updateCart();
 
-        const increaseButtons = document.querySelectorAll('.increase-quantity');
-        increaseButtons.forEach(button => {
-          button.addEventListener('click', () => {
-            const index = button.dataset.index;
-            cart[index].quantity = (cart[index].quantity || 1) + 1;
-            localStorage.setItem('cart', JSON.stringify(cart));
-            updateCart();
-          });
-        });
+    function checkCartAndRedirect() {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      if (cart.length > 0) {
+        // Redirect to the cart page 
+        window.location.href = 'cart.html';
+      } else {
+        showCustomAlert("Your cart is empty. Please add items to your order first.", 'warning');
+      }
+    }
+
+    function showCustomAlert(message, type) {
+      const alertContainer = document.createElement('div');
+      alertContainer.classList.add('alert'); // Add a CSS class for styling
+
+      // Set alert type (e.g., success, warning, error)
+      switch (type) {
+        case 'success':
+          alertContainer.classList.add('alert-success');
+          break;
+        case 'warning':
+          alertContainer.classList.add('alert-warning');
+          break;
+        case 'error':
+          alertContainer.classList.add('alert-danger');
+          break;
       }
 
-      updateCart();
+      alertContainer.textContent = message;
 
-      function checkCartAndRedirect() {
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        if (cart.length > 0) {
-          window.location.href = 'cart.html';
-        } else {
-          showCustomAlert("Your cart is empty. Please add items to your order first.", 'warning');
-        }
-      }
+      // Add a close button (optional)
+      const closeButton = document.createElement('button');
+      closeButton.textContent = 'x';
+      closeButton.classList.add('close');
+      closeButton.addEventListener('click', () => {
+        alertContainer.remove();
+      });
+      alertContainer.appendChild(closeButton);
 
-      function showCustomAlert(message, type) {
-        const alertContainer = document.createElement('div');
-        alertContainer.classList.add('alert');
-        switch (type) {
-          case 'success':
-            alertContainer.classList.add('alert-success');
-            break;
-          case 'warning':
-            alertContainer.classList.add('alert-warning');
-            break;
-          case 'error':
-            alertContainer.classList.add('alert-danger');
-            break;
-        }
-        alertContainer.textContent = message;
-        const closeButton = document.createElement('button');
-        closeButton.textContent = 'x';
-        closeButton.classList.add('close');
-        closeButton.addEventListener('click', () => {
-          alertContainer.remove();
-        });
-        alertContainer.appendChild(closeButton);
-        document.body.appendChild(alertContainer);
-      }
+      // Append the alert to the body or a specific container
+      document.body.appendChild(alertContainer);
+    }
 
-      function proceedToCheckout() {
-        window.location.href = 'checkout.html';
-      }
-    </script>
-  </body>
+    function proceedToCheckout() {
+      // Redirect to the order form page
+      window.location.href = 'orderform.html';
+    }
+  </script>
+</body>
 </html>
 
