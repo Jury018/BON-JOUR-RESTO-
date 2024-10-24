@@ -23,24 +23,24 @@ body {
 .wrapper h2 {
   background-color: #fcfcfc;
   color: #ff0000;
-  font-size: 2rem;
+  font-size: 2rem;  /* Use relative units */
   padding: 10px;
-  margin-bottom: 8px;
+  margin-bottom: 20px;
   text-align: center;
   border: 1px dashed #ff0000;
 }
 
 .wrapper h4 {
-  padding-bottom: 5px;
+  padding-bottom: 10px;
   color: #ff0000;
 }
 
 .input_group {
-  margin-bottom: 8px;
+  margin-bottom: 15px;
   width: 100%;
   position: relative;
   display: flex;
-  flex-direction: row;
+  flex-direction: row; /* Changed to column for smaller screens */
   padding: 5px 0;
 }
 
@@ -64,7 +64,7 @@ body {
   transition: 0.3s;
   border-radius: 3px;
   color: #333;
-  font-size: 16px;
+  font-size: 1rem;   /* Use relative units */
 }
 
 .input_box .name:focus,
@@ -94,7 +94,7 @@ body {
   border-right: none;
 }
 
-.name:focus + .icon {
+.name:focus+.icon {
   background-color: #ff0000;
   color: #fff;
   border-right: 1px solid #ff0000;
@@ -118,14 +118,14 @@ body {
 }
 
 .input_box label {
-  width: 32%;
-  padding: 10px;
+  width: 100%;
+  padding: 10px 10px 10px 50px;
   background-color: #fcfcfc;
-  display: inline-block;
-  float: left;
-  text-align: center;
+  display: block;
+  text-align: left;
   border: 1px solid #c0bfbf;
   font-size: 14px;
+  margin-bottom: 5px; 
 }
 
 .input_box label:first-of-type {
@@ -139,7 +139,7 @@ body {
   border-bottom-right-radius: 3px;
 }
 
-.radio:checked + label {
+.radio:checked+label {
   background-color: #ff0000;
   color: #fff;
   transition: 0.5s;
@@ -154,6 +154,7 @@ body {
   font-size: 16px;
   transition: all 0.3s ease;
   border-radius: 8px;
+  margin-top: 10px; 
 }
 
 .input_box button:hover {
@@ -161,34 +162,93 @@ body {
   background-color: #cc0000;
 }
 
-/* Media Query for smaller screens */
-@media (max-width: 480px) {
-  .wrapper {
-    width: 95%;
-    padding: 20px;
-  }
+/* Error Styling */
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
 
-  .wrapper h2 {
-    font-size: 1.8rem;
-  }
+/* Loading Indicator Styling */
+#loadingIndicator {
+  border: 8px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 8px solid #3498db; 
+  width: 40px;
+  height: 40px;
+  animation: spin 2s linear infinite;
+  display: none;
+  margin: 20px auto;
+}
 
-  .input_box .name {
-    font-size: 14px;
-  }
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 
-  .input_box .icon {
-    font-size: 16px;
-  }
+/* Media Queries for smaller screens */
 
-  .input_box label {
-    width: 100%;
-    margin-bottom: 5px;
-    display: block;
-    float: none;
+@media (max-width: 768px) {  /* Tablet sizes */
+  .wrapper { 
+    width: 90%; 
+    padding: 20px; 
   }
-
-  .input_box button {
-    font-size: 14px;
+  .wrapper h2 { 
+    font-size: 1.5rem; 
+  }
+  .input_box .name { 
+    font-size: 15px; 
   }
 }
 
+@media (max-width: 600px) {  /* Larger mobile phones */
+  .input_group { 
+    flex-direction: column;  /* Stack input fields vertically */
+  }
+  .input_box { 
+    margin-right: 0; 
+    margin-bottom: 10px;  /* Adjust spacing */
+  }
+}
+
+@media (max-width: 480px) {  /* Smaller mobile phones */
+  .wrapper { 
+    width: 95%; 
+    padding: 20px; 
+  }
+  .wrapper h2 { 
+    font-size: 1.8rem; 
+  }
+  .input_box .name { 
+    font-size: 14px; 
+  }
+  
+  .input_box .icon { 
+    font-size: 16px; 
+  }
+  .input_box button { 
+    font-size: 14px; 
+  }
+}
+
+ .error {
+      color: red;
+      font-size: 12px;
+      margin-top: 5px;
+    }
+    /* Add styles for the loading indicator */
+    #loadingIndicator {
+      border: 8px solid #f3f3f3; /* Light grey */
+      border-radius: 50%;
+      border-top: 8px solid #3498db; /* Blue */
+      width: 40px;
+      height: 40px;
+      animation: spin 2s linear infinite;
+      display: none; /* Hidden by default */
+      margin: 20px auto;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
