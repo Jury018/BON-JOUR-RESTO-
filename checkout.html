@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BON JOUR PINOY RESTAURANT PAYMENT METHOD </title>
+  <link rel="stylesheet" href="checkout.css"> 
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet"> 
+  <style>
+    /* ... (your original CSS styles) ... */
+    .error {
+      color: red;
+      font-size: 12px;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <h2><b style="animation: glowing 1s infinite;">BON JOUR PINOY RESTAURANT™</b></h2> 
+    </header>
+    <form action="" method="post">
+      <h4>Account</h4>
+      <div class="input_group">
+        <div class="input_box">
+          <input type="text" placeholder="First Name" required class="name" id="firstName">
+          <i class="fa fa-user icon"></i>
+          <div class="error" id="firstNameError"></div> 
+        </div>
+        <div class="input_box">
+          <input type="text" placeholder="Last Name" required class="name" id="lastName">
+          <i class="fa fa-user icon"></i>
+          <div class="error" id="lastNameError"></div>
+        </div>
+      </div>
+      <div class="input_group">
+        <div class="input_box">
+          <input type="tel" placeholder="Phone Number" required class="name" id="phoneNumber" pattern="^(09|\+639)\d{9}$"> 
+          <i class="fa fa-phone icon"></i>
+          <div class="error" id="phoneNumberError"></div>
+        </div>
+      </div>
+      <div class="input_group">
+        <div class="input_box">
+          <input type="text" placeholder="Address" required class="name" id="address">
+          <i class="fa fa-map-marker icon" aria-hidden="true"></i>
+          <div class="error" id="addressError"></div>
+        </div>
+      </div>
+      <div class="input_group">
+        <div class="input_box">
+          <input type="text" placeholder="City" required class="name" id="city">
+          <i class="fa fa-institution icon"></i>
+          <div class="error" id="cityError"></div>
+        </div>
+      </div>
+
+      <div class="input_group">
+        <div class="input_box">
+          <h4>Payment Details</h4>
+          <input type="radio" name="pay" class="radio" id="bc1" checked>
+          <label for="bc1"><span><i class="fa fa-cc-visa"></i>Credit Card</span></label>
+          <input type="radio" name="pay" class="radio" id="bc2">
+          <label for="bc2"><span><i class="fa fa-cc-paypal"></i>Paypal</span></label>
+          <input type="radio" name="pay" class="radio" id="bc3">
+          <label for="bc3"><span><i class="fa fa-credit-card-alt"></i>PayMaya</span></label>
+          <input type="radio" name="pay" class="radio" id="bc4">
+          <label for="bc4"><span><i class="fa fa-money"></i>GCash</span></label>
+          <input type="radio" name="pay" class="radio" id="bc5">
+          <label for="bc5"><span><i class="fa fa-truck"></i>Cash on Delivery</span></label>
+          <input type="radio" name="pay" class="radio" id="bc6"> 
+          <label for="bc6"><span><i class="fa fa-apple"></i>Apple Pay</span></label> 
+        </div>
+      </div>
+
+      <div id="cardDetails"> 
+        <div class="input_group">
+          <div class="input_box">
+            <input type="tel" name="" class="name" placeholder="Card Number 1111-2222-3333-4444" required id="cardNumber">
+            <i class="fa fa-credit-card icon"></i>
+            <div class="error" id="cardNumberError"></div>
+          </div>
+        </div>
+        <div class="input_group">
+          <div class="input_box">
+            <input type="tel" name="" class="name" placeholder="Card CVC 632" required id="cardCVC">
+            <i class="fa fa-user icon"></i>
+            <div class="error" id="cardCVCError"></div>
+          </div>
+        </div>
+        <div class="input_group">
+          <div class="input_box">
+            <div class="input_box">
+              <input type="number" placeholder="Exp Month" required class="name" id="expMonth">
+              <i class="fa fa-calendar icon" aria-hidden="true"></i>
+              <div class="error" id="expMonthError"></div>
+            </div>
+          </div>
+          <div class="input_box">
+            <input type="number" placeholder="Exp Year" required class="name" id="expYear">
+            <i class="fa fa-calendar-o icon" aria-hidden="true"></i>
+            <div class="error" id="expYearError"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="input_group"> 
+        <div class="input_box"> 
+         <i class="fa fa-money icon" aria-hidden="true"></i>
+          <input type="number" id="totalAmount" placeholder="Enter Amount" required class="name" readonly>
+        </div>
+      </div>
+
+      <div class="input_group">
+        <div class="input_box">
+          <button type="button" id="payNowButton">PAY NOW</button> 
+        </div>
+      </div>
+      <div class="input_group">
+        <div class="input_box">
+          <button type="button" onclick="window.location.href='cart.html'">Back to Cart</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <script src="https://kit.fontawesome.com/65ce088790.js" crossorigin="anonymous"></script> 
+  <script>
+    const cardDetailsDiv = document.getElementById('cardDetails');
+    const paymentRadios = document.querySelectorAll('input[name="pay"]');
+    const amountInput = document.getElementById('totalAmount');
+    const payNowButton = document.getElementById('payNowButton'); 
+    const phoneNumberInput = document.getElementById('phoneNumber');
+
+    // Get the total amount from the cart
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let totalAmount = 0;
+    cart.forEach(item => {
+      totalAmount += parseFloat(item.price.replace('₱', '').replace(',', '')) * (item.quantity || 1);
+    });
+    amountInput.value = totalAmount; // Set the total amount in the input field
+    amountInput.readOnly = true;
+
+    paymentRadios.forEach(radio => {
+      radio.addEventListener('change', () => {
+        if (radio.id === 'bc1') { // If Credit Card is selected
+          cardDetailsDiv.style.visibility = 'visible'; 
+          cardDetailsDiv.style.position = 'static'; 
+        } else {
+          cardDetailsDiv.style.visibility = 'hidden'; 
+          cardDetailsDiv.style.position = 'absolute'; 
+        }
+      });
+    });  
+
+    // Disable "PAY NOW" button initially
+    payNowButton.disabled = true;
+       // Function to check if all fields are filled
+    function checkFormValidity() {
+      const firstName = document.getElementById('firstName').value;
+      const lastName = document.getElementById('lastName').value;
+      const phoneNumber = document.getElementById('phoneNumber').value;
+      const address = document.getElementById('address').value;
+      const city = document.getElementById('city').value;
+
+      // Check if all required fields have values and phone number length
+      if (firstName && lastName && phoneNumber && address && city && 
+          (phoneNumber.length === 11 || phoneNumber.length === 12)) {
+        payNowButton.disabled = false; // Enable the button
+      } else {
+        payNowButton.disabled = true; // Disable the button
+      }
+    }
+
+    // Add event listeners to all input fields to check validity on input
+    const inputFields = document.querySelectorAll('.name');
+    inputFields.forEach(input => {
+      input.addEventListener('input', checkFormValidity);
+    });
+
+    payNowButton.addEventListener('click', () => {
+      let selectedPayment = document.querySelector('input[name="pay"]:checked').id;
+      let paymentLink;
+
+      // Form validation (You can add more specific validation here)
+      let isValid = true; 
+
+      if (isValid) {
+        // Proceed with payment redirection
+        switch (selectedPayment) {
+          case 'bc1': 
+            paymentLink = '#'; 
+            break;
+          case 'bc2':
+            paymentLink = 'https://www.paypal.com/signin?returnUri=https%3A%2F%2Fwww.paypal.com%2Fmep%2F';
+            break;
+          case 'bc3':
+            paymentLink = 'https://payout.maya.ph/';
+            break;
+          case 'bc4':
+            paymentLink = 'https://m.gcash.com/gcash-login-web/index.html#/ ';
+            break;
+          case 'bc5':
+            paymentLink = '#'; 
+            break;
+          case 'bc6':
+            paymentLink = 'https://card.apple.com/';
+            break;
+          default:
+            paymentLink = '#';
+        }
+
+        window.location.href = paymentLink;
+      } 
+    });
+  </script>
+</body>
+</html>
