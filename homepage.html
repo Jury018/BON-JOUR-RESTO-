@@ -16,8 +16,7 @@
           <li><a href="#introMenu">Home</a></li> 
           <li><a href="aboutus.html">About Us</a></li>
           <li><a href="#menu">Food Menu</a></li>
-          <li><a href="orderform.html" id="orderFormLink"
-          onclick="checkCart(event)">Order Form</a></li> 
+          <li><a href="cart.html" onclick="checkCartAndRedirect(event)">My Cart</a></li>
           <li><a href="index.html">Sign Out</a></li> 
         </ul>
         <div class="hamburger">
@@ -363,7 +362,7 @@
       </div>
     </section> 
 
-    <button id="orderButton" onclick="checkCartAndRedirect()">Let's Order</button>
+    <button id="orderButton" onclick="checkCartAndRedirect(event)">Let's Order</button>
 
 
   </main>
@@ -425,21 +424,22 @@ addToCartButtons.forEach(button => {
       }
     }
     
-   function checkCartAndRedirect() {
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    if (cart.length > 0) {
-      window.location.href = 'orderform.html'; 
-    } else {
-      alert("Your cart is empty. Please add items to your order first."); 
+  function checkCartAndRedirect(event) {
+      event.preventDefault(); // Prevent default link behavior
+
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      if (cart.length > 0) {
+        window.location.href = 'cart.html'; // Redirect to cart.html
+      } else {
+        alert("Your cart is empty. Please add items to your order first.");
+      }
     }
-  }; 
+
+// ... (your existing JavaScript code) ...
+
   
   
-  
-  
-  
-  
-  
+
 
   // Function to hide the navigation menu
   function hideNavigation() {
