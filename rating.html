@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BON JOUR PINOY RESTAURANT RATING</title>
+  <link rel="stylesheet" href="checkout.css"> 
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* Additional CSS for the rating system */
+    .rating {
+      display: inline-block;
+      unicode-bidi: bidi-override;
+      direction: rtl; /* To display stars from right to left */
+      font-size: 0; /* Remove default spacing between stars */
+    }
+
+    .rating input {
+      position: absolute;
+      left: -99999px;
+    }
+
+    .rating label {
+      display: inline-block;
+      font-size: 30px;
+      color: #ccc; /* Default star color */
+      cursor: pointer;
+      transition: color 0.2s; /* Add smooth transition for color change */
+    }
+
+    .rating label:before {
+      content: '\2605'; /* Star character */
+      margin: 5px;
+    }
+
+    .rating input:checked ~ label, /* Filled stars */
+    .rating label:hover ~ label, /* Hover effect on stars to the right */
+    .rating label:hover { /* Hover effect on the current star */
+      color: #ffcc00; /* Color of filled stars */
+    }
+
+    #rating-form {
+      margin-top: 20px; /* Add some space above the rating form */
+    }
+
+    #ratingComments {
+      width: 100%;
+      height: 100px;
+      padding: 10px;
+      margin-top: 10px;
+      border: 1px solid #ccc;
+      resize: vertical; /* Allow vertical resizing of the textarea */
+    }
+
+    #ratingForm button {
+      background-color: #ff0000; /* Red background color */
+      color: #fff; /* White text color */
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s; /* Add smooth transition for hover effect */
+    }
+
+    #ratingForm button:hover {
+      background-color: #cc0000; /* Darker red on hover */
+    }
+
+    /* Responsiveness */
+    @media (max-width: 768px) {
+      .rating label {
+        font-size: 24px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .rating label {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <h2><b style="animation: glowing 1s infinite;">BON JOUR PINOY RESTAURANT™</b></h2> 
+    </header>
+    <div id="rating-form"> 
+      <h2>Rate Your Experience</h2>
+      <form id="ratingForm">
+        <div class="rating">
+          <input type="radio" id="star5" name="rating" value="5" /><label for="star5"></label>
+          <input type="radio" id="star4" name="rating" value="4" /><label for="star4"></label>
+          <input type="radio" id="star3" name="rating" value="3" /><label for="star3"></label>
+          <input type="radio" id="star2" name="rating" value="2" /><label for="star2"></label>
+          <input type="radio" id="star1" name="rating" value="1" /><label for="star1"></label>
+        </div>
+        <textarea id="ratingComments" placeholder="Leave a comment"></textarea>
+        <button type="submit">Submit Rating</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://kit.fontawesome.com/65ce088790.js" crossorigin="anonymous"></script> 
+  <script>
+    document.getElementById('ratingForm').addEventListener('submit', function(event) {
+      event.preventDefault(); 
+
+      let rating = 0; 
+      const selectedRating = document.querySelector('input[name="rating"]:checked');
+      if (selectedRating) {
+        rating = selectedRating.value;
+      }
+
+      const comments = document.getElementById('ratingComments').value;
+
+      let feedback = JSON.parse(localStorage.getItem('feedback')) || [];
+      feedback.push({ rating: rating, comments: comments });
+      localStorage.setItem('feedback', JSON.stringify(feedback));
+
+      // Alert message
+      alert('Thank you for your rating! You will now be redirected to the home page.'); 
+
+      window.location.href = 'index.html'; 
+    });
+  </script>
+</body>
+</html>
