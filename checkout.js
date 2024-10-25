@@ -10,7 +10,7 @@ let totalAmount = 0;
 cart.forEach(item => {
   totalAmount += parseFloat(item.price.replace('₱', '').replace(',', '')) * (item.quantity || 1);
 });
-amountInput.value = totalAmount; // Set the total amount in the input field
+amountInput.value = totalAmount;
 amountInput.readOnly = true;
 
 // Show/hide card details based on payment method selection
@@ -37,12 +37,11 @@ function checkFormValidity() {
   const address = document.getElementById('address').value;
   const city = document.getElementById('city').value;
 
-  // Check if all required fields have values and phone number length
   if (firstName && lastName && phoneNumber && address && city &&
     (phoneNumber.length === 11 || phoneNumber.length === 12)) {
-    payNowButton.disabled = false; // Enable the button
+    payNowButton.disabled = false;
   } else {
-    payNowButton.disabled = true; // Disable the button
+    payNowButton.disabled = true;
   }
 }
 
@@ -139,7 +138,9 @@ payNowButton.addEventListener('click', () => {
   requiredFields.forEach(field => {
     const fieldValue = document.getElementById(field).value.trim();
     if (fieldValue === "") {
-      isValid = false;
+      isValid = false; 
+      alert("Please fill in all required fields before proceeding."); 
+      return; 
     }
   });
 
@@ -150,66 +151,57 @@ payNowButton.addEventListener('click', () => {
       const fieldValue = document.getElementById(field).value.trim();
       if (fieldValue === "") {
         isValid = false;
+        alert("Please fill in all required card details."); 
+        return; 
       }
     });
   }
 
   if (isValid) {
-    // Show loading indicator
-    loadingIndicator.style.display = 'block';
+    // Check if totalAmount is valid
+    if (totalAmount > 0) {
+      // Confirmation alert before proceeding with payment
+      if (confirm("Are you sure you want to proceed with the payment?")) {
+        // Show loading indicator
+        loadingIndicator.style.display = 'block';
 
-    // Simulate payment processing delay (replace with actual payment processing)
-    setTimeout(() => {
-      // Hide loading indicator
-      loadingIndicator.style.display = 'none';
+        // Simulate payment processing delay (replace with actual payment processing)
+        setTimeout(() => {
+          // Hide loading indicator
+          loadingIndicator.style.display = 'none';
 
-      // Redirect to rating.html after successful payment (all cases)
-      window.location.href = 'rating.html'; 
+          // Handle online payment methods (redirect directly to rating.html)
+          if (selectedPayment === 'bc2' || selectedPayment === 'bc3' || selectedPayment === 'bc4' || selectedPayment === 'bc6') {
+            window.location.href = 'rating.html';
+          } else {
+            // Handle Cash on Delivery (bc5) and Credit Card (bc1)
+            // ... your existing code to handle these cases ...
 
-      // Clear the form fields
-      document.getElementById('firstName').value = '';
-      document.getElementById('lastName').value = '';
-      document.getElementById('phoneNumber').value = '';
-      document.getElementById('address').value = '';
-      document.getElementById('city').value = '';
-      document.getElementById('cardNumber').value = '';
-      document.getElementById('cardCVC').value = '';
-      document.getElementById('expMonth').value = '';
-      document.getElementById('expYear').value = '';
+            // Redirect to rating.html after alert
+            let redirectToRating = () => { window.location.href = 'rating.html'; };
+            alert('Thank you for your order! You will now be redirected to the rating page.');
+            redirectToRating();
+          }
 
-      // Reset local storage (remove the cart items)
-      localStorage.removeItem('cart');
+          // Clear the form fields
+          document.getElementById('firstName').value = '';
+          document.getElementById('lastName').value = '';
+          document.getElementById('phoneNumber').value = '';
+          document.getElementById('address').value = '';
+          document.getElementById('city').value = '';
+          document.getElementById('cardNumber').value = '';
+          document.getElementById('cardCVC').value = '';
+          document.getElementById('expMonth').value = '';
+          document.getElementById('expYear').value = '';
 
-    }, 2000); // Simulate a 2-second delay
-  } else {
-    // Display an alert message if any required field is not filled
-    alert('Please fill in all the required fields.');
-  }
+          // Reset local storage (remove the cart items)
+          localStorage.removeItem('cart');
+
+        }, 2000); // Simulate a 2-second delay
+      }
+    } else {
+      alert("There is no total amount to pay. Please add items to your cart.");
+    }
+  } 
 });
 
-setTimeout(() => {
-  // Hide loading indicator
-  loadingIndicator.style.display = 'none';
-
-  // Redirect to rating.html after alert (all cases)
-  let redirectToRating = () => { window.location.href = 'rating.html'; }; 
-
-  // Alert with redirect
-  alert('Thank you for your order! You will now be redirected to the rating page.');
-  redirectToRating();
-
-  // Clear the form fields
-  document.getElementById('firstName').value = '';
-  document.getElementById('lastName').value = '';
-  document.getElementById('phoneNumber').value = '';
-  document.getElementById('address').value = '';
-  document.getElementById('city').value = '';
-  document.getElementById('cardNumber').value = '';
-  document.getElementById('cardCVC').value = '';
-  document.getElementById('expMonth').value = '';
-  document.getElementById('expYear').value = '';
-
-  // Reset local storage (remove the cart items)
-  localStorage.removeItem('cart');
-
-}, 2000); // Simulate a 2-second delay
