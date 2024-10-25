@@ -163,32 +163,8 @@ payNowButton.addEventListener('click', () => {
       // Hide loading indicator
       loadingIndicator.style.display = 'none';
 
-      // Display custom alert messages based on payment method
-      switch (selectedPayment) {
-        case 'bc1': // Credit Card
-          alert('Your payment is being processed. You will be redirected to the payment gateway shortly.');
-          // Replace '#' with your actual credit card payment gateway URL
-          window.location.href = '#'; 
-          break;
-        case 'bc2': // PayPal
-          window.location.href = 'https://www.paypal.com/signin?returnUri=https%3A%2F%2Fwww.paypal.com%2Fmep%2F';
-          break;
-        case 'bc3': // PayMaya
-          window.location.href = 'https://payout.maya.ph/';
-          break;
-        case 'bc4': // GCash
-          window.location.href = 'https://m.gcash.com/gcash-login-web/index.html#/ ';
-          break;
-        case 'bc5': // Cash on Delivery
-          alert('Your order has been placed and will be processed shortly. A rider will call you to arrange the delivery and payment.');
-          window.location.href = 'confirmation.html'; // Replace with your confirmation page URL
-          break;
-        case 'bc6': // Apple Pay
-          window.location.href = 'https://card.apple.com/';
-          break;
-        default:
-          alert('Please select a payment method.');
-      }
+      // Redirect to rating.html after successful payment (all cases)
+      window.location.href = 'rating.html'; 
 
       // Clear the form fields
       document.getElementById('firstName').value = '';
@@ -196,7 +172,7 @@ payNowButton.addEventListener('click', () => {
       document.getElementById('phoneNumber').value = '';
       document.getElementById('address').value = '';
       document.getElementById('city').value = '';
-            document.getElementById('cardNumber').value = '';
+      document.getElementById('cardNumber').value = '';
       document.getElementById('cardCVC').value = '';
       document.getElementById('expMonth').value = '';
       document.getElementById('expYear').value = '';
@@ -211,3 +187,29 @@ payNowButton.addEventListener('click', () => {
   }
 });
 
+setTimeout(() => {
+  // Hide loading indicator
+  loadingIndicator.style.display = 'none';
+
+  // Redirect to rating.html after alert (all cases)
+  let redirectToRating = () => { window.location.href = 'rating.html'; }; 
+
+  // Alert with redirect
+  alert('Thank you for your order! You will now be redirected to the rating page.');
+  redirectToRating();
+
+  // Clear the form fields
+  document.getElementById('firstName').value = '';
+  document.getElementById('lastName').value = '';
+  document.getElementById('phoneNumber').value = '';
+  document.getElementById('address').value = '';
+  document.getElementById('city').value = '';
+  document.getElementById('cardNumber').value = '';
+  document.getElementById('cardCVC').value = '';
+  document.getElementById('expMonth').value = '';
+  document.getElementById('expYear').value = '';
+
+  // Reset local storage (remove the cart items)
+  localStorage.removeItem('cart');
+
+}, 2000); // Simulate a 2-second delay
