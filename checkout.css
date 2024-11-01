@@ -48,6 +48,7 @@ body {
   width: 100%;
   margin-right: 12px;
   position: relative;
+  margin-bottom: 25px; /* Increased margin to 25px for more spacing */
 }
 
 .input_box:last-child {
@@ -121,11 +122,20 @@ body {
   width: 100%;
   padding: 10px 10px 10px 50px;
   background-color: #fcfcfc;
-  display: block;
+  display: block; 
   text-align: left;
   border: 1px solid #c0bfbf;
   font-size: 14px;
   margin-bottom: 5px; 
+}
+
+.input_box label span { 
+  display: flex; /* Use flexbox for better alignment */
+  align-items: center; /* Vertically align icon and text */
+}
+
+.input_box label i {
+  margin-right: 10px; /* Add space between icon and text */
 }
 
 .input_box label:first-of-type {
@@ -186,6 +196,7 @@ body {
   100% { transform: rotate(360deg); }
 }
 
+
 /* Media Queries for smaller screens */
 
 @media (max-width: 768px) {  /* Tablet sizes */
@@ -231,24 +242,42 @@ body {
   }
 }
 
- .error {
-      color: red;
-      font-size: 12px;
-      margin-top: 5px;
-    }
-    /* Add styles for the loading indicator */
-    #loadingIndicator {
-      border: 8px solid #f3f3f3; /* Light grey */
-      border-radius: 50%;
-      border-top: 8px solid #3498db; /* Blue */
-      width: 40px;
-      height: 40px;
-      animation: spin 2s linear infinite;
-      display: none; /* Hidden by default */
-      margin: 20px auto;
-    }
 
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
+/* Styles for the custom alert */
+.custom-alert {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  max-width: 90%;
+  word-wrap: break-word;
+}
+
+.custom-alert p {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.custom-alert button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: block;
+  margin: 0 auto;
+  width: auto;
+}
+
+.custom-alert button:hover {
+  background-color: #c82333;
+}
+
