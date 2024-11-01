@@ -88,19 +88,74 @@
     #myBtn:hover {
       background-color: #4cae4c; /* Darker green on hover */
     }
+    
+     /* Styles for the custom alert */
+    .custom-alert {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      z-index: 1000; 
+      max-width: 90%; 
+      word-wrap: break-word; 
+    }
+
+    .custom-alert p {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .custom-alert button {
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      display: block;
+      margin: 0 auto;
+      width: auto;
+    }
+
+    .custom-alert button:hover {
+      background-color: #c82333;
+    }
+
+    /* Add a loading spinner style */
+    .loading {
+      border: 4px solid #f3f3f3; /* Light grey */
+      border-radius: 50%;
+      border-top: 4px solid #3498db; /* Blue */
+      width: 20px;
+      height: 20px;
+      animation: spin 1s linear infinite;
+      display: inline-block; /* To align with text */
+      margin-left: 10px; /* Add some space */
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
   </style>
 </head>
 <body>
   <header>
     <h1><b style="animation: glowing 1s infinite;">BON JOUR PINOY RESTAURANT™</b></h1>
-    <nav>
+     <nav>
       <div class="nav-container"> 
         <ul class="nav-list">
-          <li><a href="index.html">Home</a></li> 
-          <li><a href="aboutme.html">About Me</a></li>
-          <li><a href="foodmenu.html">Food Menu</a></li>
+          <li><a href="index.html" onclick="showLoading(this)">Home</a></li> 
+          <li><a href="aboutme.html" onclick="showLoading(this)">About Me</a></li>
+          <li><a href="foodmenu.html" onclick="showLoading(this)">Food Menu</a></li>
           <li><a href="cart.html" onclick="checkCartAndRedirect(event)">My Cart</a></li>
-          <li><a href="login.html">Sign Out</a></li> 
+          <li><a href="login.html" onclick="showLoading(this)">Sign Out</a></li> 
         </ul>
         <div class="hamburger">
           <span></span>
@@ -177,6 +232,11 @@
     <p>&copy; 2024 Bon Jour Pinoy Restaurant. All rights reserved.</p>
   </footer>
   
+  <div id="customAlert" class="custom-alert" style="display: none;">
+    <p id="alertMessage"></p>
+    <button onclick="closeAlert()">Close</button>
+  </div>
+  
  <script>
     // JavaScript for hamburger menu
     const hamburger = document.querySelector('.hamburger');
@@ -222,6 +282,47 @@
     function topFunction() {
       document.body.scrollTop = 0; // For Safari
       document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    }
+    
+        // Function to display the custom alert message
+    function displayAlert(message) {
+      const alertMessage = document.getElementById("alertMessage");
+      const customAlert = document.getElementById("customAlert");
+      alertMessage.textContent = message;
+      customAlert.style.display = "block";
+
+      // Auto-close the alert after 2 seconds
+      setTimeout(closeAlert, 2000); 
+    }
+
+    // Function to close the custom alert
+    function closeAlert() {
+      const customAlert = document.getElementById("customAlert");
+      customAlert.style.display = "none";
+    }
+
+    // Function to show the loading spinner and redirect
+    function showLoading(link) {
+      event.preventDefault(); // Prevent immediate redirection
+      const originalText = link.textContent; 
+      link.innerHTML = originalText + '<span class="loading"></span>'; 
+
+      setTimeout(() => {
+        window.location.href = link.href; // Redirect after 1 second
+      }, 1000);
+    }
+
+    // Function to check cart and redirect (for "My Cart" link)
+    function checkCartAndRedirect(event) {
+      event.preventDefault();
+      // Replace this with your actual cart check logic
+      const cartIsEmpty = true; // Example: Assuming the cart is empty
+
+      if (cartIsEmpty) {
+        displayAlert("Your cart is empty. Please order first!");
+      } else {
+        showLoading(event.target); // Redirect with loading if cart is not empty
+      }
     }
   </script>
 </body>
