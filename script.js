@@ -34,7 +34,7 @@ function signIn() {
     .then((userCredential) => {
       // Check if the user's email is verified
       if (!userCredential.user.emailVerified) {
-        displayAlert("Chrck your verification sent in your email");
+        displayAlert("Check your verification sent in your email");
         auth.signOut(); // Sign out if email is not verified
         return;
       }
@@ -187,7 +187,7 @@ function signOut() {
   auth.signOut()
     .then(() => {
       // Redirect to sign-in page or update the UI
-      window.location.href = "sign-in.html"; // Change to your sign-in page URL
+      window.location.href = "index.html"; // Change to your sign-in page URL
     })
     .catch((error) => {
       displayAlert(`Error signing out: ${error.message}`);
