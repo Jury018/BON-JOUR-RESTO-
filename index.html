@@ -4,6 +4,7 @@
 <head>
   <title>BON JOUR PINOY RESTAURANT</title>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
   <link
     href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500&display=swap"
     rel="stylesheet">
@@ -76,7 +77,7 @@
       color: #ff0000;
     }
 
-    /* Hamburger Menu Styles */
+     /* Hamburger Menu Styles */
     .hamburger {
       display: none;
       flex-direction: column;
@@ -125,13 +126,37 @@
       border-radius: 5px;
       transition: background-color 0.3s ease;
       border: 2px solid #ff0000;
+      touch-action: manipulation; /* Improves touch interaction */ 
     }
 
     .btn:hover {
       background-color: #ff3333;
     }
 
+    /* Container Styles */
+    .container {
+      max-width: 960px; /* Adjust as needed */
+      margin: 0 auto;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+      backdrop-filter: blur(5px); /* Add blur effect */
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+      transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add smooth transitions */
+    }
+
+    .container:hover {
+      transform: translateY(-5px); /* Move slightly up on hover */
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
+    }
+
     /* Media query for responsiveness */
+    @media (max-width: 992px) { 
+      /* Styles for tablets */
+      .hero h2 {
+        font-size: 2.5em;
+      }
+    }
+
     @media (max-width: 768px) {
       .hamburger {
         display: flex;
@@ -143,7 +168,8 @@
         left: 0;
         width: 100%;
         flex-direction: column;
-        background-color: #fff;
+        background-color: rgba(255, 255, 255,   0.8);
+        backdrop-filter: blur(5px);
         transform: translateY(-100%);
         transition: transform 0.3s ease;
         opacity: 0;
@@ -181,29 +207,27 @@
       .hero p {
         font-size: 1em;
       }
+      .btn {
+        padding: 12px 24px; /* Slightly smaller button size */
+      }
     }
-    
-    /* Container Styles */
-    .container {
-      max-width: 960px; /* Adjust as needed */
-      margin: 0 auto;
-      padding: 20px;
-    }
-    
-    .container {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
-  backdrop-filter: blur(5px); /* Add blur effect */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add smooth transitions */
-}
 
-.container:hover {
-  transform: translateY(-5px); /* Move slightly up on hover */
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
-}
+    @media (max-width: 576px) { 
+      /* Styles for smaller mobile phones */
+      .hero h2 {
+        font-size: 2em;
+      }
+
+      .hero p {
+        font-size: 0.9em;
+      }
+    }
+
+    /* Flexible image styles */
+    img {
+      max-width: 100%;
+      height: auto;
+    }
   </style>
 </head>
 
@@ -218,11 +242,11 @@
     <nav>
       <div class="nav-container">
         <ul class="nav-list">
-          <li><a href="index.html">Home</a></li>
+          <li><a href="homepage.html">Home</a></li>
           <li><a href="aboutme.html">About Me</a></li>
           <li><a href="foodmenu.html">Food Menu</a></li>
           <li><a href="cart.html">My Cart</a></li>
-          <li><a href="login.html">Sign In</a></li>
+          <li><a href="index.html">Sign In</a></li>
         </ul>
         <div class="hamburger">
           <span></span>
@@ -237,9 +261,9 @@
     <section class="hero">
     <div class="container"> 
       <h2>Welcome to Bon Jour Pinoy Restaurant!</h2>
-      <p>Experience the taste of Filipino cuisine with a Homemade twist.</p>
+      <p>Experience the      taste of Filipino cuisine with a Homemade twist.</p>
       <a href="foodmenu.html" class="btn">View Our Menu</a>
-      <a href="login.html" class="btn">Sign In/Up</a>
+      <a href="index.html" class="btn">Sign In/Up</a>
      </div> 
     </section>
   </main>
@@ -299,7 +323,7 @@
     if (myCartLink) {
       myCartLink.addEventListener('click', function(event) {
         event.preventDefault(); // Prevent the default link behavior
-        showAlert("Please sign in to access your cart.");
+        showAlert("Please sign in to access the cart.");
       });
     }
 
@@ -308,11 +332,7 @@
         event.preventDefault(); // Prevent the default link behavior
         showAlert("Please sign in to view the about me page.");
       });
-    }
-    
+    }   
   </script>
 </body>
 </html>
-
-   
-   
