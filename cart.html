@@ -340,6 +340,78 @@
   }
 }
 
+ /* Modern Alert Styles */
+      .alert-container {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        z-index: 10000; /* Ensure it's on top */
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none; /* Prevent interaction when hidden */
+      }
+
+      .alert-container.show {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .alert-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+
+      .alert-title {
+        font-size: 1.2em;
+        font-weight: bold;
+      }
+
+      .alert-close {
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+        font-size: 1.2em;
+      }
+
+      .alert-message {
+        margin-bottom: 15px;
+      }
+
+      .alert-buttons {
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      .alert-button {
+        background-color: #eee;
+        color: #333;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-left: 10px;
+        transition: background-color 0.3s ease;
+      }
+
+      .alert-button:hover {
+        background-color: #ddd;
+      }
+
+      .alert-button.primary {
+        background-color: var(--accent-color);
+        color: white;
+      }
+
+      .alert-button.primary:hover {
+        background-color: #d39e00;
+      }
     </style>
   </head>
 
@@ -350,16 +422,16 @@
           <b style="animation: glowing 1s infinite;">BON JOUR PINOY RESTAURANT™</b>
         </a>
       </h1>
-      <nav>
+         <nav>
         <div class="nav-container">
-          <ul class="nav-list">
-            <li><a href="homepage.html">Home</a></li>
-            <li><a href="aboutme.html">About Me</a></li>
-            <li><a href="foodmenu.html">Food Menu</a></li>
-            <li><a href="cart.html" onclick="checkCartAndRedirect()">My Cart</a>
-            </li>
-            <li><a href="index.html">Sign Out</a></li>
-          </ul>
+        <ul class="nav-list">
+  <li><a href="homepage.html" onclick="showLoading(this); return true;">Home</a></li>
+  <li><a href="aboutme.html" onclick="showLoading(this); return true;">About Me</a></li>
+  <li><a href="foodmenu.html" onclick="showLoading(this); return true;">Food Menu</a></li>
+  <li><a href="cart.html" onclick="checkCartAndRedirect(this); return true;">My Cart</a></li> 
+  <li><a href="index.html" onclick="showLoading(this); return true;">Sign Out</a></li>
+</ul>
+
           <div class="hamburger">
             <span></span>
             <span></span>
@@ -380,7 +452,7 @@
 
           <button onclick="proceedToCheckout()">Proceed to Checkout</button>
 
-          <button id="back-to-menu" onclick="window.location.href='foodmenu.html'">Back to Menu</button>
+          <button id="back-to-menu" onclick="showLoading(this); window.location.href='foodmenu.html'">Back to Menu</button>
         </div>
       </section>
     </main>
@@ -388,35 +460,43 @@
     <footer>
       <p>&copy; 2024 Bon Jour Pinoy Restaurant. All rights reserved.</p>
     </footer>
-
+<div class="alert-container">
+      <div class="alert-header">
+        <span class="alert-title"></span>
+        <button class="alert-close">&times;</button>
+      </div>
+      <div class="alert-message"></div>
+      <div class="alert-buttons"></div>
+    </div>
+    </div>
     <script>
-      const hamburger = document.querySelector('.hamburger');
-      const navList = document.querySelector('.nav-list');
+     const hamburger = document.querySelector('.hamburger');
+const navList = document.querySelector('.nav-list');
 
-      hamburger.addEventListener('click', () => {
-        navList.classList.toggle('active');
-        hamburger.classList.toggle('active');
-      });
+hamburger.addEventListener('click', () => {
+  navList.classList.toggle('active');
+  hamburger.classList.toggle('active');
+});
 
-      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-      function updateCart() {
-        const cartItemsList = document.getElementById('cart-items');
-        const cartSubtotal = document.getElementById('cart-subtotal');
-        const cartTotal = document.getElementById('cart-total');
+function updateCart() {
+  const cartItemsList = document.getElementById('cart-items');
+  const cartSubtotal = document.getElementById('cart-subtotal');
+  const cartTotal = document.getElementById('cart-total');
 
-        cartItemsList.innerHTML = '';
-        let subtotal = 0;
+  cartItemsList.innerHTML = '';
+  let subtotal = 0;
 
-        if (cart.length === 0) {
-          // Display empty cart message
-          cartItemsList.classList.add('empty-cart');
-          cartItemsList.innerHTML = "<li>Your cart is empty.</li>";
-        } else {
-          cartItemsList.classList.remove('empty-cart');
-          cart.forEach((item, index) => {
-            const listItem = document.createElement('li');
-            listItem.innerHTML = `
+  if (cart.length === 0) {
+    // Display empty cart message
+    cartItemsList.classList.add('empty-cart');
+    cartItemsList.innerHTML = "<li>Your cart is empty.</li>";
+  } else {
+    cartItemsList.classList.remove('empty-cart');
+    cart.forEach((item, index) => {
+      const listItem = document.createElement('li');
+      listItem.innerHTML = `
           <span class="item-name">${item.name}</span>
           <div class="quantity-controls">
             <button class="decrease-quantity" data-index="${index}">-</button>
@@ -426,101 +506,133 @@
           <span class="item-price">${item.price}</span>
           <button class="remove-item" data-index="${index}">Remove</button>
         `;
-            cartItemsList.appendChild(listItem);
+      cartItemsList.appendChild(listItem);
 
-            subtotal += parseFloat(item.price.replace('₱', '').replace(',', '')) * (item.quantity || 1);
-          });
-        }
+      subtotal += parseFloat(item.price.replace('₱', '').replace(',', '')) * (item.quantity || 1);
+    });
+  }
 
-        cartSubtotal.textContent = '₱' + subtotal.toFixed(2);
-        cartTotal.textContent = '₱' + subtotal.toFixed(2);
+  cartSubtotal.textContent = '₱' + subtotal.toFixed(2);
+  cartTotal.textContent = '₱' + subtotal.toFixed(2);
 
-        const removeButtons = document.querySelectorAll('.remove-item');
-        removeButtons.forEach(button => {
-          button.addEventListener('click', () => {
-            const indexToRemove = button.dataset.index;
-            cart.splice(indexToRemove, 1);
-            localStorage.setItem('cart', JSON.stringify(cart));
-            updateCart();
-          });
-        });
-
-        const decreaseButtons = document.querySelectorAll('.decrease-quantity');
-        decreaseButtons.forEach(button => {
-          button.addEventListener('click', () => {
-            const index = button.dataset.index;
-            if (cart[index].quantity > 1) {
-              cart[index].quantity--;
-            } else {
-              cart.splice(index, 1);
-            }
-            localStorage.setItem('cart', JSON.stringify(cart));
-            updateCart();
-          });
-        });
-
-        const increaseButtons = document.querySelectorAll('.increase-quantity');
-        increaseButtons.forEach(button => {
-          button.addEventListener('click', () => {
-            const index = button.dataset.index;
-            cart[index].quantity = (cart[index].quantity || 1) + 1;
-            localStorage.setItem('cart', JSON.stringify(cart));
-            updateCart();
-          });
-        });
-      }
-
+  const removeButtons = document.querySelectorAll('.remove-item');
+  removeButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const indexToRemove = button.dataset.index;
+      cart.splice(indexToRemove, 1);
+      localStorage.setItem('cart', JSON.stringify(cart));
       updateCart();
+    });
+  });
 
-      function checkCartAndRedirect() {
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        if (cart.length > 0) {
-          window.location.href = 'cart.html';
-        } else {
-          showCustomAlert("Your cart is empty. Please add items to your order first.", 'warning');
-        }
+  const decreaseButtons = document.querySelectorAll('.decrease-quantity');
+  decreaseButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const index = button.dataset.index;
+      if (cart[index].quantity > 1) {
+        cart[index].quantity--;
+      } else {
+        cart.splice(index, 1);
       }
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCart();
+    });
+  });
 
-      function showCustomAlert(message, type) {
-        const alertContainer = document.createElement('div');
-        alertContainer.classList.add('alert');
-        switch (type) {
-          case 'success':
-            alertContainer.classList.add('alert-success');
-            break;
-          case 'warning':
-            alertContainer.classList.add('alert-warning');
-            break;
-          case 'error':
-            alertContainer.classList.add('alert-danger');
-            break;
-        }
-        alertContainer.textContent = message;
-        const closeButton = document.createElement('button');
-        closeButton.textContent = 'x';
-        closeButton.classList.add('close');
-        closeButton.addEventListener('click', () => {
-          alertContainer.remove();
-        });
-        alertContainer.appendChild(closeButton);
-        document.body.appendChild(alertContainer);
-      }
+  const increaseButtons = document.querySelectorAll('.increase-quantity');
+  increaseButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const index = button.dataset.index;
+      cart[index].quantity = (cart[index].quantity || 1) + 1;
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCart();
+    });
+  });
+}
 
-      function proceedToCheckout() {
-        window.location.href = 'checkout.html';
+updateCart();
+
+// Function to show the modern alert
+function showModernAlert(title, message, type, buttons = []) {
+  const alertContainer = document.querySelector('.alert-container');
+  const alertTitle = alertContainer.querySelector('.alert-title');
+  const alertMessage = alertContainer.querySelector('.alert-message');
+  const alertButtons = alertContainer.querySelector('.alert-buttons');
+
+  alertTitle.textContent = title;
+  alertMessage.textContent = message;
+
+  alertButtons.innerHTML = ''; // Clear previous buttons
+
+  buttons.forEach(button => {
+    const buttonElement = document.createElement('button');
+    buttonElement.classList.add('alert-button');
+    if (button.primary) {
+      buttonElement.classList.add('primary');
+    }
+    buttonElement.textContent = button.text;
+    buttonElement.addEventListener('click', () => {
+      if (button.onclick) {
+        button.onclick();
       }
-      
-      function proceedToCheckout() {
+      hideModernAlert(); // Hide the alert after button click
+    });
+    alertButtons.appendChild(buttonElement);
+  });
+
+  // Center the OK button
+  alertButtons.style.justifyContent = 'center'; 
+
+  alertContainer.classList.add('show');
+}
+
+// Function to hide the modern alert
+function hideModernAlert() {
+  const alertContainer = document.querySelector('.alert-container');
+  alertContainer.classList.remove('show');
+}
+
+// Close button functionality
+const alertClose = document.querySelector('.alert-close');
+alertClose.addEventListener('click', hideModernAlert);
+
+// Function to show the loading spinner
+function showLoading(element) {
+  const spinner = document.createElement('div');
+  spinner.classList.add('loading-spinner');
+  element.parentNode.insertBefore(spinner, element); // Insert spinner before the element
+  element.style.display = 'none'; // Hide the element
+
+  setTimeout(() => {
+    spinner.remove(); // Remove the spinner after 1 second
+    element.style.display = 'inline-block'; // Show the element again
+  }, 1000);
+}
+
+// Replace showCustomAlert with showModernAlert in your code
+function checkCartAndRedirect(element) {
+  showLoading(element); // Show loading spinner on the clicked link
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  if (cart.length > 0) {
+    window.location.href = 'cart.html';
+  } else {
+    showModernAlert('', 'Your cart is empty. Please add items to your order first.', '', [
+      { text: 'OK', primary: true }
+    ]);
+  }
+}
+
+function proceedToCheckout() {
   let cart = JSON.parse(localStorage.getItem('cart')) || [];
   if (cart.length > 0) {
     window.location.href = 'checkout.html';
   } else {
-    // Use a custom alert with a confirmation button
-    if (confirm("Your cart is empty. Please add items to your order first.")) {
-      window.location.href = 'foodmenu.html';
-    }
+    showModernAlert('', 'Your cart is empty. Please add items to your order first.', '', [
+      { text: 'OK', onclick: () => { window.location.href = 'foodmenu.html'; }, primary: true }
+    ]);
   }
 }
+
     </script>
   </body>
 </html>
