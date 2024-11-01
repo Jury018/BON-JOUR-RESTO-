@@ -69,15 +69,15 @@ input[type="submit"] {
 }
 
 input[type="submit"] {
-  background-color: #28a745;
+  background-color: #dc3545; /* Red color for submit buttons */
   color: white;
   border: none;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease; 
 }
 
 input[type="submit"]:hover {
-  background-color: #218838;
+  background-color: #c82333; 
 }
 
 footer {
@@ -107,7 +107,7 @@ input[type="submit"] {
 }
 
 input[type="submit"]:active {
-  background-color: #1e7e34;
+  background-color: #bd2130;
   transform: translateY(1px);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -136,21 +136,30 @@ button:hover {
   padding: 20px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   z-index: 1000;
-  text-align: center;
+  max-width: 90%; /* Ensures the alert fits within the screen width */
+  word-wrap: break-word; /* Prevents overflow by breaking long words */
+}
+
+.custom-alert p { /* Target the paragraph within the alert */
+  text-align: justify; /* Center the text */
+  margin-bottom: 20px; /* Add spacing between text and button */
 }
 
 .custom-alert button {
-  background-color: #28a745;
+  background-color: #dc3545; /* Red color for alert close button */
   color: white;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  display: block; /* Make the button a block element */
+  margin: 0 auto; /* Center the button horizontally */
+  width: auto; /* Allow button to adjust width based on content */
 }
 
 .custom-alert button:hover {
-  background-color: #218838;
+  background-color: #c82333;
 }
 
 .container {
@@ -243,3 +252,11 @@ label i {
 .form-container.show {
   opacity: 1; /* Fully visible */
 }
+
+/* More responsive styles for mobile */
+.container {
+  padding: 15px;
+  margin: 10px auto;
+  width: 95%;
+  max-width: 400px;
+  box-shadow: 0 4px
