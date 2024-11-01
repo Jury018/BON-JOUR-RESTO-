@@ -34,11 +34,11 @@ function signIn() {
     .then((userCredential) => {
       // Check if the user's email is verified
       if (!userCredential.user.emailVerified) {
-        displayAlert("Please verify your email address before signing in.");
+        displayAlert("Chrck your verification sent in your email");
         auth.signOut(); // Sign out if email is not verified
         return;
       }
-      window.location.href = "homepage.html"; // Redirect after successful sign-in
+      window.location.href = "foodmenu.html"; // Redirect after successful sign-in
     })
     .catch((error) => {
       if (error.code === 'auth/wrong-password') {
