@@ -2,7 +2,6 @@ const cardDetailsDiv = document.getElementById('cardDetails');
 const paymentRadios = document.querySelectorAll('input[name="pay"]');
 const amountInput = document.getElementById('totalAmount');
 const payNowButton = document.getElementById('payNowButton');
-const phoneNumberInput = document.getElementById('phoneNumber');
 
 // Get the total amount from the cart
 const cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -126,8 +125,40 @@ for (const field in formFields) {
 // Add loading indicator functionality
 const loadingIndicator = document.getElementById('loadingIndicator');
 
+// Function to display the custom alert message
+function displayAlert(message) {
+  // Create the alert container element
+  const alertContainer = document.createElement('div');
+  alertContainer.classList.add('custom-alert'); 
+
+  // Create the message paragraph
+  const messageElement = document.createElement('p');
+  messageElement.textContent = message;
+
+  // Create the close button
+  const closeButton = document.createElement('button');
+  closeButton.textContent = 'Close';
+  closeButton.addEventListener('click', () => {
+    document.body.removeChild(alertContainer); // Remove the alert from the DOM
+  });
+
+  // Add the message and button to the container
+  alertContainer.appendChild(messageElement);
+  alertContainer.appendChild(closeButton);
+
+  // Add the alert container to the page
+  document.body.appendChild(alertContainer); 
+
+  // Auto-close the alert after 2 seconds
+  setTimeout(() => {
+    if (alertContainer.parentNode === document.body) {
+      document.body.removeChild(alertContainer); // Remove the alert from the DOM
+    }
+  }, 2000);
+}
+
 // Handle "PAY NOW" button click
-payNowButton.addEventListener('click', () => {
+payNowButton.addEventListener('click', (event) => {
   let selectedPayment = document.querySelector('input[name="pay"]:checked').id;
 
   // Form validation
@@ -139,7 +170,7 @@ payNowButton.addEventListener('click', () => {
     const fieldValue = document.getElementById(field).value.trim();
     if (fieldValue === "") {
       isValid = false; 
-      alert("Please fill in all required fields before proceeding."); 
+      displayAlert("Please fill in all required fields before proceeding."); 
       return; 
     }
   });
@@ -151,7 +182,7 @@ payNowButton.addEventListener('click', () => {
       const fieldValue = document.getElementById(field).value.trim();
       if (fieldValue === "") {
         isValid = false;
-        alert("Please fill in all required card details."); 
+        displayAlert("Please fill in all required card details."); 
         return; 
       }
     });
@@ -160,12 +191,14 @@ payNowButton.addEventListener('click', () => {
   if (isValid) {
     // Check if totalAmount is valid
     if (totalAmount > 0) {
-      // Confirmation alert before proceeding with payment
-      if (confirm("Are you sure you want to proceed with the payment?")) {
-        // Show loading indicator
-        loadingIndicator.style.display = 'block';
+      // Prevent default confirmation dialog
+      event.preventDefault(); 
 
-        // Simulate payment processing delay (replace with actual payment processing)
+      // Show custom confirmation alert
+      displayConfirmationAlert("Are you sure you want to proceed with the payment?", () => {
+        // User clicked "Confirm" - Proceed with payment
+        loadingIndicator.style.display = 'block'; 
+
         setTimeout(() => {
           // Hide loading indicator
           loadingIndicator.style.display = 'none';
@@ -174,13 +207,9 @@ payNowButton.addEventListener('click', () => {
           if (selectedPayment === 'bc2' || selectedPayment === 'bc3' || selectedPayment === 'bc4' || selectedPayment === 'bc6') {
             window.location.href = 'rating.html';
           } else {
-            // Handle Cash on Delivery (bc5) and Credit Card (bc1)
-            // ... your existing code to handle these cases ...
-
-            // Redirect to rating.html after alert
-            let redirectToRating = () => { window.location.href = 'rating.html'; };
-            alert('Thank you for your order! You will now be redirected to the rating page.');
-            redirectToRating();
+            // Handle Cash on Delivery (bc5) and Credit Card (bc1) - Redirect after a small delay
+            setTimeout(() => {              window.location.href = 'rating.html';
+            }, 500); // Small delay for user to see the success message
           }
 
           // Clear the form fields
@@ -197,11 +226,41 @@ payNowButton.addEventListener('click', () => {
           // Reset local storage (remove the cart items)
           localStorage.removeItem('cart');
 
-        }, 2000); // Simulate a 2-second delay
-      }
+        }, 10000); // Simulate a 10-second delay
+      }); 
     } else {
-      alert("There is no total amount to pay. Please add items to your cart.");
+      displayAlert("There is no total amount to pay. Please add items to your cart.");
     }
   } 
 });
 
+// Function to display the custom confirmation alert
+function displayConfirmationAlert(message, onConfirm) {
+  const alertContainer = document.createElement('div');
+  alertContainer.classList.add('custom-alert');
+
+  const messageElement = document.createElement('p');
+  messageElement.textContent = message;
+
+  const confirmButton = document.createElement('button');
+  confirmButton.textContent = 'Confirm';
+  confirmButton.addEventListener('click', () => {
+    document.body.removeChild(alertContainer);
+    onConfirm(); // Execute the callback function
+  });
+
+  const cancelButton = document.createElement('button');
+  cancelButton.textContent = 'Cancel';
+  cancelButton.addEventListener('click', () => {
+    document.body.removeChild(alertContainer);
+    // You can add a message here saying the payment was canceled
+  });
+
+  alertContainer.appendChild(messageElement);
+  alertContainer.appendChild(confirmButton);
+  alertContainer.appendChild(cancelButton);
+
+  document.body.appendChild(alertContainer);
+}
+
+            
