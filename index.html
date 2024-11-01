@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>BON JOUR PINOY RESTAURANT</title>
+  <meta charset="UTF-8">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    /* Basic Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #f8f9fa;
+      color: #333;
+    }
+
+    /* Header Styles */
+    header {
+      background-color: #ffcccc;
+      padding: 20px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Logo and Restaurant Name Styles */
+    .logo-container {
+      display: flex;
+      align-items: center;
+    }
+
+    #logo {
+      max-width: 80px;
+      height: auto;
+      margin-right: 10px;
+    }
+
+    .restaurant-name {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1.2em;
+      color: #ff0000;
+    }
+
+    /* Navigation Styles */
+    .nav-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-list {
+      list-style: none;
+      display: flex;
+    }
+
+    .nav-list li {
+      margin-left: 30px;
+    }
+
+    .nav-list a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-list a:hover {
+      color: #ff0000;
+    }
+
+    /* Hamburger Menu Styles */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      margin-left: 20px;
+    }
+
+    .hamburger span {
+      height: 2px;
+      width: 25px;
+      background-color: #333;
+      margin-bottom: 5px;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    /* Styles for the hero section */
+    .hero {
+      text-align: center;
+      padding: 100px 0;
+      background-color: #f8f9fa;
+    }
+
+    .hero h2 {
+      font-size: 3em;
+      margin-bottom: 20px;
+      color: #ff0000;
+    }
+
+    .hero p {
+      font-size: 1.2em;
+      margin-bottom: 30px;
+    }
+    
+    .btn {
+      margin-bottom: 10px; /* Add spacing */
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 15px 30px;
+      font-size: 1.1em;
+      background-color: #ff0000;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+      border: 2px solid #ff0000;
+    }
+
+    .btn:hover {
+      background-color: #ff3333;
+    }
+
+    /* Media query for responsiveness */
+    @media (max-width: 768px) {
+      .hamburger {
+        display: flex;
+      }
+
+      .nav-list {
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        background-color: #fff;
+        transform: translateY(-100%);
+        transition: transform 0.3s ease;
+        opacity: 0;
+        visibility: hidden;
+        z-index: 10;
+      }
+
+      .nav-list.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .nav-list li {
+        margin: 15px 0;
+        text-align: center;
+      }
+
+      .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+      }
+
+      .hero h2 {
+        font-size: 2em;
+      }
+
+      .hero p {
+        font-size: 1em;
+      }
+    }
+    
+    /* Container Styles */
+    .container {
+      max-width: 960px; /* Adjust as needed */
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+  backdrop-filter: blur(5px); /* Add blur effect */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add smooth transitions */
+}
+
+.container:hover {
+  transform: translateY(-5px); /* Move slightly up on hover */
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
+}
+
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo-container">
+      <a href="index.html">
+        <img src="logo.svg" alt="Bon Jour Pinoy Restaurant Logo" id="logo">
+      </a>
+      <span class="restaurant-name">BON JOUR PINOY RESTAURANT™</span>
+    </div>
+    <nav>
+      <div class="nav-container">
+        <ul class="nav-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="aboutme.html">About Me</a></li>
+          <li><a href="foodmenu.html">Food Menu</a></li>
+          <li><a href="cart.html">My Cart</a></li>
+          <li><a href="login.html">Sign In</a></li>
+        </ul>
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+    <div class="container"> 
+      <h2>Welcome to Bon Jour Pinoy Restaurant!</h2>
+      <p>Experience the taste of Filipino cuisine with a Homemade twist.</p>
+      <a href="foodmenu.html" class="btn">View Our Menu</a>
+      <a href="index.html" class="btn">Sign In/Up</a>
+     </div> 
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 Bon Jour Pinoy Restaurant. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const hamburger = document.querySelector('.hamburger');
+    const navList = document.querySelector('.nav-list');
+
+    hamburger.addEventListener('click', () => {
+      navList.classList.toggle('active');
+      hamburger.classList.toggle('active');
+    });
+
+    // Function to hide the navigation menu
+    function hideNavigation() {
+      if (hamburger && navList) {
+        navList.classList.remove('active');
+        hamburger.classList.remove('active');
+      }
+    }
+
+    // Attach the event listener to all navigation links
+    const navLinks = document.querySelectorAll('.nav-list a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', hideNavigation);
+    });
+        
+            // Function to display the alert message
+    function showAlert(message) {
+      alert(message);
+    }
+
+    // Attach the event listener to the "View Our Menu" button
+    const viewMenuButton = document.querySelector('.btn');
+    if (viewMenuButton) {
+      viewMenuButton.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the default link behavior
+        showAlert("You'll be able to view our menu once you sign in!");
+      });
+    }
+        // Attach the event listener to the "Food Menu", "My Cart", and "About Me" navigation links
+    const foodMenuLink = document.querySelector('.nav-list a[href="foodmenu.html"]');
+    const myCartLink = document.querySelector('.nav-list a[href="cart.html"]');
+    const aboutMeLink = document.querySelector('.nav-list a[href="aboutme.html"]'); // Select the "About Me" link
+
+    if (foodMenuLink) {
+      foodMenuLink.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the default link behavior
+        showAlert("Please sign in to view the food menu.");
+      });
+    }
+
+    if (myCartLink) {
+      myCartLink.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the default link behavior
+        showAlert("Please sign in to access your cart.");
+      });
+    }
+
+    if (aboutMeLink) {
+      aboutMeLink.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the default link behavior
+        showAlert("Please sign in to view the about me page.");
+      });
+    }
+    
+  </script>
+</body>
+</html>
+
+   
+   
