@@ -353,12 +353,12 @@
       <nav>
         <div class="nav-container">
           <ul class="nav-list">
-            <li><a href="index.html">Home</a></li>
+            <li><a href="homepage.html">Home</a></li>
             <li><a href="aboutme.html">About Me</a></li>
             <li><a href="foodmenu.html">Food Menu</a></li>
             <li><a href="cart.html" onclick="checkCartAndRedirect()">My Cart</a>
             </li>
-            <li><a href="login.html">Sign Out</a></li>
+            <li><a href="index.html">Sign Out</a></li>
           </ul>
           <div class="hamburger">
             <span></span>
@@ -509,6 +509,18 @@
       function proceedToCheckout() {
         window.location.href = 'checkout.html';
       }
+      
+      function proceedToCheckout() {
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  if (cart.length > 0) {
+    window.location.href = 'checkout.html';
+  } else {
+    // Use a custom alert with a confirmation button
+    if (confirm("Your cart is empty. Please add items to your order first. Click OK to go back to the menu.")) {
+      window.location.href = 'foodmenu.html';
+    }
+  }
+}
     </script>
   </body>
 </html>
