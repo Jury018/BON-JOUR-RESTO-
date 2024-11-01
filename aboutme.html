@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>ABOUT ME</title>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="homepagestyle.css"> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> </head>
+<body>
+    
+   <style>
+#connect.social-media.section {
+  text-align: center; 
+  margin-top: 40px; 
+}
+
+.social-media-icons {
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  gap: 20px; 
+  margin-top: 20px; 
+}
+
+.social-media-icons a {
+  display: inline-block; 
+  text-decoration: none; 
+  color: #333; 
+  font-size: 2em; 
+  transition: transform 0.2s ease, color 0.2s ease; 
+}
+
+.social-media-icons a:hover {
+  transform: scale(1.2); 
+}
+
+
+.social-media-icons .fa-github:hover {
+  color: #333; 
+}
+
+.social-media-icons .fa-instagram:hover {
+  color: #e4405f; 
+}
+
+.social-media-icons .fa-tiktok:hover {
+  color: #000; 
+}
+
+.social-media-icons .fa-x-twitter:hover {
+  color: #1da1f2; 
+}
+</style>
+  <header>
+    <h1><b style="animation: glowing 1s infinite;">BON JOUR PINOY RESTAURANT™</b></h1>
+    <nav>
+      <div class="nav-container"> 
+        <ul class="nav-list">
+          <li><a href="index.html">Home</a></li> 
+          <li><a href="aboutme.html">About Me</a></li>
+          <li><a href="homepage.html#menu">Food Menu</a></li>
+          <li><a href="cart.html" onclick="checkCartAndRedirect(event)">My Cart</a></li>
+          <li><a href="index.html">Sign Out</a></li> 
+        </ul>
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section id="about-me">
+      <article> 
+        <h2>About Me</h2>
+        <p>Welcome to Bon Jour Pinoy Restaurant – a virtual restaurant website page created by Bon Jury Pecaoco, an experienced frontend developer. This website was developed as a showcase and for future inspiration. Please note that all content here is fictional and is not intended for real-world application.</p>
+      </article>
+
+      <article>
+        <h3>My Journey</h3>
+        <p>My journey started with a simple mission: to build a first working website that demonstrates how innovative solutions can empower individuals and businesses to grow.</p>
+        <p>This project is dedicated to inspiring those with limited resources but who are passionate about entering the world of programming. Using only a modest setup, I want to show that with commitment and determination, you can achieve anything you set your mind to.</p>
+      </article>
+
+      <article>
+        <h3>My Skills</h3>
+        <p>I am passionate, skilled, and driven, creating this entire website using just a single Android device. </p>
+        <ul>
+          <li>Frontend development expertise</li>
+          <li>Backend integration with Firebase</li>
+          <li>Strong debugging and problem-solving skills</li>
+        </ul>
+      </article>
+
+      <article>
+        <h3>Looking Ahead</h3>
+        <p>Whether you’re here to visit, leave feedback, or simply explore, I’m always open to new ideas that could further enhance this website’s functionality in the tech world. As I continue my journey as a programming beginner, I am eager to grow my skills, particularly in backend development. </p>
+        <p>You can explore more of my frontend development work in my <a href="https://jury018.github.io/PORTFOLIO/?fbclid=IwY2xjawGRJb9leHRuA2FlbQIxMQABHXR_vcmkQr88bUWFeu11kFiBPicmObrMxGj532up8uCRaEu8N6TkfaHqvA_aem_KvKfORaS3Emc2QPbrqz7qA#projects">portfolio</a>.</p> 
+      </article>
+
+      <aside>
+        <h4>Get in Touch!</h4>
+        <p>I'm always happy to connect with fellow developers and tech enthusiasts. Feel free to reach out!</p> 
+      </aside>
+
+      <section id="connect" class="social-media section">
+        <h2>Connect with Me</h2>
+        <div class="social-media-icons">
+          <a href="https://github.com/Jury018" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-github fa-bounce"></i>
+          </a>
+          <a href="https://www.instagram.com/jury_dgaf?igsh=aGpqMHV2ejY4ZW5u" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-instagram fa-bounce"></i>
+          </a>
+          <a href="https://www.tiktok.com/@jury_dgaf?_t=8qcTKErPeTP&_r=1" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-tiktok fa-bounce"></i>
+          </a>
+          <a href="https://x.com/jury_bon?t=iIKg5DIT1jStj3_l3-cNDg&s=09" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-x-twitter fa-bounce"></i>
+          </a>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 Bon Jour Pinoy Restaurant. All rights reserved.</p>
+  </footer>
+  
+  <script>
+    // JavaScript for hamburger menu
+    const hamburger = document.querySelector('.hamburger');
+    const navList = document.querySelector('.nav-list');
+    
+    hamburger.addEventListener('click', () => {
+      navList.classList.toggle('active');
+      hamburger.classList.toggle('active'); 
+    });
+        
+    // Function to hide the navigation menu
+    function hideNavigation() {
+      const hamburger = document.querySelector('.hamburger');
+      const navList = document.querySelector('.nav-list');
+    
+      if (hamburger && navList) {
+        navList.classList.remove('active');
+        hamburger.classList.remove('active');
+      }
+    }
+    
+    const navLinks = document.querySelectorAll('.nav-list a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', hideNavigation);
+    }); 
+  </script>
+</body>
+</html>
