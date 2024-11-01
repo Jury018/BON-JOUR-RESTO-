@@ -8,47 +8,49 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> </head>
 <body>
     
-   <style>
+   <style>/* ... your existing CSS ... */
+
+/* Styles for the social media section */
 #connect.social-media.section {
-  text-align: center; 
-  margin-top: 40px; 
+  text-align: center; /* Center the content */
+  margin-top: 40px; /* Add some space above the section */
 }
 
 .social-media-icons {
   display: flex;
-  justify-content: center; 
-  align-items: center; 
-  gap: 20px; 
-  margin-top: 20px; 
+  justify-content: center; /* Center the icons horizontally */
+  align-items: center; /* Center the icons vertically */
+  gap: 20px; /* Add space between the icons */
+  margin-top: 20px; /* Add space below the heading */
 }
 
 .social-media-icons a {
-  display: inline-block; 
-  text-decoration: none; 
-  color: #333; 
-  font-size: 2em; 
-  transition: transform 0.2s ease, color 0.2s ease; 
+  display: inline-block; /* Make the links behave like inline-blocks */
+  text-decoration: none; /* Remove underlines from the links */
+  color: #333; /* Set a default color for the icons */
+  font-size: 2em; /* Make the icons larger */
+  transition: transform 0.2s ease, color 0.2s ease; /* Add smooth transitions */
 }
 
 .social-media-icons a:hover {
-  transform: scale(1.2); 
+  transform: scale(1.2); /* Scale up the icons on hover */
 }
 
-
+/* Specific styles for each icon (optional) */
 .social-media-icons .fa-github:hover {
-  color: #333; 
+  color: #333; /* Example: Change GitHub icon color on hover */
 }
 
 .social-media-icons .fa-instagram:hover {
-  color: #e4405f; 
+  color: #e4405f; /* Example: Change Instagram icon color on hover */
 }
 
 .social-media-icons .fa-tiktok:hover {
-  color: #000; 
+  color: #000; /* Example: Change TikTok icon color on hover */
 }
 
 .social-media-icons .fa-x-twitter:hover {
-  color: #1da1f2; 
+  color: #1da1f2; /* Example: Change X (Twitter) icon color on hover */
 }
 </style>
   <header>
@@ -58,7 +60,7 @@
         <ul class="nav-list">
           <li><a href="index.html">Home</a></li> 
           <li><a href="aboutme.html">About Me</a></li>
-          <li><a href="foodmenu.html#menu">Food Menu</a></li>
+          <li><a href="foodmenu.html">Food Menu</a></li>
           <li><a href="cart.html" onclick="checkCartAndRedirect(event)">My Cart</a></li>
           <li><a href="index.html">Sign Out</a></li> 
         </ul>
@@ -150,6 +152,7 @@
       }
     }
     
+    // Attach the event listener to all navigation links
     const navLinks = document.querySelectorAll('.nav-list a');
     navLinks.forEach(link => {
       link.addEventListener('click', hideNavigation);
