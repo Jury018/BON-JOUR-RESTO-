@@ -465,11 +465,22 @@ function checkCartAndRedirect(event) {
 
   let cart = JSON.parse(localStorage.getItem('cart')) || [];
   if (cart.length > 0) {
-    showLoading(event); // Pass the event object to showLoading()
+    // Add slide-out animation to the order button
+    const orderButton = document.getElementById('orderButton');
+    orderButton.style.transition = 'transform 0.5s ease, opacity 0.5s ease'; 
+    orderButton.style.transform = 'translateY(100%)'; 
+    orderButton.style.opacity = '0'; 
+
+    // Redirect to cart.html after the animation completes
+    setTimeout(() => {
+      window.location.href = 'cart.html';
+    }, 500); 
+
   } else {
     displayAlert("Your cart is empty. Please add items to your order first.");
   }
 }
+
 function showLoading(event) {
   event.preventDefault();
   const customLoading = document.getElementById("customLoading");
