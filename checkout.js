@@ -202,7 +202,7 @@ payNowButton.addEventListener('click', (event) => {
 
         // Estimate internet speed (replace with actual speed test if needed)
         const estimatedSpeed = navigator.connection ? navigator.connection.downlink : 10; // Default to 10 Mbps if not available
-        const loadingTime = estimatedSpeed > 5 ? 5000 : (estimatedSpeed > 2 ? 10000 : 20000); // Adjust loading time based on speed
+        const loadingTime = estimatedSpeed > 5 ? 5000 : (estimatedSpeed > 2 ? 10000 : 20000); 
         loadingIndicator.style.display = 'block'; 
 
         setTimeout(() => {
@@ -216,7 +216,7 @@ payNowButton.addEventListener('click', (event) => {
             // Handle Cash on Delivery (bc5) and Credit Card (bc1) - Redirect after a small delay
             setTimeout(() => {
               window.location.href = 'rating.html';
-            }, 500); // Small delay for user to see the success message
+            }, 500); 
           }
 
           // Clear the form fields
@@ -236,7 +236,7 @@ payNowButton.addEventListener('click', (event) => {
         }, loadingTime); // Use the dynamic loading time
       }); 
     } else {
-      displayAlert("There is no total amount to pay. Please add items to your cart.");
+      displayAlert("There is no total amount to pay. Please add items to your cart first.");
     }
   } 
 });
