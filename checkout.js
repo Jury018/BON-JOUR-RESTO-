@@ -36,8 +36,7 @@ function checkFormValidity() {
   const address = document.getElementById('address').value;
   const city = document.getElementById('city').value;
 
-  if (firstName && lastName && phoneNumber && address && city &&
-    (phoneNumber.length === 11 || phoneNumber.length === 12)) {
+  if (firstName && lastName && phoneNumber && address && city) {
     payNowButton.disabled = false;
   } else {
     payNowButton.disabled = true;
@@ -93,11 +92,11 @@ for (const field in formFields) {
         errorMessage = isValid ? '' : `${field.replace(/([A-Z])/g, ' $1').trim()} is required`;
         break;
       case 'phoneNumber':
-        isValid = /^(09|\+639)\d{9}$/.test(formFields[field].input.value);
+        isValid = /^(9|09|\+639)\d{9}$/.test(formFields[field].input.value); // Updated regex
         errorMessage = isValid ? '' : 'Invalid phone number format';
         break;
       case 'cardNumber':
-        isValid = checkLuhn(formFields[field].input.value);
+        isValid = checkLuhn(formFields[field].input.value.replace(/\D/g, '')); // Remove non-digits before validation
         errorMessage = isValid ? '' : 'Invalid card number';
         break;
       case 'cardCVC':
@@ -119,6 +118,9 @@ for (const field in formFields) {
 
     formFields[field].error.textContent = errorMessage;
     formFields[field].input.setAttribute('aria-invalid', !isValid);
+
+    // Disable pay now button if any field is invalid
+    payNowButton.disabled = !isValid; 
   });
 }
 
@@ -197,6 +199,10 @@ payNowButton.addEventListener('click', (event) => {
       // Show custom confirmation alert
       displayConfirmationAlert("Are you sure you want to proceed with the payment?", () => {
         // User clicked "Confirm" - Proceed with payment
+
+        // Estimate internet speed (replace with actual speed test if needed)
+        const estimatedSpeed = navigator.connection ? navigator.connection.downlink : 10; // Default to 10 Mbps if not available
+        const loadingTime = estimatedSpeed > 5 ? 5000 : (estimatedSpeed > 2 ? 10000 : 20000); // Adjust loading time based on speed
         loadingIndicator.style.display = 'block'; 
 
         setTimeout(() => {
@@ -208,7 +214,8 @@ payNowButton.addEventListener('click', (event) => {
             window.location.href = 'rating.html';
           } else {
             // Handle Cash on Delivery (bc5) and Credit Card (bc1) - Redirect after a small delay
-            setTimeout(() => {              window.location.href = 'rating.html';
+            setTimeout(() => {
+              window.location.href = 'rating.html';
             }, 500); // Small delay for user to see the success message
           }
 
@@ -226,7 +233,7 @@ payNowButton.addEventListener('click', (event) => {
           // Reset local storage (remove the cart items)
           localStorage.removeItem('cart');
 
-        }, 10000); // Simulate a 10-second delay
+        }, loadingTime); // Use the dynamic loading time
       }); 
     } else {
       displayAlert("There is no total amount to pay. Please add items to your cart.");
@@ -262,5 +269,3 @@ function displayConfirmationAlert(message, onConfirm) {
 
   document.body.appendChild(alertContainer);
 }
-
-            
