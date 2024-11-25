@@ -35,7 +35,7 @@ function signIn() {
     return;
   }
 
-  auth.signInWithEmailAndPassword(email, password)
+  auth.signInWithEmailAndPassword(email, password);
  
 }
 
