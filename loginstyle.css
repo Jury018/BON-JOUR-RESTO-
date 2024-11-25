@@ -3,7 +3,7 @@ body {
   font-family: 'Open Sans', sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f8f9fa;
+  background-color: #ffeaea;
   color: #333;
 }
 
@@ -113,17 +113,30 @@ input[type="submit"]:active {
 }
 
 button {
-  background-color: transparent;
-  border: none;
-  color: #007bff;
-  cursor: pointer;
-  transition: color 0.3s ease;
+  background-color: #dc3545; /* Primary color */
+  color: #fff;
+  border: outset;
+  border-radius: 15px;
+  padding: 10px 2p0px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: normal;
+  cursor: auto;
+  transition: all 0.3s ease-in-out;
 }
 
 button:hover {
-  color: #0056b3;
-  text-decoration: underline;
+  background-color: #0062cc; /* Darker shade on hover */
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
 }
+
+
+#loadingSpinner {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 
 .custom-alert {
   position: fixed;
@@ -228,7 +241,7 @@ label i {
 
   input[type="submit"],
   .custom-alert button {
-    padding: 10px; /* Adjust button padding */
+    padding: 50px; /* Adjust button padding */
   }
 }
 
@@ -245,7 +258,7 @@ label i {
 
 /* Add this CSS for the transition effect */
 .form-container {
-  opacity: 0; /* Start invisible */
+  opacity: 100; /* Start invisible */
   transition: opacity 0.5s ease; /* Transition effect for fading */
 }
 
@@ -257,6 +270,7 @@ label i {
 .container {
   padding: 15px;
   margin: 10px auto;
-  width: 95%;
+  width: 80%;
   max-width: 400px;
-  box-shadow: 0 4px
+  box-shadow: 0 4px;
+  
