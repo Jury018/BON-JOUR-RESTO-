@@ -30,29 +30,23 @@ function signIn() {
   const email = document.getElementById("signInEmail").value;
   const password = document.getElementById("signInPassword").value;
 
-  if (!isValidEmail(email)) {
-    displayAlert("Please enter a valid email address.");
-    return;
-  }
-
-  auth.signInWithEmailAndPassword(email, password);
- 
-}
-
-function isValidEmail(email) {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-  return emailRegex.test(email);
-}
-
-function signIn() {
-  const email = document.getElementById("signInEmail").value;
-  const password = document.getElementById("signInPassword").value;
-
-  if (!isValidEmail(email)) {
-    displayAlert("Please enter a valid email address.");
-    return;
-  }
- 
+  auth.signInWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      // Check if the user's email is verified
+      if (!userCredential.user.emailVerified) {
+        displayAlert("Check your verification sent in your email");
+        auth.signOut(); // Sign out if email is not verified
+        return;
+      }
+      window.location.href = "foodmenu.html"; // Redirect after successful sign-in
+    })
+    .catch((error) => {
+      if (error.code === 'auth/wrong-password') {
+        displayAlert("Wrong password. Click 'Forgot Password?' to reset.");
+      } else {
+        displayAlert(`Error signing in: ${error.message}`);
+      }
+    });
 }
 
 function signUp() {
@@ -96,12 +90,17 @@ function sendPasswordResetEmail() {
         displayAlert("Reset password email has been sent to your email address.");
       })
       .catch((error) => {
-        displayAlert(`Error sending reset email: ${error.message}`);
+        if (error.code === 'auth/user-not-found') {
+          displayAlert("The email address you entered does not exist. Please try again.");
+        } else {
+          displayAlert(`Error sending reset email: ${error.message}`);
+        }
       });
   } else {
     displayAlert("Please enter your email address to reset your password.");
   }
 }
+
 
 function isStrongPassword(password) {
   const regex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$");
@@ -199,3 +198,4 @@ function signOut() {
       displayAlert(`Error signing out: ${error.message}`);
     });
 }
+
