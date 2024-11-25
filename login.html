@@ -8,10 +8,10 @@
    <link rel="shortcut icon" type="image/x-icon" href="logo.svg"> 
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-<script src="https://www.gstatic.com/firebasejs/9.20.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.20.0/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.20.0/firebase-database-compat.js"></script>
-
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database-compat.js"></script>
+<script src="loginscript.js" async></script>
 </head>
 <body>
   <header>
@@ -54,12 +54,6 @@
       </form>
       <button type="button" onclick="showSignIn()"><i class="fas fa-sign-in-alt"></i> Already have an account? Sign in</button>
     </div>
-    
-    <div id="loadingSpinner" style="display: none;">
-  <div class="spinner-border" role="status">
-    <span class="visually-hidden">Loading...</span>
-  </div>
-</div>
 
     <div id="customAlert" class="custom-alert" style="display: none;">
       <span id="alertMessage"></span>
@@ -69,6 +63,5 @@
   <footer>
     <p>&copy; 2024 Bon Jour Pinoy Restaurant. All rights reserved.</p>
   </footer>
-  <script src="loginscript.js"></script>
 </body>
 </html>
