@@ -5,9 +5,8 @@
   <title>BON JOUR PINOY RESTAURANT</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="shortcut icon" type="image/x-icon" href="logo.svg">  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500&display=swap"
-    rel="stylesheet">
+  <link rel="shortcut icon" type="image/x-icon" href="logo.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
     /* Basic Reset */
@@ -77,7 +76,7 @@
       color: #ff0000;
     }
 
-     /* Hamburger Menu Styles */
+    /* Hamburger Menu Styles */
     .hamburger {
       display: none;
       flex-direction: column;
@@ -111,11 +110,11 @@
       font-size: 1.2em;
       margin-bottom: 30px;
     }
-    
+
     .btn {
       margin-bottom: 10px; /* Add spacing */
     }
-    
+
     .btn {
       display: inline-block;
       padding: 15px 30px;
@@ -125,13 +124,13 @@
       text-decoration: none;
       border-radius: 5px;
       transition: background-color 0.3s ease;
-      border: 2px solid #ff00
-            touch-action: manipulation; /* Improves touch interaction */ 
+      border: 2px solid #ff0000;
+      touch-action: manipulation; /* Improves touch interaction */
     }
 
     .btn:hover {
       background-color: #ff3333;
-    }
+          }
 
     /* Container Styles */
     .container {
@@ -150,7 +149,7 @@
     }
 
     /* Media query for responsiveness */
-    @media (max-width: 992px) { 
+    @media (max-width: 992px) {
       /* Styles for tablets */
       .hero h2 {
         font-size: 2.5em;
@@ -168,7 +167,7 @@
         left: 0;
         width: 100%;
         flex-direction: column;
-        background-color: rgba(255, 255, 255,   0.8);
+        background-color: rgba(255, 255, 255, 0.8);
         backdrop-filter: blur(5px);
         transform: translateY(-100%);
         transition: transform 0.3s ease;
@@ -212,7 +211,7 @@
       }
     }
 
-    @media (max-width: 576px) { 
+    @media (max-width: 576px) {
       /* Styles for smaller mobile phones */
       .hero h2 {
         font-size: 2em;
@@ -228,8 +227,8 @@
       max-width: 100%;
       height: auto;
     }
-    
-     /* Styles for the custom alert */
+
+    /* Styles for the custom alert */
     .custom-alert {
       position: fixed;
       top: 50%;
@@ -240,9 +239,9 @@
       border-radius: 8px;
       padding: 20px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-      z-index: 1000; 
-      max-width: 90%; 
-      word-wrap: break-word; 
+      z-index: 1000;
+      max-width: 90%;
+      word-wrap: break-word;
     }
 
     .custom-alert p {
@@ -266,22 +265,40 @@
     .custom-alert button:hover {
       background-color: #c82333;
     }
-    
-    /* Add a loading spinner style */
+
+    /* Loading spinner style */
     .loading {
       border: 4px solid #f3f3f3; /* Light grey */
       border-radius: 50%;
-      border-top: 4px solid #3498db; /* Blue */
       width: 20px;
       height: 20px;
       animation: spin 1s linear infinite;
-      display: inline-block; /* To align with text */
-      margin-left: 10px; /* Add some space */
+      display: inline-block;
+      margin-left: 10px;
+      position: relative;
     }
 
     @keyframes spin {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
+    }
+
+    .loading::after {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 4px solid #3498db; /* Blue */
+      position: absolute;
+      top: 0;
+      left: 0;
+      animation: spin-reverse 1s linear infinite;
+    }
+
+    @keyframes spin-reverse {
+      0% { transform: rotate(360deg); }
+      100% { transform: rotate(0deg); }
     }
   </style>
 </head>
@@ -314,11 +331,11 @@
 
   <main>
     <section class="hero">
-    <div class="container"> 
-      <h2>Welcome to Bon Jour Pinoy Restaurant!</h2>
-      <p>Experience the      taste of Filipino cuisine with a Homemade twist.</p>
-      <a href="foodmenu.html" class="btn">View Our Menu</a>
-      <a href="login.html" class="btn" onclick="showLoading(this)">Sign In/Up</a> 
+      <div class="container"> 
+        <h2>Welcome to Bon Jour Pinoy Restaurant!</h2>
+        <p>Experience the taste of Filipino cuisine with a Homemade twist.</p>
+        <a href="foodmenu.html" class="btn">View Our Menu</a>
+        <a href="login.html" class="btn" onclick="showLoading(this)">Sign In/Up</a> 
       </div> 
     </section>
   </main>
@@ -326,12 +343,12 @@
   <footer>
     <p>&copy; 2024 Bon Jour Pinoy Restaurant. All rights reserved.</p>
   </footer>
-   
-    <div id="customAlert" class="custom-alert" style="display: none;">
+
+  <div id="customAlert" class="custom-alert" style="display: none;">
     <p id="alertMessage"></p>
     <button onclick="closeAlert()">Close</button>
   </div>
-  
+
   <script>
     const hamburger = document.querySelector('.hamburger');
     const navList = document.querySelector('.nav-list');
@@ -354,85 +371,57 @@
     navLinks.forEach(link => {
       link.addEventListener('click', hideNavigation);
     });
-        
-            // Function to display the alert message
+
+    // Function to display the alert message
     function showAlert(message) {
       alert(message);
     }
 
-      // Function to display the custom alert message
-    function displayAlert(message) {
-      const alertMessage = document.getElementById("alertMessage");
-      const customAlert = document.getElementById("customAlert");
-      alertMessage.textContent = message;
-      customAlert.style.display = "block";
-      // Auto-close the alert after 2 seconds
-      setTimeout(closeAlert, 2000); 
-    }
+    // Function to display the custom alert message
+          function displayAlert(message) {
+        const alertMessage = document.getElementById("alertMessage");
+        const customAlert = document.getElementById("customAlert");
+        alertMessage.textContent = message;
+        customAlert.style.display = "block";
+        // Auto-close the alert after 4 seconds
+        setTimeout(closeAlert, 4000);
+      }
 
-    // Function to close the custom alert
-    function closeAlert() {
-      const customAlert = document.getElementById("customAlert");
-      customAlert.style.display = "none";
-    }
+      // Function to close the custom alert
+      function closeAlert() {
+        const customAlert = document.getElementById("customAlert");
+        customAlert.style.display = "none";
+      }
 
+      // Attach the event listener to the "View Our Menu" button
+      const viewMenuButton = document.querySelector('.btn[href="foodmenu.html"]');
+      if (viewMenuButton) {
+        viewMenuButton.addEventListener('click', showLoading);
+      }
 
-    // Attach the event listener to the "View Our Menu" button
-    const viewMenuButton = document.querySelector('.btn[href="foodmenu.html"]'); // Select the "View Our Menu" button
-    if (viewMenuButton) {
-      viewMenuButton.addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent the default link behavior
-        displayAlert("You'll be able to view our menu once you sign in!");
-      });
-    }
+      // No need for alert on Food Menu and About Me links, allow direct access
+      const foodMenuLink = document.querySelector('.nav-list a[href="foodmenu.html"]');
+      const aboutMeLink = document.querySelector('.nav-list a[href="aboutme.html"]');
 
-    // Attach the event listener to the "Food Menu", "My Cart", and "About Me" navigation links
-    const foodMenuLink = document.querySelector('.nav-list a[href="foodmenu.html"]');
-    const myCartLink = document.querySelector('.nav-list a[href="cart.html"]');
-    const aboutMeLink = document.querySelector('.nav-list a[href="aboutme.html"]'); // Select the "About Me" link
+      // Only attach event listener to the "My Cart" link
+      const myCartLink = document.querySelector('.nav-list a[href="cart.html"]');
+      if (myCartLink) {
+        myCartLink.addEventListener('click', function(event) {
+          event.preventDefault(); // Prevent the default link behavior
+          displayAlert("Please sign in first to access the cart.");
+        });
+      }
 
-    if (foodMenuLink) {
-      foodMenuLink.addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent the default link behavior
-        displayAlert("Please sign in to view the food menu.");
-      });
-    }
+      function showLoading(link) {
+        event.preventDefault(); // Prevent immediate redirection
+        const originalText = link.textContent;
+        link.innerHTML = originalText + '<span class="loading"></span>';
 
-    if (myCartLink) {
-      myCartLink.addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent the default link behavior
-        displayAlert("Please sign in to access the cart.");
-      });
-    }
-
-    if (aboutMeLink) {
-      aboutMeLink.addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent the default link behavior
-        displayAlert("Please sign in to view the about me page.");
-      });
-    } 
-    
-       // Function to show the loading spinner and redirect
-    function showLoading(link) {
-      event.preventDefault(); // Prevent immediate redirection
-      const originalText = link.textContent; 
-      link.innerHTML = originalText + '<span class="loading"></span>'; 
-
-      setTimeout(() => {
-        window.location.href = link.href; // Redirect after 1.0 seconds
-      }, 1000);
-    }    
+        setTimeout(() => {
+          window.location.href = link.href; // Redirect after 1.0 seconds
+        }, 1000);
+      }
   </script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0049SLDRM2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-0049SLDRM2'); 
-</script>
 </body>
 </html>
 
- 
-      
