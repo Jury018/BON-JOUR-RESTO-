@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <title>HOMEPAGE</title>
   <meta charset="UTF-8">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="foodmenu.css">
- <link rel="shortcut icon" type="image/x-icon" href="logo.svg">  
- 
+  <link rel="stylesheet" href=".css">
+  <link rel="shortcut icon" type="image/x-icon" href="logo.svg">
 </head>
+
 <body>
   <header>
     <h1><b style="animation: glowing 1s infinite;">BON JOUR PINOY RESTAURANT™</b></h1>
     <nav>
-      <div class="nav-container"> 
+      <div class="nav-container">
         <ul class="nav-list">
-          <li><a href="index.html" onclick="showLoading(event)">Home</a></li> 
+          <li><a href="index.html" onclick="showLoading(event)">Home</a></li>
           <li><a href="aboutme.html" onclick="showLoading(event)">About Me</a></li>
           <li><a href="#menu" onclick="showLoading(event)">Food Menu</a></li>
           <li><a href="cart.html" onclick="checkCartAndRedirect(event)">My Cart</a></li>
-          <li><a href="login.html" onclick="showLoading(event)">Sign Out</a></li> 
+          <li><a href="login.html" onclick="showLoading(event)">Sign Out</a></li>
         </ul>
         <div class="hamburger">
           <span></span>
@@ -30,7 +32,7 @@
   </header>
 
   <main>
-    <div id="introMenu"> 
+    <div id="introMenu">
       <h2>Introduction:</h2>
       <p><i>Welcome to Bon Jour Pinoy Restaurant, where Spanish elegance meets Filipino flavors. Our passion for culinary excellence drives us to create a unique dining and take out experience, blending classic techniques with local ingredients. Explore our diverse menu and embark on a delightful gastronomic journey.</i></p>
     </div>
@@ -42,15 +44,15 @@
         <h3>HOMEMADE MEALS</h3>
         <div class="menu-container">
           <div class="menu-item">
-            <img src="porksteak.png" alt="Pork Steak" loading="lazy">
+            <img src="porksteak.png" alt="Pork Steak" async>
             <h3>Pork Steak</h3>
-            <p>Tender pork steak marinated in a savory blend of soy sauce, garlic, and spices, pan-fried to perfection.</p> 
+            <p>Tender pork steak marinated in a savory blend of soy sauce, garlic, and spices, pan-fried to perfection.</p>
             <p>₱80</p>
             <button class="add-to-cart">Add to Cart</button>
           </div>
 
           <div class="menu-item">
-            <img src="dinuguan.png" alt="Dinuguan" loading="lazy">
+            <img src="dinuguan.png" alt="Dinuguan" async>
             <h3>Dinuguan</h3>
             <p>A rich and savory pork blood stew simmered with vinegar, chili peppers, and aromatic spices.</p>
             <p>₱50</p>
@@ -58,7 +60,7 @@
           </div>
 
           <div class="menu-item">
-            <img src="bicolexpress.png" alt="Bicol Express" loading="lazy">
+            <img src="bicolexpress.png" alt="Bicol Express" async>
             <h3>Bicol Express</h3>
             <p>Spicy Bicol Express with tender pork and a rich coconut milk sauce.</p>
             <p>₱50</p>
@@ -66,7 +68,7 @@
           </div>
 
           <div class="menu-item">
-            <img src="letchonkawali.png" alt="Letchon Kawali">
+            <img src="letchonkawali.png" alt="Letchon Kawali" async>
             <h3>Lechon Kawali</h3>
             <p>Crispy and flavorful deep-fried pork belly, a Filipino classic.</p>
             <p>₱75</p>
@@ -74,15 +76,15 @@
           </div>
 
           <div class="menu-item">
-            <img src="porksinigang.png" alt="Pork Sinigang" loading="lazy">
+            <img src="porksinigang.png" alt="Pork Sinigang" async>
             <h3>Pork Sinigang</h3>
             <p>Savory and sour soup with pork, vegetables, and a tamarind broth.</p>
             <p>₱100</p>
-            <button class="add-to-cart">Add to Cart</button>
+                        <button class="add-to-cart">Add to Cart</button>
           </div>
 
           <div class="menu-item">
-            <img src="beefnilaga.png" alt="Beef Nilaga" loading="lazy">
+            <img src="beefnilaga.png" alt="Beef Nilaga" async>
             <h3>Beef Nilaga</h3>
             <p>Hearty beef stew with vegetables and a flavorful broth.</p>
             <p>₱150</p>
@@ -90,7 +92,7 @@
           </div>
 
           <div class="menu-item">
-            <img src="sisig.png" alt="Sisig" loading="lazy">
+            <img src="sisig.png" alt="Sisig" async>
             <h3>Sisig</h3>
             <p>Sizzling pork dish with onions, chili peppers, and a tangy twist.</p>
             <p>₱145</p>
@@ -98,7 +100,7 @@
           </div>
 
           <div class="menu-item">
-            <img src="fritomanok(whole).png" alt="Frito Manok (whole)" loading="lazy">
+            <img src="fritomanok(whole).png" alt="Frito Manok (whole)" async>
             <h3>Frito Manok (whole)</h3>
             <p>Whole fried chicken, crispy on the outside, juicy on the inside.</p>
             <p>₱160</p>
@@ -106,7 +108,7 @@
           </div>
 
           <div class="menu-item">
-            <img src="fritochicken(wings).png" alt="Frito Manok (wings)" loading="lazy">
+            <img src="fritochicken(wings).png" alt="Frito Manok (wings)" async>
             <h3>Frito Manok (wings)</h3>
             <p>Flavorful and crispy fried chicken wings.</p>
             <p>₱150</p>
@@ -114,7 +116,7 @@
           </div>
 
           <div class="menu-item">
-            <img src="fritotilapia.png" alt="Frito Tilapia" loading="lazy">
+            <img src="fritotilapia.png" alt="Frito Tilapia" async>
             <h3>Frito Tilapia</h3>
             <p>Crispy fried tilapia, a light and healthy option.</p>
             <p>₱120</p>
@@ -122,7 +124,7 @@
           </div>
 
           <div class="menu-item">
-            <img src="fritogalunggong.png" alt="Frito Galunggong" loading="lazy">
+            <img src="fritogalunggong.png" alt="Frito Galunggong" async>
             <h3>Frito Galunggong</h3>
             <p>Simple and delicious fried galunggong (round scad).</p>
             <p>₱100</p>
@@ -130,7 +132,7 @@
           </div>
 
           <div class="menu-item">
-            <img src="beefmenudo.png" alt="Beef Menudo" loading="lazy">
+            <img src="beefmenudo.png" alt="Beef Menudo" async>
             <h3>Beef Menudo</h3>
             <p>Savory beef stew with potatoes, carrots, and a tomato-based sauce.</p>
             <p>₱150</p>
@@ -138,7 +140,7 @@
           </div>
 
           <div class="menu-item">
-            <img src="porkadobo.png" alt="Pork Adobo" loading="lazy">
+            <img src="porkadobo.png" alt="Pork Adobo" async>
             <h3>Pork Adobo</h3>
             <p>Classic Filipino adobo with tender pork braised in soy sauce, vinegar, and spices.</p>
             <p>₱120</p>
@@ -146,7 +148,7 @@
           </div>
 
           <div class="menu-item">
-            <img src="porksweetsour.png" alt="Pork Mechado" loading="lazy">
+            <img src="porksweetsour.png" alt="Pork Mechado" async>
             <h3>Pork Sweet and Sour</h3>
             <p>Pork sweet & sour with a rich tomato sauce and sweet savory flavors.</p>
             <p>₱120</p>
@@ -154,7 +156,7 @@
           </div>
 
           <div class="menu-item">
-            <img src="chickenadobo.png" alt="Adobo Manok" loading="lazy">
+            <img src="chickenadobo.png" alt="Adobo Manok" async>
             <h3>Adobo Manok</h3>
             <p>Chicken adobo, a flavorful and versatile Filipino dish.</p>
             <p>₱110</p>
@@ -162,7 +164,7 @@
           </div>
 
           <div class="menu-item">
-            <img src="tinola.png" alt="Tinola Manok" loading="lazy">
+            <img src="tinola.png" alt="Tinola Manok" async>
             <h3>Tinola Manok</h3>
             <p>Ginger-based chicken soup with vegetables and a light broth.</p>
             <p>₱110</p>
@@ -170,28 +172,28 @@
           </div>
 
           <div class="menu-item">
-            <img src="porkbbq.png" alt="Pork BBQ" loading="lazy">
+            <img src="porkbbq.png" alt="Pork BBQ" async>
             <h3>Pork BBQ</h3>
             <p>Grilled pork skewers marinated in a sweet and savory sauce.</p>
             <p>₱80</p>
             <button class="add-to-cart">Add to Cart</button>
           </div>
-        </div> 
+        </div>
       </div>
 
       <div class="menu-category">
         <h3>QUICK MEAL</h3>
         <div class="menu-container">
           <div class="menu-item">
-            <img src="gutoregular.png" alt="Goto Lugaw Regular" loading="lazy">
+            <img src="gutoregular.png" alt="Goto Lugaw Regular" async>
             <h3>Goto Lugaw Regular</h3>
             <p>A comforting Filipino rice porridge with ox tripe, ginger, and garlic.</p>
-           <p>₱40</p>
+            <p>₱40</p>
             <button class="add-to-cart">Add to Cart</button>
           </div>
 
           <div class="menu-item">
-            <img src="gutospecial.png" alt="Goto Lugaw Special" loading="lazy">
+            <img src="gutospecial.png" alt="Goto Lugaw Special" async>
             <h3>Goto Lugaw Special</h3>
             <p>Rice porridge with ox tripe, egg, and more toppings for a hearty meal.</p>
             <p>₱60</p>
@@ -199,7 +201,7 @@
           </div>
 
           <div class="menu-item">
-            <img src="pinoylugaw.png" alt="Pinoy Lugaw" loading="lazy">
+            <img src="pinoylugaw.png" alt="Pinoy Lugaw" async>
             <h3>Pinoy Lugaw</h3>
             <p>Pinoy-style rice porridge with unique flavors and ingredients.</p>
             <p>₱60</p>
@@ -207,7 +209,7 @@
           </div>
 
           <div class="menu-item">
-            <img src="beefpares.png" alt="Beef Pares" loading="lazy">
+            <img src="beefpares.png" alt="Beef Pares" async>
             <h3>Beef Pares</h3>
             <p>Tender beef stew with a savory sauce, served with rice.</p>
             <p>₱60</p>
@@ -215,7 +217,7 @@
           </div>
 
           <div class="menu-item">
-            <img src="porkpares.png" alt="Pork Pares" loading="lazy">
+            <img src="porkpares.png" alt="Pork Pares" async>
             <h3>Pork Pares</h3>
             <p>Braised pork with a sweet and savory sauce, perfect with rice.</p>
             <p>₱60</p>
@@ -223,7 +225,7 @@
           </div>
 
           <div class="menu-item">
-            <img src="lomi.png" alt="Pork Lomi" loading="lazy">
+            <img src="lomi.png" alt="Pork Lomi" async>
             <h3>Lomi</h3>
             <p>Noodles in a thick savory soup with vegetables.</p>
             <p>₱60</p>
@@ -231,7 +233,7 @@
           </div>
 
           <div class="menu-item">
-            <img src="beeflomi.png" alt="Beef Lomi" loading="lazy">
+            <img src="beeflomi.png" alt="Beef Lomi" async>
             <h3>Beef Lomi</h3>
             <p>Noodles in a flavorful soup with tender beef and vegetables.</p>
             <p>₱60</p>
@@ -244,7 +246,7 @@
         <h3>ADDS ON</h3>
         <div class="menu-container">
           <div class="menu-item">
-            <img src="whiterice.png" alt="White Rice" loading="lazy">
+            <img src="whiterice.png" alt="White Rice" async>
             <h3>White Rice</h3>
             <p>Steamed white rice, a perfect accompaniment to any Filipino dish.</p>
             <p>₱15</p>
@@ -252,15 +254,15 @@
           </div>
 
           <div class="menu-item">
-            <img src="friedrice.png" alt="Fried Rice" loading="lazy">
+            <img src="friedrice.png" alt="Fried Rice" async>
             <h3>Fried Rice</h3>
             <p>Flavorful fried rice with vegetables and a savory seasoning.</p>
             <p>₱20</p>
-            <button class="add-to-cart">Add to Cart</button>
+                       <button class="add-to-cart">Add to Cart</button>
           </div>
 
           <div class="menu-item">
-            <img src="siomai.png" alt="Siomai 3pcs" loading="lazy">
+            <img src="siomai.png" alt="Siomai 3pcs" async>
             <h3>Siomai</h3>
             <p>Steamed pork dumplings 4 pcs, a delicious appetizer or snack.</p>
             <p>₱20</p>
@@ -268,7 +270,7 @@
           </div>
 
           <div class="menu-item">
-            <img src="siopao.png" alt="Siopao" loading="lazy">
+            <img src="siopao.png" alt="Siopao" async>
             <h3>Siopao</h3>
             <p>Soft and fluffy steamed buns filled with savory meat or sweet bean paste.</p>
             <p>₱30</p>
@@ -276,7 +278,7 @@
           </div>
 
           <div class="menu-item">
-            <img src="garlicrice.png" alt="Garlic Rice" loading="lazy">
+            <img src="garlicrice.png" alt="Garlic Rice" async>
             <h3>Garlic Rice</h3>
             <p>Fragrant garlic rice, perfect for pairing with savory dishes.</p>
             <p>₱25</p>
@@ -289,7 +291,7 @@
         <h3>DRINKS</h3>
         <div class="menu-container">
           <div class="menu-item">
-            <img src="cokeregular.png" alt="Coke Regular" loading="lazy">
+            <img src="cokeregular.png" alt="Coke Regular" async>
             <h3>Coke Regular</h3>
             <p>Refresh your palate with an ice-cold Coca-Cola.</p>
             <p>₱25</p>
@@ -297,7 +299,7 @@
           </div>
 
           <div class="menu-item">
-            <img src="cokelarge.png" alt="Coke Large" loading="lazy">
+            <img src="cokelarge.png" alt="Coke Large" async>
             <h3>Coke Large</h3>
             <p>A larger serving of refreshing Coca-Cola.</p>
             <p>₱35</p>
@@ -305,7 +307,7 @@
           </div>
 
           <div class="menu-item">
-            <img src="nestea.png" alt="Nestea" loading="lazy">
+            <img src="nestea.png" alt="Nestea" async>
             <h3>Nestea</h3>
             <p>Cool down with a refreshing Nestea iced tea.</p>
             <p>₱25</p>
@@ -313,7 +315,7 @@
           </div>
 
           <div class="menu-item">
-            <img src="sprite.png" alt="Sprite Regular" loading="lazy">
+            <img src="sprite.png" alt="Sprite Regular" async>
             <h3>Sprite Regular</h3>
             <p>Quench your thirst with a crisp and clean Sprite.</p>
             <p>₱25</p>
@@ -321,7 +323,7 @@
           </div>
 
           <div class="menu-item">
-            <img src="spritelarge.png" alt="Sprite Large" loading="lazy">
+            <img src="spritelarge.png" alt="Sprite Large" async>
             <h3>Sprite Large</h3>
             <p>Enjoy a larger serving of Sprite's lemon-lime flavor.</p>
             <p>₱35</p>
@@ -329,7 +331,7 @@
           </div>
 
           <div class="menu-item">
-            <img src="lemonadeblue.png" alt="Lemonade Blue" loading="lazy">
+            <img src="lemonadeblue.png" alt="Lemonade Blue" async>
             <h3>Lemonade Blue</h3>
             <p>A vibrant blue lemonade with a refreshing citrus taste.</p>
             <p>₱40</p>
@@ -337,7 +339,7 @@
           </div>
 
           <div class="menu-item">
-            <img src="lemonade.png" alt="Lemonade" loading="lazy">
+            <img src="lemonade.png" alt="Lemonade" async>
             <h3>Lemonade</h3>
             <p>Classic lemonade, a perfect thirst quencher.</p>
             <p>₱30</p>
@@ -345,7 +347,7 @@
           </div>
 
           <div class="menu-item">
-            <img src="royalregular.png" alt="Royal Regular" loading="lazy">
+            <img src="royalregular.png" alt="Royal Regular" async>
             <h3>Royal Regular</h3>
             <p>Enjoy the classic taste of Royal Tru-Orange.</p>
             <p>₱25</p>
@@ -353,7 +355,7 @@
           </div>
 
           <div class="menu-item">
-            <img src="royallarge.png" alt="Royal Large" loading="lazy">
+            <img src="royallarge.png" alt="Royal Large" async>
             <h3>Royal Large</h3>
             <p>A larger serving of Royal Tru-Orange.</p>
             <p>₱35</p>
@@ -380,8 +382,8 @@
     <p>Loading, please wait...</p>
     <div class="loading"></div>
   </div>
-    <script>
-// JavaScript for "Add to Cart" functionality 
+  <script>
+      // JavaScript for "Add to Cart" functionality
 const addToCartButtons = document.querySelectorAll('.add-to-cart');
 
 addToCartButtons.forEach(button => {
@@ -412,15 +414,6 @@ const navList = document.querySelector('.nav-list');
 hamburger.addEventListener('click', () => {
   navList.classList.toggle('active');
   hamburger.classList.toggle('active');
-
-  // Add/remove animation styles (replace with your preferred animation styles)
-  if (navList.classList.contains('active')) {
-    navList.style.transition = 'transform 0.3s ease-in-out';
-    navList.style.transform = 'translateX(0)';
-  } else {
-    navList.style.transition = 'transform 0.3s ease-in-out';
-    navList.style.transform = 'translateX(-100%)';
-  }
 });
 
 
@@ -458,17 +451,29 @@ function closeAlert() {
 // Function to show the custom loading message and redirect
 function showLoading(event) {
   event.preventDefault();
+
   const customLoading = document.getElementById("customLoading");
   customLoading.style.display = "block";
 
-  // Wait for the hamburger menu to close (if open) before redirecting
-  setTimeout(() => {
-    window.location.href = event.target.href;
-  }, navList.classList.contains('active') ? 1300 : 1000);
+  // Simulate loading time based on connection speed (adjust as needed)
+  const simulatedLoadingTime = Math.random() * 2000 + 1000; // Random time between 1 and 3 seconds
 
-  // Hide the hamburger menu after a short delay
-  setTimeout(hideNavigation, 300);
+  setTimeout(() => {
+    // Check if the event target has an href attribute
+    if (event.target.href) {
+      window.location.href = event.target.href;
+    } else {
+      // If no href, redirect to cart.html (for "Let's Order")
+      window.location.href = 'cart.html';
+    }
+
+    // Hide the loading indicator after redirection or a timeout
+    setTimeout(() => {
+      customLoading.style.display = "none";
+    }, 1000); // Adjust the timeout as needed
+  }, simulatedLoadingTime);
 }
+
 
 function checkCartAndRedirect(event) {
   event.preventDefault(); // Prevent default link behavior
@@ -491,25 +496,6 @@ function checkCartAndRedirect(event) {
   }
 }
 
-function showLoading(event) {
-  event.preventDefault();
-  const customLoading = document.getElementById("customLoading");
-  customLoading.style.display = "block";
-
-  // Wait for the hamburger menu to close (if open) before redirecting
-  setTimeout(() => {
-    // Check if the event target has an href attribute
-    if (event.target.href) {
-      window.location.href = event.target.href; 
-    } else {
-      // If no href, redirect to cart.html (for "Let's Order")
-      window.location.href = 'cart.html'; 
-    }
-  }, navList.classList.contains('active') ? 1300 : 1000);
-
-  // Hide the hamburger menu after a short delay
-  setTimeout(hideNavigation, 300);
-}
   </script>
 </body>
 </html>
