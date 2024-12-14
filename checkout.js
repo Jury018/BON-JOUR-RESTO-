@@ -2,7 +2,6 @@ const cardDetailsDiv = document.getElementById('cardDetails');
 const paymentRadios = document.querySelectorAll('input[name="pay"]');
 const amountInput = document.getElementById('totalAmount');
 const payNowButton = document.getElementById('payNowButton');
-
 // Get the total amount from the cart
 const cart = JSON.parse(localStorage.getItem('cart')) || [];
 let totalAmount = 0;
@@ -161,7 +160,56 @@ function displayAlert(message) {
 
 // Handle "PAY NOW" button click
 payNowButton.addEventListener('click', (event) => {
-  let selectedPayment = document.querySelector('input[name="pay"]:checked').id;
+  event.preventDefault(); // Prevent default form submission
+
+  // Gather user information
+  const firstName = document.getElementById('firstName').value;
+  const lastName = document.getElementById('lastName').value;
+  const phoneNumber = document.getElementById('phoneNumber').value;
+  const address = document.getElementById('address').value;
+  const city = document.getElementById('city').value;
+  const paymentOption = document.querySelector('input[name="pay"]:checked').value;
+
+  // Validate user information (adjust validation as needed)
+  if (!firstName || !lastName || !phoneNumber || !address || !city || !paymentOption) {
+    alert('Please fill in all required fields.');
+    return;
+  }
+
+  // Assuming cartItems is an array of items with quantity and price
+  const cartItems = JSON.parse(localStorage.getItem('cart'));
+
+  // Send data to the Flask server
+  fetch('http://your_flask_server_address/submit_order', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      name: firstName + ' ' + lastName,
+      phone_number: phoneNumber,
+      address: address,
+      payment_option: paymentOption,
+      items: cartItems
+    })
+  })
+  .then(response => {
+    if (response.ok) {
+      // Handle successful submission, e.g., display a success message
+      alert('Order submitted successfully!');
+      // Clear form and cart
+      // ...
+    } else {
+      // Handle errors, e.g., display an error message
+      console.error('Error submitting order:', response.statusText);
+      alert('An error occurred. Please try again later.');
+    }
+  })
+  .catch(error => {
+    console.error('Error submitting order:', error);
+    alert('An error occurred. Please try again later.');
+  });
+});
 
   // Form validation
   let isValid = true;
@@ -269,3 +317,46 @@ function displayConfirmationAlert(message, onConfirm) {
 
   document.body.appendChild(alertContainer);
 }
+
+  // Gather user information
+  const firstName = document.getElementById('firstName').value;
+  const lastName = document.getElementById('lastName').value;
+  const phoneNumber = document.getElementById('phoneNumber').value;
+  const address = document.getElementById('address').value;
+  const city = document.getElementById('city').value;
+  const paymentOption = document.querySelector('input[name="pay"]:checked').value;
+  const cartItems = JSON.parse(localStorage.getItem('cart'));
+
+  // Send data to the Flask server
+  fetch('http://127.0.0.1:5000/submit_order', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      firstName: firstName,
+      lastName: lastName,
+      phoneNumber: phoneNumber,
+      address: address,
+      city: city,
+      paymentOption: paymentOption,
+      cartItems: cartItems
+    })
+  })
+  .then(response => {
+    if (response.ok) {
+      // Handle successful submission, e.g., display a success message
+      alert('Order submitted successfully!');
+      // Clear form and cart
+      // ...
+    } else {
+      // Handle errors, e.g., display an error message
+      console.error('Error submitting order:', response.statusText);
+      alert('An error occurred. Please try again later.');
+    }
+  })
+  .catch(error => {
+    console.error('Error submitting order:', error);
+    alert('An error occurred. Please try again later.');
+  });
+});
