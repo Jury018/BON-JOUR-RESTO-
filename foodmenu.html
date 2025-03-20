@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <title>HOMEPAGE</title>
   <meta charset="UTF-8">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="foodmenu.css">
-  <link rel="stylesheet" href=".css">
   <link rel="shortcut icon" type="image/x-icon" href="logo.svg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-
 <body>
   <header>
     <h1><b style="animation: glowing 1s infinite;">BON JOUR PINOY RESTAURANT™</b></h1>
+    <a href="cart.html" class="cart-icon">
+      <i class="fas fa-shopping-cart"></i>
     <nav>
       <div class="nav-container">
         <ul class="nav-list">
@@ -80,7 +80,7 @@
             <h3>Pork Sinigang</h3>
             <p>Savory and sour soup with pork, vegetables, and a tamarind broth.</p>
             <p>₱100</p>
-                        <button class="add-to-cart">Add to Cart</button>
+            <button class="add-to-cart">Add to Cart</button>
           </div>
 
           <div class="menu-item">
@@ -258,7 +258,7 @@
             <h3>Fried Rice</h3>
             <p>Flavorful fried rice with vegetables and a savory seasoning.</p>
             <p>₱20</p>
-                       <button class="add-to-cart">Add to Cart</button>
+            <button class="add-to-cart">Add to Cart</button>
           </div>
 
           <div class="menu-item">
@@ -364,14 +364,11 @@
         </div>
       </div>
     </section> 
-
-    <button id="orderButton" onclick="checkCartAndRedirect(event)">Let's Order</button>
-
-
-  </main>
-
   <footer>
-    <p>&copy; 2024 Bon Jour Pinoy Restaurant. All rights reserved.</p>
+    <p>&copy; 2025 Bon Jour Pinoy Restaurant. All rights reserved.</p>
+    <button id="cartButton" onclick="window.location.href='cart.html'">
+      <i class="fas fa-shopping-cart"></i> View Cart
+    </button>
   </footer>
   <div id="customAlert" class="custom-alert" style="display: none;">
     <p id="alertMessage"></p>
@@ -382,120 +379,6 @@
     <p>Loading, please wait...</p>
     <div class="loading"></div>
   </div>
-  <script>
-      // JavaScript for "Add to Cart" functionality
-const addToCartButtons = document.querySelectorAll('.add-to-cart');
-
-addToCartButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    // 1. Get the menu item information (name, price, etc.)
-    const menuItem = button.closest('.menu-item');
-    const productName = menuItem.querySelector('h3').textContent;
-    const productPrice = menuItem.querySelector('p:nth-of-type(2)').textContent;
-
-    // 2. Add the item to the cart (local storage)
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    cart.push({ name: productName, price: productPrice });
-    localStorage.setItem('cart', JSON.stringify(cart));
-
-    // 3. Provide feedback to the user (transition effect)
-    menuItem.classList.add('added-to-cart');
-
-    setTimeout(() => {
-      menuItem.classList.remove('added-to-cart');
-    }, 500);
-  });
-});
-
-// JavaScript for hamburger menu
-const hamburger = document.querySelector('.hamburger');
-const navList = document.querySelector('.nav-list');
-
-hamburger.addEventListener('click', () => {
-  navList.classList.toggle('active');
-  hamburger.classList.toggle('active');
-});
-
-
-// Function to hide the navigation menu
-function hideNavigation() {
-  if (hamburger && navList) {
-    navList.classList.remove('active');
-    hamburger.classList.remove('active');
-  }
-}
-
-// Attach the event listener to all navigation links
-const navLinks = document.querySelectorAll('.nav-list a');
-navLinks.forEach(link => {
-  link.addEventListener('click', hideNavigation);
-});
-
-// Function to display the custom alert message
-function displayAlert(message) {
-  const alertMessage = document.getElementById("alertMessage");
-  const customAlert = document.getElementById("customAlert");
-  alertMessage.textContent = message;
-  customAlert.style.display = "block";
-
-  // Auto-close the alert after 2 seconds
-  setTimeout(closeAlert, 2000);
-}
-
-// Function to close the custom alert
-function closeAlert() {
-  const customAlert = document.getElementById("customAlert");
-  customAlert.style.display = "none";
-}
-
-// Function to show the custom loading message and redirect
-function showLoading(event) {
-  event.preventDefault();
-
-  const customLoading = document.getElementById("customLoading");
-  customLoading.style.display = "block";
-
-  // Simulate loading time based on connection speed (adjust as needed)
-  const simulatedLoadingTime = Math.random() * 2000 + 1000; // Random time between 1 and 3 seconds
-
-  setTimeout(() => {
-    // Check if the event target has an href attribute
-    if (event.target.href) {
-      window.location.href = event.target.href;
-    } else {
-      // If no href, redirect to cart.html (for "Let's Order")
-      window.location.href = 'cart.html';
-    }
-
-    // Hide the loading indicator after redirection or a timeout
-    setTimeout(() => {
-      customLoading.style.display = "none";
-    }, 1000); // Adjust the timeout as needed
-  }, simulatedLoadingTime);
-}
-
-
-function checkCartAndRedirect(event) {
-  event.preventDefault(); // Prevent default link behavior
-
-  let cart = JSON.parse(localStorage.getItem('cart')) || [];
-  if (cart.length > 0) {
-    // Add slide-out animation to the order button
-    const orderButton = document.getElementById('orderButton');
-    orderButton.style.transition = 'transform 0.5s ease, opacity 0.5s ease'; 
-    orderButton.style.transform = 'translateY(100%)'; 
-    orderButton.style.opacity = '0'; 
-
-    // Redirect to cart.html after the animation completes
-    setTimeout(() => {
-      window.location.href = 'cart.html';
-    }, 500); 
-
-  } else {
-    displayAlert("Your cart is empty. Please add items to your order first.");
-  }
-}
-
-  </script>
+  <script src="foodmenu.js"></script>
 </body>
 </html>
