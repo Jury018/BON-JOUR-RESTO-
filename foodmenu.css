@@ -23,6 +23,7 @@ header {
   padding: 20px;
   text-align: center;
   box-shadow: 0 4px 6px var(--shadow-color);
+  position: relative;
 }
 
 header h1 {
@@ -31,6 +32,13 @@ header h1 {
   margin-top: 0;
   transition: all 0.3s ease;
   cursor: default;
+  animation: glowing 1s infinite;
+}
+
+@keyframes glowing {
+  0% { text-shadow: 0 0 5px var(--secondary-color), 0 0 10px var(--secondary-color), 0 0 15px var(--secondary-color); }
+  0% { text-shadow: 0 0 20px var(--secondary-color), 0 0 30px var(--secondary-color), 0 0 40px var(--secondary-color); }
+  0% { text-shadow: 0 0 5px var(--secondary-color), 0 0 10px var(--secondary-color), 0 0 15px var(--secondary-color); }
 }
 
 /* Navigation Bar Styles */
@@ -67,9 +75,10 @@ nav {
 }
 
 .nav-list a:hover {
-  background-color: #ffffffb5;
+  background-color: red;
   color: var(--primary-color);
-  box-shadow: 0 2px 4px #9e9e9eb5;
+  box-shadow: 0 2px 4px transparent;
+  transform: scale(1.1);
 }
 
 /* Hamburger Menu Styles */
@@ -79,50 +88,70 @@ nav {
   width: 30px;
   height: 20px;
   z-index: 1001;
+  cursor: pointer;
 }
 
-    .hamburger span {
-      display: block;
-      position: absolute;
-      width: 100%;
-      height: 3px;
-      background-color: #000000;
-      border-radius: 2px;
-      transition: transform 0.3s, opacity 0.3s;
-    }
+.hamburger span {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background-color: #000000;
+  border-radius: 2px;
+  transition: transform 0.3s, opacity 0.3s;
+}
 
-    .hamburger span:nth-child(1) {
-      top: 0;
-    }
+.hamburger span:nth-child(1) {
+  top: 0;
+}
 
-    .hamburger span:nth-child(2) {
-      top: 50%;
-      transform: translateY(-50%);
-    }
+.hamburger span:nth-child(2) {
+  top: 50%;
+  transform: translateY(-50%);
+}
 
-    .hamburger span:nth-child(3) {
-      bottom: 0;
-    }
+.hamburger span:nth-child(3) {
+  bottom: 0;
+}
 
-    /* Hover effect for hamburger */
-    .hamburger:hover span {
-      background-color: #000000;
-    }
+/* Hover effect for hamburger */
+.hamburger:hover span {
+  background-color: #000000;
+}
 
-    /* Active state for hamburger (X) */
-    .hamburger.active span:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
-    }
+/* Active state for hamburger (X) */
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
 
-    .hamburger.active span:nth-child(2) {
-      opacity: 0;
-    }
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
 
-    .hamburger.active span:nth-child(3) {
-      transform: rotate(-45deg) translate(5px, -5px);
-    }
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
 
-    /* Main Content Styles */
+/* Expanded menu styles */
+.nav-list.expanded {
+  display: block;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  background-color: var(--primary-color);
+  box-shadow: 0 4px 6px var(--shadow-color);
+  text-align: left;
+  padding: 10px 0;
+}
+
+.nav-list.expanded li {
+  display: block;
+  margin: 10px 0;
+  text-align: center;
+}
+
+/* Main Content Styles */
 main {
   padding: 20px;
 }
@@ -170,8 +199,9 @@ main p {
 }
 
 .menu-item img {
-  max-width: 100%;
-  height: auto; /* Maintain aspect ratio */
+  width: 100%;
+  height: 200px; /* Set a fixed height */
+  object-fit: cover; /* Ensure the image covers the area without distortion */
   margin-bottom: 10px;
 }
 
@@ -183,128 +213,135 @@ main p {
   margin-bottom: 15px;
 }
 
-    .add-to-cart {
-      background-color: #ff4757;
-      color: #fff;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .add-to-cart:hover {
-      background-color: #ff6b81;
-    }
-
-    /* Button Styles */
-    #orderButton {
-      display: block;
-      width: 200px;
-      margin: 30px auto;
-      padding: 15px;
-      background-color: var(--accent-color);
-      color: white;
-      border: none;
-      border-radius: 5px;
-      font-size: 18px;
-      cursor: pointer;
-      box-shadow: 0 4px 6px var(--shadow-color);
-      transition: all 0.3s ease; 
-      position: fixed; /* Make the button sticky */
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      transform-origin: 50% 0;
-      z-index: 1000;
-    }
-
-    #orderButton:hover {
-      background-color: #d39e00; 
-      transform: translateY(-3px); 
-      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); 
-    }
-    
-    .add-to-cart:hover {
-  background-color: #ff5733;
+.add-to-cart {
+  background-color: red;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
+.add-to-cart:hover {
+  background-color: orange;
+  transform: scale(1.1);
+}
 
-    /* Footer */
-    footer {
-      background-color: #f8f8f8;
-      padding: 10px;
-      text-align: center;
-      border-top: 2px solid #e0e0e0;
-      font-size: 14px;
-      color: #888;
-      margin-top: 40px; 
-    }
+/* Cart Icon Styles */
+.cart-icon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 1.5em;
+  color: var(--secondary-color);
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
 
-    /* Transition effect for added-to-cart */
-    .menu-item.added-to-cart {
-      transform: scale(1.05);
-      box-shadow: 0 0 10px var(--secondary-color);
-    }
+.cart-icon:hover {
+  transform: scale(1.2);
+}
 
-    /* Styles for the custom alert */
-    .custom-alert {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: #fff;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      padding: 20px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-      z-index: 1000;
-      max-width: 90%;
-      word-wrap: break-word;
-    }
+/* Footer Cart Button Styles */
+#cartButton {
+  background-color: red;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
 
-    .custom-alert p {
-      text-align: center;
-      margin-bottom: 20px;
-    }
+#cartButton i {
+  margin-right: 10px;
+}
 
-    .custom-alert button {
-      background-color: #dc3545;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      display: block;
-      margin: 0 auto;
-    }
+#cartButton:hover {
+  background-color: orange;
+  transform: scale(1.1);
+}
 
-    .custom-alert button:hover {
-      background-color: #c82333;
-    }
+/* Footer */
+footer {
+  background-color: #f8f8f8;
+  padding: 10px;
+  text-align: center;
+  border-top: 2px solid #e0e0e0;
+  font-size: 14px;
+  color: #888;
+  margin-top: 40px; 
+}
 
-    /* Styles for the custom loading message */
-    .custom-loading {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: rgba(255, 255, 255, 0.9);
-      border-radius: 8px;
-      padding: 30px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-      z-index: 1000;
-      text-align: center;
-      display: none;
-    }
+/* Transition effect for added-to-cart */
+.menu-item.added-to-cart {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px var(--secondary-color);
+}
 
-    .custom-loading p {
-      font-size: 1.2em;
-      margin-bottom: 20px;
-    }
+/* Styles for the custom alert */
+.custom-alert {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  max-width: 90%;
+  word-wrap: break-word;
+}
 
-    .custom-loading .loading {
+.custom-alert p {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.custom-alert button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: block;
+  margin: 0 auto;
+}
+
+.custom-alert button:hover {
+  background-color: #c82333;
+}
+
+/* Styles for the custom loading message */
+.custom-loading {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  text-align: center;
+  display: none;
+}
+
+.custom-loading p {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+.custom-loading .loading {
   border: 4px solid #f3f3f3;
   border-top: 4px solid #3498db;
   border-radius: 50%;
@@ -322,59 +359,99 @@ main p {
     transform: rotate(360deg);
   }
 }
-    /* Media Queries for Responsiveness */
-    @media (max-width: 768px) {
-      .hamburger {
-        display: block; 
-      }
 
-      .nav-list {
-        position: fixed;
-        top: 70px;
-        left: -100%; /* Initially hide the menu off-screen */
-        width: 100%;
-        height: 100%;
-        background-color: rgba(255, 255, 255, 0.9);
-        flex-direction: column;
-        align-items: center;
-        justify-content: center; /* Center vertically */
-        transition: left 0.3s ease;
-        z-index: 1000;
-      }
+/* Animation for adding to cart */
+@keyframes addToCart {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
 
-      .nav-list.active {
-        left: 0; /* Show the menu when active */
-      }
+/* Media Queries for Responsiveness */
 
-      .nav-list li {
-        display: block;
-        margin: 10px 0;
-      }
-
-      .menu-item {
-        width: 100%;
-      }
-      
-       .menu-container {
-    grid-template-columns: 1fr; 
+/* For screens up to 1024px */
+@media (max-width: 1024px) {
+  header h1 {
+    font-size: 2.2em;
   }
 
-      .menu-item img {
-        height: auto; /* Let images scale proportionally */
-      }
+  main h2 {
+    font-size: 1.8em;
+  }
 
-      .add-to-cart {
-        padding: 12px 24px;
-        font-size: 16px;
-      }
+  .menu-item {
+    padding: 15px;
+  }
 
-      header h1 {
-        font-size: 2em;
-      }
+  .add-to-cart {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
 
-      main h2 {
-        font-size: 24px;
-      }
+  #orderButton {
+    width: 180px;
+    padding: 12px;
+    font-size: 16px;
+  }
+}
 
-   
-  
+/* For screens up to 768px */
+@media (max-width: 768px) {
+  .nav-list {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .nav-list.expanded {
+    display: block;
+  }
+}
+
+/* For screens up to 480px */
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 1.8em;
+  }
+
+  main h2 {
+    font-size: 1.5em;
+  }
+
+  .menu-item {
+    padding: 10px;
+  }
+
+  .add-to-cart {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .custom-alert {
+    padding: 15px;
+  }
+
+  .custom-alert button {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  .custom-loading {
+    padding: 20px;
+  }
+
+  .custom-loading p {
+    font-size: 1em;
+  }
+}
