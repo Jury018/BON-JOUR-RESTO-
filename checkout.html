@@ -4,28 +4,28 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BON JOUR PINOY RESTAURANT PAYMENT METHOD </title>
+  <title>BON JOUR PINOY RESTAURANT PAYMENT METHOD</title>
   <link rel="stylesheet" href="checkout.css">
-   <link rel="shortcut icon" type="image/x-icon" href="logo.svg"> 
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">  
+  <link rel="shortcut icon" type="image/x-icon" href="logo.svg">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="wrapper">
     <header>
-      <h2><b style="animation: glowing 1s infinite;">BON JOUR PINOY RESTAURANT™</b></h2> 
+      <h2><b style="animation: glowing 1s infinite;">BON JOUR PINOY RESTAURANT™</b></h2>
     </header>
     <form action="" method="post">
       <h4>Account</h4>
       <div class="input_group">
         <div class="input_box">
-          <label for="firstName">First Name:</label> 
+          <label for="firstName">First Name:</label>
           <input type="text" placeholder="First Name" required class="name" id="firstName" aria-invalid="false" aria-describedby="firstNameError">
           <i class="fa fa-user icon"></i>
-          <div class="error" id="firstNameError"></div> 
+          <div class="error" id="firstNameError"></div>
         </div>
         <div class="input_box">
-          <label for="lastName">Last Name:</label> 
+          <label for="lastName">Last Name:</label>
           <input type="text" placeholder="Last Name" required class="name" id="lastName" aria-invalid="false" aria-describedby="lastNameError">
           <i class="fa fa-user icon"></i>
           <div class="error" id="lastNameError"></div>
@@ -33,15 +33,23 @@
       </div>
       <div class="input_group">
         <div class="input_box">
-          <label for="phoneNumber">Phone Number:</label> 
-          <input type="tel" placeholder="Phone Number" required class="name" id="phoneNumber" pattern="^(09|\+639)\d{9}$" aria-invalid="false" aria-describedby="phoneNumberError"> 
+          <label for="email">Email:</label>
+          <input type="email" placeholder="Email" required class="name" id="email" aria-invalid="false" aria-describedby="emailError">
+          <i class="fa fa-envelope icon"></i>
+          <div class="error" id="emailError"></div>
+        </div>
+      </div>
+      <div class="input_group">
+        <div class="input_box">
+          <label for="phoneNumber">Phone Number:</label>
+          <input type="tel" placeholder="Phone Number" required class="name" id="phoneNumber" pattern="^(09|\+639)\d{9}$" aria-invalid="false" aria-describedby="phoneNumberError">
           <i class="fa fa-phone icon"></i>
           <div class="error" id="phoneNumberError"></div>
         </div>
       </div>
       <div class="input_group">
         <div class="input_box">
-          <label for="address">Address:</label> 
+          <label for="address">Address:</label>
           <input type="text" placeholder="Address" required class="name" id="address" aria-invalid="false" aria-describedby="addressError">
           <i class="fa fa-map-marker icon" aria-hidden="true"></i>
           <div class="error" id="addressError"></div>
@@ -49,13 +57,20 @@
       </div>
       <div class="input_group">
         <div class="input_box">
-          <label for="city">City:</label> 
+          <label for="city">City:</label>
           <input type="text" placeholder="City" required class="name" id="city" aria-invalid="false" aria-describedby="cityError">
           <i class="fa fa-institution icon"></i>
           <div class="error" id="cityError"></div>
         </div>
       </div>
-
+      <div class="input_group">
+        <div class="input_box">
+          <label for="postalCode">Postal Code:</label>
+          <input type="text" placeholder="Postal Code" required class="name" id="postalCode" aria-invalid="false" aria-describedby="postalCodeError">
+          <i class="fa fa-map-pin icon"></i>
+          <div class="error" id="postalCodeError"></div>
+        </div>
+      </div>
       <div class="input_group">
         <div class="input_box">
           <h4>Payment Details</h4>
@@ -69,55 +84,63 @@
           <label for="bc4"><span><i class="fa fa-money"></i>GCash</span></label>
           <input type="radio" name="pay" class="radio" id="bc5">
           <label for="bc5"><span><i class="fa fa-truck"></i>Cash on Delivery</span></label>
-          <input type="radio" name="pay" class="radio" id="bc6"> 
-          <label for="bc6"><span><i class="fa fa-apple"></i>Apple Pay</span></label> 
+          <input type="radio" name="pay" class="radio" id="bc6">
+          <label for="bc6"><span><i class="fa fa-apple"></i>Apple Pay</span></label>
         </div>
       </div>
-
-      <div id="cardDetails"> 
+      <div id="cardDetails">
         <div class="input_group">
           <div class="input_box">
-            <label for="cardNumber">Card Number:</label> 
-            <input type="tel" name="" class="name" placeholder="Card Number 1111-2222-3333-4444" required id="cardNumber" aria-invalid="false" aria-describedby="cardNumberError">
+            <label for="cardNumber">Card Number:</label>
+            <input type="tel" class="name" placeholder="Card Number 1111-2222-3333-4444" required id="cardNumber" aria-invalid="false" aria-describedby="cardNumberError">
             <i class="fa fa-credit-card icon"></i>
             <div class="error" id="cardNumberError"></div>
           </div>
         </div>
         <div class="input_group">
           <div class="input_box">
-            <label for="cardCVC">Card CVC:</label> 
-            <input type="tel" name="" class="name" placeholder="Card CVC 632" required id="cardCVC" aria-invalid="false" aria-describedby="cardCVCError">
+            <label for="cardCVC">Card CVC:</label>
+            <input type="tel" class="name" placeholder="Card CVC 632" required id="cardCVC" aria-invalid="false" aria-describedby="cardCVCError">
             <i class="fa fa-user icon"></i>
             <div class="error" id="cardCVCError"></div>
           </div>
         </div>
         <div class="input_group">
           <div class="input_box">
-            <label for="expMonth">Exp Month:</label> 
+            <label for="expMonth">Exp Month:</label>
             <input type="number" placeholder="Exp Month" required class="name" id="expMonth" aria-invalid="false" aria-describedby="expMonthError">
             <i class="fa fa-calendar icon" aria-hidden="true"></i>
             <div class="error" id="expMonthError"></div>
           </div>
           <div class="input_box">
-            <label for="expYear">Exp Year:</label> 
+            <label for="expYear">Exp Year:</label>
             <input type="number" placeholder="Exp Year" required class="name" id="expYear" aria-invalid="false" aria-describedby="expYearError">
             <i class="fa fa-calendar-o icon" aria-hidden="true"></i>
             <div class="error" id="expYearError"></div>
           </div>
         </div>
       </div>
-
-      <div class="input_group"> 
-        <div class="input_box"> 
-         <i class="fa fa-money icon" aria-hidden="true"></i>
-          <label for="totalAmount">Total Amount:</label> 
+      <div class="input_group">
+        <div class="input_box">
+          <label for="couponCode">Coupon Code:</label>
+          <input type="text" placeholder="Coupon Code" class="name" id="couponCode">
+          <button type="button" id="applyCouponButton">Apply</button>
+          <div class="error" id="couponCodeError"></div>
+        </div>
+      </div>
+      <div class="order_summary">
+        <h4>Order Summary</h4>
+        <ul id="orderItems">
+          <!-- Order items will be dynamically populated here -->
+        </ul>
+        <div class="total_amount">
+          <label for="totalAmount">Total Amount:</label>
           <input type="number" id="totalAmount" placeholder="Enter Amount" required class="name" readonly>
         </div>
       </div>
-
       <div class="input_group">
         <div class="input_box">
-          <button type="button" id="payNowButton">PAY NOW</button> 
+          <button type="button" id="payNowButton">PAY NOW</button>
         </div>
       </div>
       <div class="input_group">
@@ -125,11 +148,10 @@
           <button type="button" onclick="window.location.href='cart.html'">Back to Cart</button>
         </div>
       </div>
-      <div id="loadingIndicator"></div> 
+      <div id="loadingIndicator"></div>
     </form>
   </div>
-
-  <script src="https://kit.fontawesome.com/65ce088790.js" crossorigin="anonymous"></script> 
+  <script src="https://kit.fontawesome.com/65ce088790.js" crossorigin="anonymous"></script>
   <script src="checkout.js"></script>
 </body>
 </html>
